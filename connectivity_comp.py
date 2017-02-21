@@ -22,31 +22,6 @@ def main(args):
         #print(bus_id)
         bus_sub_lookup[bus_id] = set([bus_id])
 
-    if False:
-        ed_dist = {}
-        for i, bus_1 in enumerate(raw_case['buses']):
-            bus_1_name = bus_1[1].strip('\'').strip()
-            for j in range(i+1, len(raw_case['buses'])):
-                bus_2 = raw_case['buses'][j]
-                bus_2_name = bus_2[1].strip('\'').strip()
-                ed = edit_distance(bus_1_name, bus_2_name)
-                #print(ed)
-                if not ed in ed_dist.keys():
-                    ed_dist[ed] = 0
-                ed_dist[ed] = ed_dist[ed] + 1
-
-                if ed <= 2:
-                    bus_1_id = int(bus_1[0])
-                    bus_2_id = int(bus_2[0])
-                    bus_id_set = bus_sub_lookup[bus_1_id] | bus_sub_lookup[bus_2_id]
-
-                    for bus_id in bus_id_set:
-                        bus_sub_lookup[bus_id] = bus_id_set
-
-
-        for ed in sorted(ed_dist.keys()):
-            print('%d - %d' % (ed, ed_dist[ed]))
-
     for trans in raw_case['transformers']:
         pr_bus = int(trans[0])
         sn_bus = int(trans[1])
@@ -69,27 +44,327 @@ def main(args):
 
     #for v in substation_buses:
     #    print(v)
+    bus_data_lookup = {}
+    for bus in raw_case['buses']:
+        bus_id = int(bus[0])
+        bus_data = {
+            'id':bus_id,
+            'name':'{} - {}'.format(bus_id, bus[1]),
+            'loads':[],
+            'generators':[],
+            'fixed_shunts':[],
+            'switched_shunts':[],
+            'facts':[]
+        }
+        bus_data_lookup[bus_id] = bus_data
 
-    substations = {}
-    for i, sub in enumerate(substation_buses):
-        sub_name = 'sub_%d' % i
-        sub_data = {}
-        sub_data['bus_ids'] = list(sub)
-        sub_data['bus_names'] = [ bus_lookup[bid][1].strip('\'').strip() for bid in sub_data['bus_ids']]
+    for i, load in enumerate(raw_case['loads']):
+        load_id = i+1
+        bus_id = int(load[0])
+        load_data = {
+            'id':load_id,
+            'name':'{} - {} {}'.format(load_id, bus_id, load[1]),
+        }
+        bus_data_lookup[bus_id]['loads'].append(load_data)
 
-        substations[sub_name] = sub_data
+    for i, generator in enumerate(raw_case['gens']):
+        gen_id = i+1
+        bus_id = int(generator[0])
+        generator_data = {
+            'id':gen_id,
+            'name':'{} - {} {}'.format(gen_id, bus_id, generator[1]),
+        }
+        bus_data_lookup[bus_id]['generators'].append(generator_data)
 
-        if len(sub_data['bus_ids']) > 1:
-            print(sub_name)
-            print('  ' + str(sub_data['bus_ids']))
-            print('  ' + str(sub_data['bus_names']))
-            print('')
+    for i, fixed_shunt in enumerate(raw_case['f_shunts']):
+        f_shunt_id = i+1
+        bus_id = int(fixed_shunt[0])
+        fixed_shunt_data = {
+            'id':f_shunt_id,
+            'name':'{} - {} {}'.format(f_shunt_id, bus_id, fixed_shunt[1]),
+        }
+        bus_data_lookup[bus_id]['fixed_shunts'].append(fixed_shunt_data)
 
+    for i, switched_shunt in enumerate(raw_case['s_shunts']):
+        s_shunt_id = i+1
+        bus_id = int(switched_shunt[0])
+        switched_shunt_data = {
+            'id':s_shunt_id,
+            'name':'{} - {}'.format(s_shunt_id, bus_id),
+        }
+        bus_data_lookup[bus_id]['switched_shunts'].append(switched_shunt_data)
+
+    for i, facts in enumerate(raw_case['facts']):
+        facts_id = i+1
+        from_bus = int(facts[1])
+        to_bus = int(facts[2])
+        if to_bus == 0:
+            facts_data = {
+                'id':facts_id,
+                'name':'{} - {} {}'.format(facts_id, from_bus, facts[0]),
+            }
+            bus_data_lookup[from_bus]['facts'].append(facts_data)
+
+
+    # for k,v in bus_data_lookup.items():
+    #     print('{} - {}'.format(k, v))
+    # print('')
+
+
+    bus_sub_lookup = {}
+    substations = []
+    for i, sub_buses in enumerate(substation_buses):
+        sub_id = i+1
+        substation = {
+            'id': sub_id,
+            'name': 'subsation {}'.format(sub_id),
+            'transformer_groups': [],
+            'branch_groups': []
+        }
+
+        buses = []
+        for bus_id in sub_buses:
+            buses.append(bus_data_lookup[bus_id])
+            bus_sub_lookup[bus_id] = substation
+        substation['buses'] = buses
+
+        substations.append(substation)
+
+        # if len(sub_data['bus_ids']) > 1:
+        #     print(sub_name)
+        #     print('  ' + str(sub_data['bus_ids']))
+        #     print('  ' + str(sub_data['bus_names']))
+        #     print('')
+
+
+    transformer_lookup = {}
+    for i, trans in enumerate(raw_case['transformers']):
+        trans_id = i+1
+        pr_bus = int(trans[0])
+        sn_bus = int(trans[1])
+        tr_bus = int(trans[2])
+
+        if tr_bus == 0:
+            key = (pr_bus, sn_bus)
+        else:
+            key = (pr_bus, sn_bus, tr_bus)
+        if not key in transformer_lookup:
+            transformer_lookup[key] = []
+        transformer_lookup[key].append((trans_id, trans))
+
+
+    for k, v in transformer_lookup.items():
+        bus_sub = bus_sub_lookup[k[0]]
+        assert(all([ bus_sub == bus_sub_lookup[bus_id] for bus_id in k]))
+        transformer_list = []
+        for trans_id, trans in v:
+            trans_data = {'id':trans_id}
+            if len(k) == 2:
+                trans_data['name'] = '{} - {} {} {}'.format(trans_id, k[0], k[1], trans[3])
+            else:
+                trans_data['name'] = '{} - {} {} {} {}'.format(trans_id, k[0], k[1], k[2], trans[3])
+            transformer_list.append(trans_data)
+        bus_sub['transformer_groups'].append(transformer_list)
+
+
+    branch_bp_lookup = {}
+    for i, branch in enumerate(raw_case['branches']):
+        branch_id = i+1
+        from_bus = int(branch[0])
+        to_bus = int(branch[1])
+
+        #print(from_bus, to_bus)
+        #assert(bus_sub_lookup[from_bus] != bus_sub_lookup[to_bus])
+
+        key = (from_bus, to_bus)
+        if not key in branch_bp_lookup:
+            branch_bp_lookup[key] = []
+        branch_bp_lookup[key].append((branch_id, branch))
+
+    facts_bp_lookup = {}
+    for i, facts in enumerate(raw_case['facts']):
+        facts_id = i+1
+        from_bus = int(facts[1])
+        to_bus = int(facts[2])
+
+        if to_bus != 0:
+            assert(bus_sub_lookup[from_bus] != bus_sub_lookup[to_bus])
+
+            key = (from_bus, to_bus)
+            if not key in facts_bp_lookup:
+                facts_bp_lookup[key] = []
+            facts_bp_lookup[key].append((facts_id, facts))
+
+    tt_dc_bp_lookup = {}
+    for i, tt_dc in enumerate(raw_case['tt_dc']):
+        tt_dc_id = i+1
+        from_bus = int(tt_dc[1][0])
+        to_bus = int(tt_dc[2][0])
+
+        assert(bus_sub_lookup[from_bus] != bus_sub_lookup[to_bus])
+
+        key = (from_bus, to_bus)
+        if not key in tt_dc_bp_lookup:
+            tt_dc_bp_lookup[key] = []
+        tt_dc_bp_lookup[key].append((tt_dc_id, tt_dc))
+
+    vsc_dc_bp_lookup = {}
+    for i, vsc_dc in enumerate(raw_case['vsc_dc']):
+        vsc_dc_id = i+1
+        from_bus = int(vsc_dc[1][0])
+        to_bus = int(vsc_dc[2][0])
+
+        assert(bus_sub_lookup[from_bus] != bus_sub_lookup[to_bus])
+
+        key = (from_bus, to_bus)
+        if not key in vsc_dc_bp_lookup:
+            vsc_dc_bp_lookup[key] = []
+        vsc_dc_bp_lookup[key].append((vsc_dc_id, vsc_dc))
+
+
+    corridor_branch_lookup = {}
+    for (from_bus, to_bus), v in branch_bp_lookup.items():
+        branch_list = []
+        for branch_id, branch in v:
+            branch_data = {
+                'id':branch_id,
+                'name': '{} - {} {} {}'.format(branch_id, branch[0], branch[1], branch[2])
+            }
+            branch_list.append(branch_data)
+
+        #print('{} {} {}'.format(from_bus, to_bus, v))
+        sub_from = bus_sub_lookup[from_bus]
+        sub_to = bus_sub_lookup[to_bus]
+        if sub_from == sub_to:
+            sub_from['branch_groups'].append(branch_list)
+        else:
+            if sub_from['id'] > sub_to['id']:
+                sub_from = bus_sub_lookup[to_bus]
+                sub_to = bus_sub_lookup[from_bus]
+            corridor_key = (sub_from['id'], sub_to['id'])
+            if not corridor_key in corridor_branch_lookup:
+                corridor_branch_lookup[corridor_key] = []
+            corridor_branch_lookup[corridor_key].append(branch_list)
+
+
+    corridor_facts_lookup = {}
+    for (from_bus, to_bus), v in facts_bp_lookup.items():
+        facts_list = []
+        for facts_id, facts in v:
+            facts_data = {
+                'id':facts_id,
+                'name': '{} - {} {} {}'.format(facts_id, branch[1], branch[2], branch[0])
+            }
+            facts_list.append(branch_data)
+
+        #print('{} {} {}'.format(from_bus, to_bus, v))
+        sub_from = bus_sub_lookup[from_bus]
+        sub_to = bus_sub_lookup[to_bus]
+
+        if sub_from['id'] > sub_to['id']:
+            sub_from = bus_sub_lookup[to_bus]
+            sub_to = bus_sub_lookup[from_bus]
+        corridor_key = (sub_from['id'], sub_to['id'])
+        if not corridor_key in corridor_facts_lookup:
+            corridor_facts_lookup[corridor_key] = []
+        corridor_facts_lookup[corridor_key].append(facts_list)
+
+
+    corridor_tt_dc_lookup = {}
+    for (from_bus, to_bus), v in tt_dc_bp_lookup.items():
+        tt_dc_list = []
+        for tt_dc_id, tt_dc in v:
+            tt_dc_data = {
+                'id':tt_dc_id,
+                'name': '{} - {} {}'.format(tt_dc_id, from_bus, to_bus)
+            }
+            tt_dc_list.append(tt_dc_data)
+
+        #print('{} {} {}'.format(from_bus, to_bus, v))
+        sub_from = bus_sub_lookup[from_bus]
+        sub_to = bus_sub_lookup[to_bus]
+
+        if sub_from['id'] > sub_to['id']:
+            sub_from = bus_sub_lookup[to_bus]
+            sub_to = bus_sub_lookup[from_bus]
+        corridor_key = (sub_from['id'], sub_to['id'])
+        if not corridor_key in corridor_tt_dc_lookup:
+            corridor_tt_dc_lookup[corridor_key] = []
+        corridor_tt_dc_lookup[corridor_key].append(tt_dc_list)
+
+
+    corridor_vsc_dc_lookup = {}
+    for (from_bus, to_bus), v in vsc_dc_bp_lookup.items():
+        vsc_dc_list = []
+        for vsc_dc_id, tt_vsc in v:
+            vsc_dc_data = {
+                'id':tt_dc_id,
+                'name': '{} - {} {}'.format(vsc_dc_id, from_bus, to_bus)
+            }
+            vsc_dc_list.append(vsc_dc_data)
+
+        #print('{} {} {}'.format(from_bus, to_bus, v))
+        sub_from = bus_sub_lookup[from_bus]
+        sub_to = bus_sub_lookup[to_bus]
+
+        if sub_from['id'] > sub_to['id']:
+            sub_from = bus_sub_lookup[to_bus]
+            sub_to = bus_sub_lookup[from_bus]
+        corridor_key = (sub_from['id'], sub_to['id'])
+        if not corridor_key in corridor_vsc_dc_lookup:
+            corridor_vsc_dc_lookup[corridor_key] = []
+        corridor_vsc_dc_lookup[corridor_key].append(vsc_dc_list)
+
+
+    corridors = []
+    corridor_keys = set().union(
+        corridor_branch_lookup.keys(),
+        corridor_facts_lookup.keys(),
+        corridor_tt_dc_lookup.keys(),
+        corridor_vsc_dc_lookup.keys()
+    )
+
+    for i, corridor_key in enumerate(corridor_keys):
+        corr_id = i+1
+        corridor = {
+            'id': corr_id,
+            'name': 'corridor {}'.format(corr_id),
+            'from_substation': corridor_key[0],
+            'to_substation': corridor_key[1],
+            'branch_groups': [],
+            'facts_groups':[],
+            'tt_dc_groups':[],
+            'vsc_dc_groups':[],
+        }
+
+        if corridor_key in corridor_branch_lookup:
+            corridor['branch_groups'] = corridor_branch_lookup[corridor_key]
+
+        if corridor_key in corridor_facts_lookup:
+            corridor['facts_groups'] = corridor_facts_lookup[corridor_key]
+
+        if corridor_key in corridor_tt_dc_lookup:
+            corridor['tt_dc_groups'] = corridor_tt_dc_lookup[corridor_key]
+
+        if corridor_key in corridor_vsc_dc_lookup:
+            corridor['vsc_dc_groups'] = corridor_vsc_dc_lookup[corridor_key]
+
+        corridors.append(corridor)
+
+
+    connectivity = {
+        'case': args.raw_file,
+        'substations': substations,
+        'corridors': corridors
+    }
     print('Nodes: %d' % len(raw_case['buses']))
-    print('Substations: %d' % len(substation_buses))
+    print('Edges: %d' % (len(raw_case['branches'])+len(raw_case['transformers'])+len(raw_case['tt_dc'])+len(raw_case['vsc_dc'])))
+    print('')
+    print('Substations: %d' % len(substations))
+    print('Corridors: %d' % len(corridors))
 
-    with open('substation_test_1.json', 'w') as outfile:
-        json.dump(substations, outfile, sort_keys=True, indent=2, separators=(',', ': '))
+    with open('connectivity_test_1.json', 'w') as outfile:
+        json.dump(connectivity, outfile, sort_keys=True, indent=2, separators=(',', ': '))
 
 
 def parse_raw(raw_file_location):
@@ -297,23 +572,6 @@ def parse_raw(raw_file_location):
         line_index += 1
 
     return raw_case
-
-
-def edit_distance(s1, s2):
-    m=len(s1)+1
-    n=len(s2)+1
-
-    tbl = {}
-    for i in range(m):
-        tbl[i,0]=i
-    for j in range(n):
-        tbl[0,j]=j
-    for i in range(1, m):
-        for j in range(1, n):
-            cost = 0 if s1[i-1] == s2[j-1] else 1
-            tbl[i,j] = min(tbl[i, j-1]+1, tbl[i-1, j]+1, tbl[i-1, j-1]+cost)
-
-    return tbl[i,j]
 
 
 def build_cli_parser():

@@ -39,9 +39,37 @@ def main(args):
                     for bus_id in bus_id_set:
                         bus_sub_lookup[bus_id] = bus_id_set
 
-
         for ed in sorted(ed_dist.keys()):
             print('%d - %d' % (ed, ed_dist[ed]))
+
+
+    if False:
+        for i, bus_1 in enumerate(raw_case['buses']):
+            bus_1_name = bus_1[1].strip('\'').strip()
+            for j in range(i+1, len(raw_case['buses'])):
+                bus_2 = raw_case['buses'][j]
+                bus_2_name = bus_2[1].strip('\'').strip()
+                size_percent = prefix_size(bus_1_name, bus_2_name)
+
+                #print(size_percent)
+
+                # TODO, don't merge buses if they have a line between them
+                if size_percent >= 0.75:
+                    bus_1_id = int(bus_1[0])
+                    bus_2_id = int(bus_2[0])
+
+                    min_bus_delta = max(bus_lookup.keys()*10)
+                    for bus_a in bus_sub_lookup[bus_1_id]:
+                        for bus_b in bus_sub_lookup[bus_2_id]:
+                            min_bus_delta = min(min_bus_delta, abs(bus_a - bus_b))
+                    if min_bus_delta <= 100:
+                        print('merging: {} {} - {}'.format(bus_1_name, bus_2_name, min_bus_delta))
+                        
+                        bus_id_set = bus_sub_lookup[bus_1_id] | bus_sub_lookup[bus_2_id]
+
+                        for bus_id in bus_id_set:
+                            bus_sub_lookup[bus_id] = bus_id_set
+
 
     for trans in raw_case['transformers']:
         pr_bus = int(trans[0])
@@ -66,6 +94,7 @@ def main(args):
     #for v in substation_buses:
     #    print(v)
 
+    over_one = 0
     substations = {}
     for i, sub in enumerate(substation_buses):
         sub_name = 'sub_%d' % i
@@ -76,13 +105,15 @@ def main(args):
         substations[sub_name] = sub_data
 
         if len(sub_data['bus_ids']) > 1:
+            over_one += 1
             print(sub_name)
             print('  ' + str(sub_data['bus_ids']))
             print('  ' + str(sub_data['bus_names']))
             print('')
 
     print('Nodes: %d' % len(raw_case['buses']))
-    print('Substations: %d' % len(substation_buses))
+    print('Substations: %d' % len(substations))
+    print('Over 1 Node Substations: %d' % over_one)
 
     with open('substation_test_1.json', 'w') as outfile:
         json.dump(substations, outfile, sort_keys=True, indent=2, separators=(',', ': '))
@@ -223,6 +254,19 @@ def edit_distance(s1, s2):
             tbl[i,j] = min(tbl[i, j-1]+1, tbl[i-1, j]+1, tbl[i-1, j-1]+cost)
 
     return tbl[i,j]
+
+
+def prefix_size(s1, s2):
+    length = min(len(s1), len(s2))
+    prefix_length = 0
+    for i in range(length):
+        if s1[i] == s2[i]:
+            prefix_length = i+1
+        else:
+            break
+
+    #print('{} {} {} {}'.format(s1, s2, length, prefix_length))
+    return prefix_length/float(length)
 
 
 def build_cli_parser():

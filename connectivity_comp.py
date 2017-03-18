@@ -363,7 +363,7 @@ def main(args):
     print('Substations: %d' % len(substations))
     print('Corridors: %d' % len(corridors))
 
-    with open('connectivity_test_1.json', 'w') as outfile:
+    with open(args.output, 'w') as outfile:
         json.dump(connectivity, outfile, sort_keys=True, indent=2, separators=(',', ': '))
 
 
@@ -577,6 +577,7 @@ def parse_raw(raw_file_location):
 def build_cli_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('raw_file', help='the psse file to operate on (.raw)')
+    parser.add_argument('-o', '--output', help='the place to send the output (.json)', default='connectivity.json')
 
     return parser
 

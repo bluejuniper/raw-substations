@@ -1,9 +1,52 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import argparse, json
+import argparse, json, csv, itertools
 
-power_equivelence_tolerence = 1e-2
-voltage_equivelence_tolerence = 1e-1
+from collections import namedtuple
+Location = namedtuple('Location', ['id', 'bus_name', 'zone', 'location_id', 'max_kv', 'longitude', 'latitude', 'raw_bus_name'])
+
+LocationCanditate = namedtuple('LocationCanditate', ['bus_id', 'bus_name', 'match_name', 'score', 'location'])
+
+def typed_location(item_id, bus_name, zone, location_id, max_kv, longitude, latitude, raw_bus_name):
+    item_id = int(item_id)
+    bus_name = bus_name.strip()
+    zone = int(zone)
+    location_id = int(location_id)
+    max_kv = float(max_kv)
+    longitude = float(longitude)
+    latitude = float(latitude)
+    raw_bus_name = raw_bus_name.strip()
+
+    return Location(item_id, bus_name, zone, location_id, max_kv, longitude, latitude, raw_bus_name)
+
+
+def prefix_size(s1, s2):
+    length = min(len(s1), len(s2))
+    prefix_length = 0
+    for i in range(length):
+        if s1[i] == s2[i]:
+            prefix_length = i+1
+        else:
+            break
+
+    #print('{} {} {} {}'.format(s1, s2, length, prefix_length))
+    return prefix_length/float(length)
+
+
+def edit_distance(s1, s2):
+    m=len(s1)+1
+    n=len(s2)+1
+
+    tbl = {}
+    for i in range(m): tbl[i,0]=i
+    for j in range(n): tbl[0,j]=j
+    for i in range(1, m):
+        for j in range(1, n):
+            cost = 0 if s1[i-1] == s2[j-1] else 1
+            tbl[i,j] = min(tbl[i, j-1]+1, tbl[i-1, j]+1, tbl[i-1, j-1]+cost)
+
+    return tbl[i,j]
+
 
 def main(args):
     raw_case = parse_raw(args.raw_file)
@@ -50,6 +93,7 @@ def main(args):
         bus_data = {
             'id':bus_id,
             'name':'{} - {}'.format(bus_id, bus[1]),
+            #'name':'{}'.format(bus[1]),
             'loads':[],
             'generators':[],
             'fixed_shunts':[],
@@ -135,6 +179,116 @@ def main(args):
         #     print('  ' + str(sub_data['bus_ids']))
         #     print('  ' + str(sub_data['bus_names']))
         #     print('')
+
+    if args.geolocations != None:
+        geolocation_lookup = {}
+        all_locations = set()
+        with open(args.geolocations, 'r') as csvfile:
+        #for substation in substations:
+            geolocation_csv = csv.reader(csvfile, delimiter=',', quotechar='"')
+            next(geolocation_csv, None)  # skip the header
+            for row in geolocation_csv:
+                location = typed_location(*row)
+                if location.zone not in geolocation_lookup:
+                    geolocation_lookup[location.zone] = {}
+                geolocation_lookup[location.zone][location.raw_bus_name] = location
+                all_locations.add(location)
+        unmatched_locations = set(all_locations)
+
+        max_lat = float('-Inf')
+        max_lon = float('-Inf')
+
+        min_lat = float('Inf')
+        min_lon = float('Inf')
+        
+        for loc in all_locations:
+            max_lat = max(max_lat, loc.latitude)
+            max_lon = max(max_lon, loc.longitude)
+
+            min_lat = min(min_lat, loc.latitude)
+            min_lon = min(min_lon, loc.longitude)
+
+        print('latitude extent: {} - {}'.format(min_lat, max_lat))
+        print('longitude extent: {} - {}'.format(min_lon, max_lon))
+
+        substation_location = {}
+        for substation in substations:
+            location_canditates = []
+            for bus in substation['buses']:
+                bus_data = bus_lookup[bus['id']]
+                bus_name = bus_data[1].strip('\'').strip()
+                bus_zone = int(bus_data[5])
+
+                zone_locations = geolocation_lookup[bus_zone]
+
+                #mataches = {}
+                #scaling_factor = float(max(*[len(name) for name in zone_locations], len(bus_name)))
+                for location_bus_name in zone_locations:
+                    #mataches[location_bus_names] = prefix_size(bus_name, location_bus_names)
+                    #score = edit_distance(bus_name, location_bus_names)/scaling_factor
+                    score = edit_distance(bus_name, location_bus_name)
+                    match_name = location_bus_name
+                    for name_part in location_bus_name.split():
+                        part_score = edit_distance(bus_name, name_part)
+                        if part_score < score:
+                            score = part_score
+                            match_name = name_part
+
+                    location_canditates.append(LocationCanditate(bus['id'], bus_name, match_name, score, zone_locations[location_bus_name]))
+            
+            location_canditates = sorted(location_canditates, key=lambda x: x.score)
+            print('')
+            print(substation['name'])
+            print([bus['name'] for bus in substation['buses']])
+            for lc in location_canditates:
+                print('  {} - {} {} - {} : {}'.format(lc.score, lc.bus_id, lc.bus_name, lc.location.raw_bus_name, lc.match_name))
+
+            if location_canditates[0].score <= 4: # strong match
+                min_score = location_canditates[0].score
+
+                best_matches = set()
+                for location_canditate in location_canditates:
+                    if min_score < location_canditate.score:
+                        break
+                    loc = location_canditate.location
+                    best_matches.add(loc)
+                    if loc in unmatched_locations:
+                        unmatched_locations.remove(loc)
+
+
+                if len(best_matches) > 1:
+                    print('WARNING: multiple matches, picking one at random' )
+                    print([loc.bus_name for loc in best_matches])
+                    max_lat_delta = float('-Inf')
+                    max_lon_delta = float('-Inf')
+
+                    for loc_i, loc_j in itertools.combinations(best_matches, 2):
+                        max_lat_delta = max(max_lat_delta, abs(loc_i.latitude - loc_j.latitude))
+                        max_lon_delta = max(max_lon_delta, abs(loc_i.longitude - loc_j.longitude))
+
+                    print('max latitude delta: {}'.format(max_lat_delta))
+                    print('max longitude delta: {}'.format(max_lon_delta))
+
+                # Sort these matches, so that the selection is deterministic
+                sorted_best_matches = sorted(best_matches, key=lambda x: x.id)
+                sub_loc = sorted_best_matches[0]
+                substation_location[substation['id']] = sub_loc
+
+                substation['latitude'] = sub_loc.latitude
+                substation['longitude'] = sub_loc.longitude
+
+            # print(substation['name'])
+            # print([bus['name'] for bus in substation['buses']])
+            # print(location_canditates)
+            # print('')
+
+        print('matched substations: {} of {}'.format(len(substation_location), len(substations)))
+        print('un-matched locations: {} of {}'.format(len(unmatched_locations), len(all_locations)))
+
+        print('')
+        for loc in unmatched_locations:
+            print(loc)
+
 
 
     transformer_lookup = {}
@@ -578,6 +732,7 @@ def build_cli_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('raw_file', help='the psse file to operate on (.raw)')
     parser.add_argument('-o', '--output', help='the place to send the output (.json)', default='connectivity.json')
+    parser.add_argument('-g', '--geolocations', help='the available geolocation data (.csv)')
 
     return parser
 

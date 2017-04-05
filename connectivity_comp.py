@@ -58,6 +58,7 @@ def main(args):
     print('')
 
     bus_lookup = { int(bus[0]):bus for bus in raw_case['buses'] }
+    branch_lookup = { i+1:branch for i, branch in enumerate(raw_case['branches']) }
 
     bus_sub_lookup = {}
     for bus in raw_case['buses']:
@@ -505,6 +506,44 @@ def main(args):
 
         corridors.append(corridor)
 
+    if args.scs:
+        print('Adding SCS Data')
+
+        # setup component info
+        for sub in substations:
+            for bus in sub['buses']:
+                bus_id = bus['id']
+                bus_data = bus_lookup[bus_id]
+                #print(bus_data)
+                bus['base_kv'] = float(bus_data[2])
+
+        for cor in corridors:
+            for branch_group in cor['branch_groups']:
+                for banch in branch_group:
+                    branch_id = banch['id']
+                    branch = branch_lookup[branch_id]
+                    from_bus_id = int(branch[0])
+                    to_bus_id = int(branch[1])
+                    
+                    from_base_kv = float(bus_lookup[from_bus_id][2])
+                    to_base_kv = float(bus_lookup[to_bus_id][2])
+
+                    assert(from_base_kv == to_base_kv)
+                    banch['base_kv'] = from_base_kv
+
+        # setup derived component info
+        for sub in substations:
+            sub['base_kv_max'] = max(bus['base_kv'] for bus in sub['buses'])
+
+        for cor in corridors:
+            cor['base_kv_max'] = max(branch['base_kv'] for branch_group in cor['branch_groups'] for branch in branch_group)
+            
+            for branch_group in cor['branch_groups']:
+                for banch in branch_group:
+                    if banch['base_kv'] != cor['base_kv_max']:
+                        print('WARNING: corridor {} has multiple base_kv levels'.format(cor['id']))
+        print('')
+
 
     connectivity = {
         'case': args.raw_file,
@@ -733,6 +772,7 @@ def build_cli_parser():
     parser.add_argument('raw_file', help='the psse file to operate on (.raw)')
     parser.add_argument('-o', '--output', help='the place to send the output (.json)', default='connectivity.json')
     parser.add_argument('-g', '--geolocations', help='the available geolocation data (.csv)')
+    parser.add_argument('-scs', help='adds extra data to the json document for SCS', action='store_true', default=False)
 
     return parser
 

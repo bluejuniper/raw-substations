@@ -58,7 +58,16 @@ def main(args):
     print('')
 
     bus_lookup = { int(bus[0]):bus for bus in raw_case['buses'] }
+    load_lookup = { i+1:load for i, load in enumerate(raw_case['loads']) }
     branch_lookup = { i+1:branch for i, branch in enumerate(raw_case['branches']) }
+    owner_lookup = { int(owner[0]):owner for i, owner in enumerate(raw_case['owners']) }
+    fixed_shunt_lookup = { i+1:fs for i, fs in enumerate(raw_case['f_shunts']) }
+    switched_shunt_lookup = { i+1:ss for i, ss in enumerate(raw_case['s_shunts']) }
+    generator_lookup = { i+1:g for i, g in enumerate(raw_case['gens']) }
+    facts_lookup = { i+1:facts for i, facts in enumerate(raw_case['facts']) }
+
+    transformer_lookup = { i+1:tr for i, tr in enumerate(raw_case['transformers']) }
+
 
     bus_sub_lookup = {}
     for bus in raw_case['buses']:
@@ -93,8 +102,8 @@ def main(args):
         bus_id = int(bus[0])
         bus_data = {
             'id':bus_id,
-            'name':'{} - {}'.format(bus_id, bus[1]),
-            #'name':'{}'.format(bus[1]),
+            #'name':'{} - {}'.format(bus_id, bus[1]),
+            'name':'{}'.format(bus[1]),
             'loads':[],
             'generators':[],
             'fixed_shunts':[],
@@ -108,7 +117,7 @@ def main(args):
         bus_id = int(load[0])
         load_data = {
             'id':load_id,
-            'name':'{} - {} {}'.format(load_id, bus_id, load[1]),
+            'name':'{} {}'.format(load[0], load[1]),
         }
         bus_data_lookup[bus_id]['loads'].append(load_data)
 
@@ -117,7 +126,7 @@ def main(args):
         bus_id = int(generator[0])
         generator_data = {
             'id':gen_id,
-            'name':'{} - {} {}'.format(gen_id, bus_id, generator[1]),
+            'name':'{} {}'.format(generator[0], generator[1]),
         }
         bus_data_lookup[bus_id]['generators'].append(generator_data)
 
@@ -126,7 +135,7 @@ def main(args):
         bus_id = int(fixed_shunt[0])
         fixed_shunt_data = {
             'id':f_shunt_id,
-            'name':'{} - {} {}'.format(f_shunt_id, bus_id, fixed_shunt[1]),
+            'name':'{} {}'.format(fixed_shunt[0], fixed_shunt[1]),
         }
         bus_data_lookup[bus_id]['fixed_shunts'].append(fixed_shunt_data)
 
@@ -135,7 +144,7 @@ def main(args):
         bus_id = int(switched_shunt[0])
         switched_shunt_data = {
             'id':s_shunt_id,
-            'name':'{} - {}'.format(s_shunt_id, bus_id),
+            'name':'{}'.format(switched_shunt[0]),
         }
         bus_data_lookup[bus_id]['switched_shunts'].append(switched_shunt_data)
 
@@ -146,7 +155,7 @@ def main(args):
         if to_bus == 0:
             facts_data = {
                 'id':facts_id,
-                'name':'{} - {} {}'.format(facts_id, from_bus, facts[0]),
+                'name':'{} {}'.format(facts[1], facts[0]),
             }
             bus_data_lookup[from_bus]['facts'].append(facts_data)
 
@@ -292,7 +301,7 @@ def main(args):
 
 
 
-    transformer_lookup = {}
+    transformer_tuple_lookup = {}
     for i, trans in enumerate(raw_case['transformers']):
         trans_id = i+1
         pr_bus = int(trans[0])
@@ -303,21 +312,22 @@ def main(args):
             key = (pr_bus, sn_bus)
         else:
             key = (pr_bus, sn_bus, tr_bus)
-        if not key in transformer_lookup:
-            transformer_lookup[key] = []
-        transformer_lookup[key].append((trans_id, trans))
+        if not key in transformer_tuple_lookup:
+            transformer_tuple_lookup[key] = []
+        transformer_tuple_lookup[key].append((trans_id, trans))
 
 
-    for k, v in transformer_lookup.items():
+    for k, v in transformer_tuple_lookup.items():
         bus_sub = bus_sub_lookup[k[0]]
         assert(all([ bus_sub == bus_sub_lookup[bus_id] for bus_id in k]))
         transformer_list = []
         for trans_id, trans in v:
             trans_data = {'id':trans_id}
-            if len(k) == 2:
-                trans_data['name'] = '{} - {} {} {}'.format(trans_id, k[0], k[1], trans[3])
-            else:
-                trans_data['name'] = '{} - {} {} {} {}'.format(trans_id, k[0], k[1], k[2], trans[3])
+            trans_data['name'] = '{} {} {} {}'.format(trans[0], trans[1], trans[2], trans[3])
+            # if len(k) == 2:
+            #     trans_data['name'] = '{} - {} {} {}'.format(trans_id, k[0], k[1], trans[3])
+            # else:
+            #     trans_data['name'] = '{} - {} {} {} {}'.format(trans_id, k[0], k[1], k[2], trans[3])
             transformer_list.append(trans_data)
         bus_sub['transformer_groups'].append(transformer_list)
 
@@ -383,7 +393,7 @@ def main(args):
         for branch_id, branch in v:
             branch_data = {
                 'id':branch_id,
-                'name': '{} - {} {} {}'.format(branch_id, branch[0], branch[1], branch[2])
+                'name': '{} {} {}'.format(branch[0], branch[1], branch[2])
             }
             branch_list.append(branch_data)
 
@@ -408,7 +418,7 @@ def main(args):
         for facts_id, facts in v:
             facts_data = {
                 'id':facts_id,
-                'name': '{} - {} {} {}'.format(facts_id, branch[1], branch[2], branch[0])
+                'name': '{} {} {}'.format(branch[0], branch[1], branch[2])
             }
             facts_list.append(branch_data)
 
@@ -431,7 +441,7 @@ def main(args):
         for tt_dc_id, tt_dc in v:
             tt_dc_data = {
                 'id':tt_dc_id,
-                'name': '{} - {} {}'.format(tt_dc_id, from_bus, to_bus)
+                'name': '{} {}'.format(from_bus, to_bus)
             }
             tt_dc_list.append(tt_dc_data)
 
@@ -454,7 +464,7 @@ def main(args):
         for vsc_dc_id, tt_vsc in v:
             vsc_dc_data = {
                 'id':tt_dc_id,
-                'name': '{} - {} {}'.format(vsc_dc_id, from_bus, to_bus)
+                'name': '{} {}'.format(from_bus, to_bus)
             }
             vsc_dc_list.append(vsc_dc_data)
 
@@ -514,12 +524,100 @@ def main(args):
             for bus in sub['buses']:
                 bus_id = bus['id']
                 bus_data = bus_lookup[bus_id]
-                #print(bus_data)
-                bus['base_kv'] = float(bus_data[2])
 
+                bus['status'] = 1 if int(bus_data[3]) != 4 else 0
+
+                bus_owner = int(bus_data[6])
+                bus_owner_name = owner_lookup[bus_owner][1]
+
+                base_kv = float(bus_data[2])
+                bus['base_kv'] = base_kv
+                bus['owner'] = bus_owner_name
+
+                vm_val = float(bus_data[7])
+                va_val = float(bus_data[8])
+                vm_ub = float(bus_data[9])
+                vm_lb = float(bus_data[10])
+                bus['voltage'] = connectivity_range(vm_lb*base_kv, vm_ub*base_kv, vm_val*base_kv)
+                bus['angle'] = va_val
+
+                for generator in bus['generators']:
+                    gen_id = generator['id']
+                    generator_data = generator_lookup[gen_id]
+
+                    generator['status'] = int(generator_data[14])
+
+                    pg = float(generator_data[2])
+                    qg = float(generator_data[3])
+
+                    qg_ub = float(generator_data[4])
+                    qg_lb = float(generator_data[5])
+
+                    pg_ub = float(generator_data[16])
+                    pg_lb = float(generator_data[17])
+
+                    generator['active'] = connectivity_range(pg_lb, pg_ub, pg)
+                    generator['reactive'] = connectivity_range(qg_lb, qg_ub, qg)
+
+                for load in bus['loads']:
+                    load_id = load['id']
+                    load_data = load_lookup[load_id]
+
+                    load['status'] = int(load_data[2])
+
+                    pl = float(load_data[5])
+                    ql = float(load_data[6])
+                    load['active'] = connectivity_range(0, pl, pl) if pl >= 0 else connectivity_range(pl, 0, pl)
+                    load['reactive'] = connectivity_range(0, ql, ql) if ql >= 0 else connectivity_range(ql, 0, ql)
+
+                    if float(load_data[7]) != 0.0 or float(load_data[8]) != 0.0 or float(load_data[9]) != 0.0 or float(load_data[10]) != 0.0:
+                        print('WARNING: non-constant power load!')
+
+                for fixed_shunt in bus['fixed_shunts']:
+                    fixed_shunt_id = fixed_shunt['id']
+                    fixed_shunt_data = fixed_shunt_lookup[fixed_shunt_id]
+
+                    fixed_shunt['status'] = int(fixed_shunt_data[2])
+
+                    gl = flaot(fixed_shunt_data[3])
+                    bl = flaot(fixed_shunt_data[4])
+
+                    fixed_shunt['conductance'] = connectivity_range(0, gl, gl) if gl >= 0 else connectivity_range(gl, 0, gl)
+                    fixed_shunt['susceptance'] = connectivity_range(0, bl, bl) if bl >= 0 else connectivity_range(bl, 0, bl)
+
+                for switched_shunt in bus['fixed_shunts']:
+                    switched_shunt_id = switched_shunt['id']
+                    switched_shunt_data = switched_shunt_lookup[switched_shunt_id]
+
+                    switched_shunt['status'] = int(switched_shunt_data[3])
+
+                for facts in bus['facts']:
+                    facts_id = facts['id']
+                    facts_data = facts_lookup[facts_id]
+
+                    facts['status'] = int(facts_data[3])
+
+            for transformer_group in sub['transformer_groups']:
+                for transformer in transformer_group:
+                    transformer_id = transformer['id']
+                    transformer_data = transformer_lookup[transformer_id]
+
+                    assert('status' not in transformer)
+                    transformer['status'] = int(transformer_data[11])
+                    pass
+
+
+        all_branch_groups = []
+        for sub in substations:
+            all_branch_groups.append(sub['branch_groups'])
         for cor in corridors:
-            for branch_group in cor['branch_groups']:
+            all_branch_groups.append(cor['branch_groups'])
+
+
+        for branch_groups in all_branch_groups:
+            for branch_group in branch_groups:
                 for banch in branch_group:
+                    #print(banch)
                     branch_id = banch['id']
                     branch = branch_lookup[branch_id]
                     from_bus_id = int(branch[0])
@@ -530,6 +628,11 @@ def main(args):
 
                     assert(from_base_kv == to_base_kv)
                     banch['base_kv'] = from_base_kv
+
+
+        for cor in corridors:
+            pass
+
 
         # setup derived component info
         for sub in substations:
@@ -558,6 +661,15 @@ def main(args):
 
     with open(args.output, 'w') as outfile:
         json.dump(connectivity, outfile, sort_keys=True, indent=2, separators=(',', ': '))
+
+
+def connectivity_range(lb, ub, value):
+    return {
+        'display_type':'range',
+        'lb':lb,
+        'ub':ub,
+        'value':value
+    }
 
 
 def parse_raw(raw_file_location):
@@ -596,6 +708,9 @@ def parse_raw(raw_file_location):
     mt_dc_lines = []
     raw_case['mt_dc'] = mt_dc_lines
 
+    owner_lines = []
+    raw_case['owners'] = owner_lines
+
     facts_lines = []
     raw_case['facts'] = facts_lines
 
@@ -610,6 +725,7 @@ def parse_raw(raw_file_location):
     reading_tt_dc = False
     reading_vsc_dc = False
     reading_mt_dc = False
+    reading_owners = False
     reading_facts = False
 
 
@@ -644,8 +760,11 @@ def parse_raw(raw_file_location):
         if 'END OF MULTI-TERMINAL DC DATA' in line:
             reading_mt_dc = False
 
-        if 'END OF FACTS DEVICE DATA' in line:
-            reading_facts = False
+        if 'END OF SWITCHED SHUNT DATA' in line:
+            reading_switched_shunts = False
+
+        if 'END OF OWNER DATA' in line:
+            reading_owners = False
 
         if 'END OF SWITCHED SHUNT DATA' in line:
             reading_switched_shunts = False
@@ -699,6 +818,12 @@ def parse_raw(raw_file_location):
             #line = raw_lines[line_index]
             continue
 
+        if 'BEGIN OWNER DATA' in line:
+            reading_owners = True
+            line_index += 1
+            #line = raw_lines[line_index]
+            continue
+
         if 'BEGIN FACTS DEVICE DATA' in line:
             reading_facts = True
             line_index += 1
@@ -726,6 +851,9 @@ def parse_raw(raw_file_location):
 
         if reading_branches:
             branch_lines.append(line.strip().split(','))
+
+        if reading_owners:
+            owner_lines.append(line.strip().split(','))
 
         if reading_transformers:
             tr_parts = line.strip().split(',')

@@ -173,7 +173,7 @@ def main(args):
         sub_id = i+1
         substation = {
             'id': sub_id,
-            'name': 'subsation {}'.format(sub_id),
+            'name': 'substation {}'.format(sub_id),
             'transformer_groups': [],
             'branch_groups': []
         }
@@ -191,6 +191,8 @@ def main(args):
         #     print('  ' + str(sub_data['bus_ids']))
         #     print('  ' + str(sub_data['bus_names']))
         #     print('')
+
+    substation_lookup = { sub['id'] : sub for sub in substations }
 
     if args.geolocations != None:
         geolocation_lookup = {}
@@ -294,6 +296,28 @@ def main(args):
             # print(location_canditates)
             # print('')
 
+        location_substations = {}
+        for sub_id, loc in substation_location.items():
+            # loc_id = loc.id
+            # if loc_id not in location_substations:
+            #     location_substations[loc_id] = set()
+            # location_substations[loc_id].add(sub_id)
+            if loc not in location_substations:
+                location_substations[loc] = set()
+            location_substations[loc].add(sub_id)
+
+        for loc, sub_ids in location_substations.items():
+            if len(sub_ids) > 1:
+                #print(loc)
+                print('')
+                print('WARNING: {0:d} different substations match to common location {1:d} ({2:.2f}, {3:.2f})'.format(len(sub_ids), loc.id, loc.longitude, loc.latitude))
+                for sub_id in sub_ids:
+                    substation = substation_lookup[sub_id]
+                    bus_names = [bus['name'] for bus in substation['buses']]
+                    print('  substation {} - bus names {}'.format(sub_id, bus_names))
+
+
+        print('')
         print('matched substations: {} of {}'.format(len(substation_location), len(substations)))
         print('un-matched locations: {} of {}'.format(len(unmatched_locations), len(all_locations)))
 

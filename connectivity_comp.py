@@ -634,7 +634,7 @@ def main(args):
                     transformer['cod_1'] = int(transformer_data[2][6])
 
                     rate_a_1 = float(transformer_data[2][3])
-                    transformer['rate_a_1'] = connectivity_range(0, rate_a_1, 0)
+                    transformer['rate_a_tail_1'] = connectivity_range(0, rate_a_1, 0)
 
                     transformer['active_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0)
                     transformer['reactive_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0)
@@ -668,11 +668,11 @@ def main(args):
                     banch['status'] = int(branch_data[13])
 
                     rate_a = float(branch_data[6])
-                    banch['rate_a'] = connectivity_range(0, rate_a, 0)
-
+                    banch['rate_a_tail'] = connectivity_range(0, rate_a, 0)
                     banch['active_tail'] = connectivity_range(-rate_a, rate_a, 0)
                     banch['reactive_tail'] = connectivity_range(-rate_a, rate_a, 0)
 
+                    banch['rate_a_head'] = connectivity_range(0, rate_a, 0)
                     banch['active_head'] = connectivity_range(-rate_a, rate_a, 0)
                     banch['reactive_head'] = connectivity_range(-rate_a, rate_a, 0)
 

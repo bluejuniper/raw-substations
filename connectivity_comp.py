@@ -564,7 +564,7 @@ def main(args):
                 va_val = float(bus_data[8])
                 vm_ub = float(bus_data[9])
                 vm_lb = float(bus_data[10])
-                bus['voltage'] = connectivity_range(vm_lb*base_kv, vm_ub*base_kv, vm_val*base_kv)
+                bus['voltage'] = connectivity_range(vm_lb*base_kv, vm_ub*base_kv, vm_val*base_kv, 'both', 0.2)
                 bus['angle'] = va_val
 
                 for generator in bus['generators']:
@@ -582,8 +582,8 @@ def main(args):
                     pg_ub = float(generator_data[16])
                     pg_lb = float(generator_data[17])
 
-                    generator['active'] = connectivity_range(pg_lb, pg_ub, pg)
-                    generator['reactive'] = connectivity_range(qg_lb, qg_ub, qg)
+                    generator['active'] = connectivity_range(pg_lb, pg_ub, pg, 'ub', 0.2)
+                    generator['reactive'] = connectivity_range(qg_lb, qg_ub, qg, 'both', 0.2)
 
                 for load in bus['loads']:
                     load_id = load['id']
@@ -593,8 +593,8 @@ def main(args):
 
                     pl = float(load_data[5])
                     ql = float(load_data[6])
-                    load['active'] = connectivity_range(0, pl, pl) if pl >= 0 else connectivity_range(pl, 0, pl)
-                    load['reactive'] = connectivity_range(0, ql, ql) if ql >= 0 else connectivity_range(ql, 0, ql)
+                    load['active'] = connectivity_range(0, pl, pl, 'lb', 0.9) if pl >= 0 else connectivity_range(pl, 0, pl, 'ub', 0.9)
+                    load['reactive'] = connectivity_range(0, ql, ql, 'lb', 0.9) if ql >= 0 else connectivity_range(ql, 0, ql, 'ub', 0.9)
 
                     if float(load_data[7]) != 0.0 or float(load_data[8]) != 0.0 or float(load_data[9]) != 0.0 or float(load_data[10]) != 0.0:
                         print('WARNING: non-constant power load!')
@@ -608,8 +608,8 @@ def main(args):
                     gl = float(fixed_shunt_data[3])
                     bl = float(fixed_shunt_data[4])
 
-                    fixed_shunt['conductance'] = connectivity_range(0, gl, gl) if gl >= 0 else connectivity_range(gl, 0, gl)
-                    fixed_shunt['susceptance'] = connectivity_range(0, bl, bl) if bl >= 0 else connectivity_range(bl, 0, bl)
+                    fixed_shunt['conductance'] = connectivity_range(0, gl, gl, 'lb', 0.9) if gl >= 0 else connectivity_range(gl, 0, gl, 'ub', 0.9)
+                    fixed_shunt['susceptance'] = connectivity_range(0, bl, bl, 'lb', 0.9) if bl >= 0 else connectivity_range(bl, 0, bl, 'ub', 0.9)
 
                 for switched_shunt in bus['switched_shunts']:
                     switched_shunt_id = switched_shunt['id']
@@ -634,10 +634,10 @@ def main(args):
                     transformer['cod_1'] = int(transformer_data[2][6])
 
                     rate_a_1 = float(transformer_data[2][3])
-                    transformer['rate_a_tail_1'] = connectivity_range(0, rate_a_1, 0)
+                    transformer['rate_a_tail_1'] = connectivity_range(0, rate_a_1, 0, 'ub', 0.2)
 
-                    transformer['active_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0)
-                    transformer['reactive_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0)
+                    transformer['active_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0, 'none', 0.0)
+                    transformer['reactive_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0, 'none', 0.0)
 
 
         all_branch_groups = []
@@ -668,13 +668,13 @@ def main(args):
                     banch['status'] = int(branch_data[13])
 
                     rate_a = float(branch_data[6])
-                    banch['rate_a_tail'] = connectivity_range(0, rate_a, 0)
-                    banch['active_tail'] = connectivity_range(-rate_a, rate_a, 0)
-                    banch['reactive_tail'] = connectivity_range(-rate_a, rate_a, 0)
+                    banch['rate_a_tail'] = connectivity_range(0, rate_a, 0, 'ub', 0.2)
+                    banch['active_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
+                    banch['reactive_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
 
-                    banch['rate_a_head'] = connectivity_range(0, rate_a, 0)
-                    banch['active_head'] = connectivity_range(-rate_a, rate_a, 0)
-                    banch['reactive_head'] = connectivity_range(-rate_a, rate_a, 0)
+                    banch['rate_a_head'] = connectivity_range(0, rate_a, 0, 'ub', 0.2)
+                    banch['active_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
+                    banch['reactive_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
 
 
 
@@ -737,12 +737,16 @@ def main(args):
         json.dump(connectivity, outfile, sort_keys=True, indent=2, separators=(',', ': '))
 
 
-def connectivity_range(lb, ub, value):
+def connectivity_range(lb, ub, value, watch, threshold):
+    assert(watch in ['lb','ub','both','none'])
+    assert(threshold >= 0.0 and threshold <= 1.0)
     return {
         'display_type':'range',
         'lb':lb,
         'ub':ub,
-        'value':value
+        'value':value,
+        'watch':watch,
+        'threshold':threshold
     }
 
 

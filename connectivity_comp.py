@@ -555,9 +555,11 @@ def main(args):
         # setup component info
         for sub in substations:
             sub['display_properties'] = ['name', 'id', 'buses', 'transformer_groups', 'branch_groups']
+            sub['switchable'] = True
 
             for bus in sub['buses']:
                 bus['display_properties'] = ['name', 'id', 'status', 'voltage', 'angle', 'owner']
+                bus['switchable'] = True
                 bus_id = bus['id']
                 bus_data = bus_lookup[bus_id]
 
@@ -579,6 +581,7 @@ def main(args):
 
                 for generator in bus['generators']:
                     generator['display_properties'] = ['name', 'id', 'status', 'active', 'reactive']
+                    generator['switchable'] = True
 
                     gen_id = generator['id']
                     generator_data = generator_lookup[gen_id]
@@ -599,6 +602,7 @@ def main(args):
 
                 for load in bus['loads']:
                     load['display_properties'] = ['name', 'id', 'status', 'active', 'reactive']
+                    #load['switchable'] = True
 
                     load_id = load['id']
                     load_data = load_lookup[load_id]
@@ -615,6 +619,7 @@ def main(args):
 
                 for fixed_shunt in bus['fixed_shunts']:
                     fixed_shunt['display_properties'] = ['name', 'id', 'status', 'conductance', 'susceptance']
+                    #load['switchable'] = True
 
                     fixed_shunt_id = fixed_shunt['id']
                     fixed_shunt_data = fixed_shunt_lookup[fixed_shunt_id]
@@ -644,6 +649,7 @@ def main(args):
                     facts['status'] = int(facts_data[3])
 
             for transformer_group in sub['transformer_groups']:
+                transformer_group['switchable'] = True
                 for transformer in transformer_group['transformers']:
                     transformer['display_properties'] = ['name', 'id', 'status', 'rate_a_tail_1', 'active_tail_1', 'reactive_tail_1', 'cod_1']
                     transformer_id = transformer['id']
@@ -669,6 +675,7 @@ def main(args):
 
 
         for branch_group in all_branch_groups:
+            branch_group['switchable'] = True
             for banch in branch_group['branches']:
                 banch['display_properties'] = ['name', 'id', 'status', 'rate_a_tail', 'active_tail', 'reactive_tail', 'rate_a_head', 'active_head', 'reactive_head']
                 

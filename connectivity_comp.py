@@ -547,7 +547,10 @@ def main(args):
 
         # setup component info
         for sub in substations:
+            sub['display_properties'] = ['name', 'id', 'buses', 'transformer_groups', 'branch_groups']
+
             for bus in sub['buses']:
+                bus['display_properties'] = ['name', 'id', 'status', 'voltage', 'angle', 'owner']
                 bus_id = bus['id']
                 bus_data = bus_lookup[bus_id]
 
@@ -568,6 +571,8 @@ def main(args):
                 bus['angle'] = va_val
 
                 for generator in bus['generators']:
+                    generator['display_properties'] = ['name', 'id', 'status', 'active', 'reactive']
+
                     gen_id = generator['id']
                     generator_data = generator_lookup[gen_id]
 
@@ -586,6 +591,8 @@ def main(args):
                     generator['reactive'] = connectivity_range(qg_lb, qg_ub, qg, 'both', 0.2)
 
                 for load in bus['loads']:
+                    load['display_properties'] = ['name', 'id', 'status', 'active', 'reactive']
+
                     load_id = load['id']
                     load_data = load_lookup[load_id]
 
@@ -600,6 +607,8 @@ def main(args):
                         print('WARNING: non-constant power load!')
 
                 for fixed_shunt in bus['fixed_shunts']:
+                    fixed_shunt['display_properties'] = ['name', 'id', 'status', 'conductance', 'susceptance']
+
                     fixed_shunt_id = fixed_shunt['id']
                     fixed_shunt_data = fixed_shunt_lookup[fixed_shunt_id]
 
@@ -612,12 +621,16 @@ def main(args):
                     fixed_shunt['susceptance'] = connectivity_range(0, bl, bl, 'lb', 0.9) if bl >= 0 else connectivity_range(bl, 0, bl, 'ub', 0.9)
 
                 for switched_shunt in bus['switched_shunts']:
+                    switched_shunt['display_properties'] = ['name', 'id', 'status']
+
                     switched_shunt_id = switched_shunt['id']
                     switched_shunt_data = switched_shunt_lookup[switched_shunt_id]
 
                     switched_shunt['status'] = int(switched_shunt_data[3])
 
                 for facts in bus['facts']:
+                    facts['display_properties'] = ['name', 'id', 'status']
+
                     facts_id = facts['id']
                     facts_data = facts_lookup[facts_id]
 
@@ -625,6 +638,7 @@ def main(args):
 
             for transformer_group in sub['transformer_groups']:
                 for transformer in transformer_group:
+                    transformer['display_properties'] = ['name', 'id', 'status', 'rate_a_tail_1', 'active_tail_1', 'reactive_tail_1', 'cod_1']
                     transformer_id = transformer['id']
                     transformer_data = transformer_lookup[transformer_id]
 
@@ -650,6 +664,8 @@ def main(args):
         for branch_groups in all_branch_groups:
             for branch_group in branch_groups:
                 for banch in branch_group:
+                    banch['display_properties'] = ['name', 'id', 'status', 'rate_a_tail', 'active_tail', 'reactive_tail', 'rate_a_head', 'active_head', 'reactive_head']
+                    
                     #print(banch)
                     branch_id = banch['id']
                     branch_data = branch_lookup[branch_id]
@@ -681,6 +697,8 @@ def main(args):
         for cor in corridors:
             for facts_group in cor['facts_groups']:
                 for facts in facts_group:
+                    facts['display_properties'] = ['name', 'id', 'status']
+
                     facts_id = facts['id']
                     facts_data = facts_lookup[facts_id]
 
@@ -688,6 +706,8 @@ def main(args):
 
             for tt_dc_group in cor['tt_dc_groups']:
                 for tt_dc in tt_dc_group:
+                    tt_dc['display_properties'] = ['name', 'id', 'status']
+
                     tt_dc_id = tt_dc['id']
                     tt_dc_data = tt_dc_lookup[tt_dc_id]
 
@@ -695,6 +715,8 @@ def main(args):
 
             for vsc_dc_group in cor['vsc_dc_groups']:
                 for vsc_dc in vsc_dc_group:
+                    vsc_dc['display_properties'] = ['name', 'id', 'status']
+
                     vsc_dc_id = vsc_dc['id']
                     vsc_dc_data = vsc_dc_lookup[vsc_dc_id]
 

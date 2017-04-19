@@ -326,7 +326,7 @@ def main(args):
             print(loc)
 
 
-
+    trans_group_id = 1
     transformer_tuple_lookup = {}
     for i, trans in enumerate(raw_case['transformers']):
         trans_id = i+1
@@ -338,40 +338,54 @@ def main(args):
             key = (pr_bus, sn_bus)
         else:
             key = (pr_bus, sn_bus, tr_bus)
+
+        trans_data = {
+            'id':trans_id,
+            'name':'{} {} {} {}'.format(trans[0][0], trans[0][1], trans[0][2], trans[0][3])
+        }
+
         if not key in transformer_tuple_lookup:
-            transformer_tuple_lookup[key] = []
-        transformer_tuple_lookup[key].append((trans_id, trans))
+            transformer_tuple_lookup[key] = {
+                'id':trans_group_id,
+                'transformers':[]
+            }
+            trans_group_id += 1
+
+        transformer_tuple_lookup[key]['transformers'].append(trans_data)
 
 
     for k, v in transformer_tuple_lookup.items():
         bus_sub = bus_sub_lookup[k[0]]
         assert(all([ bus_sub == bus_sub_lookup[bus_id] for bus_id in k]))
-        transformer_list = []
-        for trans_id, trans in v:
-            trans_data = {'id':trans_id}
-            trans_data['name'] = '{} {} {} {}'.format(trans[0][0], trans[0][1], trans[0][2], trans[0][3])
-            # if len(k) == 2:
-            #     trans_data['name'] = '{} - {} {} {}'.format(trans_id, k[0], k[1], trans[0][3])
-            # else:
-            #     trans_data['name'] = '{} - {} {} {} {}'.format(trans_id, k[0], k[1], k[2], trans[0][3])
-            transformer_list.append(trans_data)
-        bus_sub['transformer_groups'].append(transformer_list)
+        bus_sub['transformer_groups'].append(v)
 
 
+    branch_bp_id = 1
     branch_bp_lookup = {}
     for i, branch in enumerate(raw_case['branches']):
         branch_id = i+1
         from_bus = int(branch[0])
         to_bus = int(branch[1])
-
         #print(from_bus, to_bus)
         #assert(bus_sub_lookup[from_bus] != bus_sub_lookup[to_bus])
 
+        branch_data = {
+            'id':branch_id,
+            'name': '{} {} {}'.format(branch[0], branch[1], branch[2])
+        }
+
         key = (from_bus, to_bus)
         if not key in branch_bp_lookup:
-            branch_bp_lookup[key] = []
-        branch_bp_lookup[key].append((branch_id, branch))
+            branch_bp_lookup[key] = {
+                'id':branch_bp_id,
+                'branches':[]
+            }
+            branch_bp_id += 1
 
+        branch_bp_lookup[key]['branches'].append(branch_data)
+
+
+    facts_bp_id = 1
     facts_bp_lookup = {}
     for i, facts in enumerate(raw_case['facts']):
         facts_id = i+1
@@ -381,53 +395,73 @@ def main(args):
         if to_bus != 0:
             assert(bus_sub_lookup[from_bus] != bus_sub_lookup[to_bus])
 
+            facts_data = {
+                'id':facts_id,
+                'name': '{} {} {}'.format(branch[0], branch[1], branch[2])
+            }
+
             key = (from_bus, to_bus)
             if not key in facts_bp_lookup:
-                facts_bp_lookup[key] = []
-            facts_bp_lookup[key].append((facts_id, facts))
+                facts_bp_lookup[key] = {
+                    'id':facts_bp_id,
+                    'facts':[]
+                }
+                facts_bp_id += 1
+            facts_bp_lookup[key]['branches'].append(facts_data)
 
+
+    tt_dc_bp_id = 1
     tt_dc_bp_lookup = {}
     for i, tt_dc in enumerate(raw_case['tt_dc']):
         tt_dc_id = i+1
         from_bus = int(tt_dc[1][0])
         to_bus = int(tt_dc[2][0])
-
         assert(bus_sub_lookup[from_bus] != bus_sub_lookup[to_bus])
+
+        tt_dc_data = {
+            'id':tt_dc_id,
+            'name': '{} {} {}'.format(from_bus, to_bus, tt_dc[0][0])
+        }
 
         key = (from_bus, to_bus)
         if not key in tt_dc_bp_lookup:
-            tt_dc_bp_lookup[key] = []
-        tt_dc_bp_lookup[key].append((tt_dc_id, tt_dc))
+            tt_dc_bp_lookup[key] = {
+                'id':tt_dc_bp_id,
+                'tt_dcs':[]
+            }
+            tt_dc_bp_id += 1
+        tt_dc_bp_lookup[key]['tt_dcs'].append(tt_dc_data)
 
+    vsc_dc_bp_id = 1
     vsc_dc_bp_lookup = {}
     for i, vsc_dc in enumerate(raw_case['vsc_dc']):
         vsc_dc_id = i+1
         from_bus = int(vsc_dc[1][0])
         to_bus = int(vsc_dc[2][0])
-
         assert(bus_sub_lookup[from_bus] != bus_sub_lookup[to_bus])
+
+        vsc_dc_data = {
+            'id':vsc_dc_id,
+            'name': '{} {} {}'.format(from_bus, to_bus, vsc_dc[0][0])
+        }
 
         key = (from_bus, to_bus)
         if not key in vsc_dc_bp_lookup:
-            vsc_dc_bp_lookup[key] = []
-        vsc_dc_bp_lookup[key].append((vsc_dc_id, vsc_dc))
+            vsc_dc_bp_lookup[key] = {
+                'id':tt_dc_bp_id,
+                'vsc_dcs':[]
+            }
+            vsc_dc_bp_id += 1
+        vsc_dc_bp_lookup[key]['vsc_dcs'].append(vsc_dc_data)
 
 
     corridor_branch_lookup = {}
-    for (from_bus, to_bus), v in branch_bp_lookup.items():
-        branch_list = []
-        for branch_id, branch in v:
-            branch_data = {
-                'id':branch_id,
-                'name': '{} {} {}'.format(branch[0], branch[1], branch[2])
-            }
-            branch_list.append(branch_data)
-
+    for (from_bus, to_bus), branch_group in branch_bp_lookup.items():
         #print('{} {} {}'.format(from_bus, to_bus, v))
         sub_from = bus_sub_lookup[from_bus]
         sub_to = bus_sub_lookup[to_bus]
         if sub_from == sub_to:
-            sub_from['branch_groups'].append(branch_list)
+            sub_from['branch_groups'].append(branch_group)
         else:
             if sub_from['id'] > sub_to['id']:
                 sub_from = bus_sub_lookup[to_bus]
@@ -435,20 +469,11 @@ def main(args):
             corridor_key = (sub_from['id'], sub_to['id'])
             if not corridor_key in corridor_branch_lookup:
                 corridor_branch_lookup[corridor_key] = []
-            corridor_branch_lookup[corridor_key].append(branch_list)
+            corridor_branch_lookup[corridor_key].append(branch_group)
 
 
     corridor_facts_lookup = {}
-    for (from_bus, to_bus), v in facts_bp_lookup.items():
-        facts_list = []
-        for facts_id, facts in v:
-            facts_data = {
-                'id':facts_id,
-                'name': '{} {} {}'.format(branch[0], branch[1], branch[2])
-            }
-            facts_list.append(branch_data)
-
-        #print('{} {} {}'.format(from_bus, to_bus, v))
+    for (from_bus, to_bus), facts_group in facts_bp_lookup.items():
         sub_from = bus_sub_lookup[from_bus]
         sub_to = bus_sub_lookup[to_bus]
 
@@ -458,20 +483,11 @@ def main(args):
         corridor_key = (sub_from['id'], sub_to['id'])
         if not corridor_key in corridor_facts_lookup:
             corridor_facts_lookup[corridor_key] = []
-        corridor_facts_lookup[corridor_key].append(facts_list)
+        corridor_facts_lookup[corridor_key].append(facts_group)
 
 
     corridor_tt_dc_lookup = {}
-    for (from_bus, to_bus), v in tt_dc_bp_lookup.items():
-        tt_dc_list = []
-        for tt_dc_id, tt_dc in v:
-            tt_dc_data = {
-                'id':tt_dc_id,
-                'name': '{} {} {}'.format(from_bus, to_bus, tt_dc[0])
-            }
-            tt_dc_list.append(tt_dc_data)
-
-        #print('{} {} {}'.format(from_bus, to_bus, v))
+    for (from_bus, to_bus), tt_dc_group in tt_dc_bp_lookup.items():
         sub_from = bus_sub_lookup[from_bus]
         sub_to = bus_sub_lookup[to_bus]
 
@@ -481,20 +497,11 @@ def main(args):
         corridor_key = (sub_from['id'], sub_to['id'])
         if not corridor_key in corridor_tt_dc_lookup:
             corridor_tt_dc_lookup[corridor_key] = []
-        corridor_tt_dc_lookup[corridor_key].append(tt_dc_list)
+        corridor_tt_dc_lookup[corridor_key].append(tt_dc_group)
 
 
     corridor_vsc_dc_lookup = {}
-    for (from_bus, to_bus), v in vsc_dc_bp_lookup.items():
-        vsc_dc_list = []
-        for vsc_dc_id, tt_vsc in v:
-            vsc_dc_data = {
-                'id':tt_dc_id,
-                'name': '{} {} {}'.format(from_bus, to_bus, tt_vsc[0])
-            }
-            vsc_dc_list.append(vsc_dc_data)
-
-        #print('{} {} {}'.format(from_bus, to_bus, v))
+    for (from_bus, to_bus), vsc_dc_group in vsc_dc_bp_lookup.items():
         sub_from = bus_sub_lookup[from_bus]
         sub_to = bus_sub_lookup[to_bus]
 
@@ -504,7 +511,7 @@ def main(args):
         corridor_key = (sub_from['id'], sub_to['id'])
         if not corridor_key in corridor_vsc_dc_lookup:
             corridor_vsc_dc_lookup[corridor_key] = []
-        corridor_vsc_dc_lookup[corridor_key].append(vsc_dc_list)
+        corridor_vsc_dc_lookup[corridor_key].append(vsc_dc_group)
 
 
     corridors = []
@@ -637,7 +644,7 @@ def main(args):
                     facts['status'] = int(facts_data[3])
 
             for transformer_group in sub['transformer_groups']:
-                for transformer in transformer_group:
+                for transformer in transformer_group['transformers']:
                     transformer['display_properties'] = ['name', 'id', 'status', 'rate_a_tail_1', 'active_tail_1', 'reactive_tail_1', 'cod_1']
                     transformer_id = transformer['id']
                     transformer_data = transformer_lookup[transformer_id]
@@ -656,41 +663,40 @@ def main(args):
 
         all_branch_groups = []
         for sub in substations:
-            all_branch_groups.append(sub['branch_groups'])
+            all_branch_groups.extend(sub['branch_groups'])
         for cor in corridors:
-            all_branch_groups.append(cor['branch_groups'])
+            all_branch_groups.extend(cor['branch_groups'])
 
 
-        for branch_groups in all_branch_groups:
-            for branch_group in branch_groups:
-                for banch in branch_group:
-                    banch['display_properties'] = ['name', 'id', 'status', 'rate_a_tail', 'active_tail', 'reactive_tail', 'rate_a_head', 'active_head', 'reactive_head']
-                    
-                    #print(banch)
-                    branch_id = banch['id']
-                    branch_data = branch_lookup[branch_id]
-                    from_bus_id = int(branch_data[0])
-                    to_bus_id = int(branch_data[1])
-                    
-                    from_base_kv = float(bus_lookup[from_bus_id][2])
-                    to_base_kv = float(bus_lookup[to_bus_id][2])
+        for branch_group in all_branch_groups:
+            for banch in branch_group['branches']:
+                banch['display_properties'] = ['name', 'id', 'status', 'rate_a_tail', 'active_tail', 'reactive_tail', 'rate_a_head', 'active_head', 'reactive_head']
+                
+                #print(banch)
+                branch_id = banch['id']
+                branch_data = branch_lookup[branch_id]
+                from_bus_id = int(branch_data[0])
+                to_bus_id = int(branch_data[1])
+                
+                from_base_kv = float(bus_lookup[from_bus_id][2])
+                to_base_kv = float(bus_lookup[to_bus_id][2])
 
-                    #print(from_base_kv, to_base_kv)
-                    if from_base_kv != to_base_kv:
-                        print('WARNING: different base kv values on branch {} {}:{} {}:{}'.format(branch_id, from_bus_id, from_base_kv, to_bus_id, to_base_kv))
-                    #assert(from_base_kv == to_base_kv)
-                    banch['base_kv'] = max(from_base_kv, to_base_kv)
+                #print(from_base_kv, to_base_kv)
+                if from_base_kv != to_base_kv:
+                    print('WARNING: different base kv values on branch {} {}:{} {}:{}'.format(branch_id, from_bus_id, from_base_kv, to_bus_id, to_base_kv))
+                #assert(from_base_kv == to_base_kv)
+                banch['base_kv'] = max(from_base_kv, to_base_kv)
 
-                    banch['status'] = int(branch_data[13])
+                banch['status'] = int(branch_data[13])
 
-                    rate_a = float(branch_data[6])
-                    banch['rate_a_tail'] = connectivity_range(0, rate_a, 0, 'ub', 0.2)
-                    banch['active_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
-                    banch['reactive_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
+                rate_a = float(branch_data[6])
+                banch['rate_a_tail'] = connectivity_range(0, rate_a, 0, 'ub', 0.2)
+                banch['active_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
+                banch['reactive_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
 
-                    banch['rate_a_head'] = connectivity_range(0, rate_a, 0, 'ub', 0.2)
-                    banch['active_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
-                    banch['reactive_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
+                banch['rate_a_head'] = connectivity_range(0, rate_a, 0, 'ub', 0.2)
+                banch['active_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
+                banch['reactive_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
 
 
 
@@ -728,7 +734,7 @@ def main(args):
             sub['base_kv_max'] = max(bus['base_kv'] for bus in sub['buses'])
 
         for cor in corridors:
-            base_kv_levels = set(branch['base_kv'] for branch_group in cor['branch_groups'] for branch in branch_group)
+            base_kv_levels = set(branch['base_kv'] for branch_group in cor['branch_groups'] for branch in branch_group['branches'])
             cor['base_kv_max'] = max(base_kv_levels)
             
             if len(base_kv_levels) > 1:

@@ -48,6 +48,120 @@ def edit_distance(s1, s2):
     return tbl[i,j]
 
 
+def contract_transformers(buses, transformers):
+    contraction_count = 0
+    metabus_lookup = {}
+
+    for bus in buses:
+        bus_id = int(bus[0])
+        #print(bus_id)
+        metabus_lookup[bus_id] = set([bus_id])
+
+    for trans in transformers:
+        pr_bus = int(trans[0][0])
+        sn_bus = int(trans[0][1])
+        tr_bus = int(trans[0][2])
+
+        if tr_bus == 0:
+            bus_id_set = metabus_lookup[pr_bus] | metabus_lookup[sn_bus]
+            contraction_count += 1
+        else:
+            bus_id_set = metabus_lookup[pr_bus] | metabus_lookup[sn_bus] | metabus_lookup[tr_bus]
+            contraction_count += 2
+
+        for bus_id in bus_id_set:
+            metabus_lookup[bus_id] = bus_id_set
+
+    metabuses_list = []
+    for bus_set in metabus_lookup.values():
+        if bus_set not in metabuses_list:
+            metabuses_list.append(bus_set)
+
+    print('transformer contraction joined {} buses'.format(contraction_count))
+
+    metabus_lookup = {}
+    for metabus_id, bus_set in enumerate(metabuses_list):
+        for bus in bus_set:
+            metabus_lookup[bus] = metabus_id
+
+    return metabus_lookup
+
+
+def contract_voltage_level(metabus_lookup, bus_lookup, branches, kv_threshold):
+    metabuses_ids = {}
+    for bus, set_id in metabus_lookup.items():
+        if set_id not in metabuses_ids:
+            metabuses_ids[set_id] = set()
+        metabuses_ids[set_id].add(bus)
+
+    metabus_max_kv = {}
+    for i,v in metabuses_ids.items():
+        metabus_max_kv[i] = max(float(bus_lookup[bus_id][2]) for bus_id in v)
+
+    bus_to_metabus = {}
+    for metabus_id, metabus in metabuses_ids.items():
+        for bus_id in metabus:
+            bus_to_metabus[bus_id] = metabus_id
+
+    #print(bus_to_metabus)
+    #incident = {}
+    neighbors = {}
+    for k in metabuses_ids:
+        neighbors[k] = set()
+    for branch in branches:
+        from_bus = int(branch[0])
+        to_bus = int(branch[1])
+
+        from_metabus = bus_to_metabus[from_bus]
+        to_metabus = bus_to_metabus[to_bus]
+
+        neighbors[from_metabus].add(to_metabus)
+        neighbors[to_metabus].add(from_metabus)
+
+    high_voltage_metabus_ids = { idx for idx in metabuses_ids if metabus_max_kv[idx] >= kv_threshold }
+    #print(high_voltage_metabus_ids)
+
+    metabus_unions = {i:set([i]) for i in high_voltage_metabus_ids}
+    merged = set()
+
+    contraction_count = 0
+    contracted = True
+    while contracted:
+        contracted = False
+        for metabus_id in high_voltage_metabus_ids:
+            for metabus_neighbor_id in [i for i in neighbors[metabus_id]]:
+                if metabus_max_kv[metabus_neighbor_id] < kv_threshold and metabus_neighbor_id not in merged:
+                    metabus_unions[metabus_id].add(metabus_neighbor_id)
+                    metabus_unions[metabus_neighbor_id] = metabus_unions[metabus_id]
+                    merged.add(metabus_neighbor_id)
+
+                    for metabus_neighbor_neighbor_id in neighbors[metabus_neighbor_id]:
+                        neighbors[metabus_id].add(metabus_neighbor_neighbor_id)
+
+                    contraction_count += 1
+                    contracted = True
+
+    metabuses_union_list = []
+    for metabus_set in metabus_unions.values():
+        if metabus_set not in metabuses_union_list:
+            metabuses_union_list.append(metabus_set)
+
+    # for value in metabuses_union_list:
+    #     print(value)
+
+    print('high voltage metabuses {}, number of metabus sets found {}'.format(len(high_voltage_metabus_ids), len(metabuses_union_list)))
+    print('voltage level contraction joined {} metabuses'.format(contraction_count))
+
+    metabus_lookup_two = {}
+    for metabus_id, metabus_set in enumerate(metabuses_union_list):
+        for metabus in metabus_set:
+            for bus in metabuses_ids[metabus]:
+                metabus_lookup_two[bus] = metabus_id
+
+    #print(metabus_lookup_two)
+    return metabus_lookup_two
+
+
 def main(args):
     raw_case = parse_raw(args.raw_file)
 
@@ -71,34 +185,16 @@ def main(args):
     vsc_dc_lookup = { i+1:vsc_dc for i, vsc_dc in enumerate(raw_case['vsc_dc']) }
 
 
-    bus_sub_lookup = {}
-    for bus in raw_case['buses']:
-        bus_id = int(bus[0])
-        #print(bus_id)
-        bus_sub_lookup[bus_id] = set([bus_id])
+    metabus_lookup = contract_transformers(raw_case['buses'], raw_case['transformers'])
+    metabus_lookup = contract_voltage_level(metabus_lookup, bus_lookup, raw_case['branches'], args.kv_threshold)
 
-    for trans in raw_case['transformers']:
-        pr_bus = int(trans[0][0])
-        sn_bus = int(trans[0][1])
-        tr_bus = int(trans[0][2])
+    substation_buses = {}
+    for bus, set_id in metabus_lookup.items():
+        if set_id not in substation_buses:
+            substation_buses[set_id] = set()
+        substation_buses[set_id].add(bus)
 
-        if tr_bus == 0:
-            bus_id_set = bus_sub_lookup[pr_bus] | bus_sub_lookup[sn_bus]
-        else:
-            bus_id_set = bus_sub_lookup[pr_bus] | bus_sub_lookup[sn_bus] | bus_sub_lookup[tr_bus]
 
-        for bus_id in bus_id_set:
-            bus_sub_lookup[bus_id] = bus_id_set
-
-        #print(pr_bus, sn_bus, tr_bus)
-
-    substation_buses = []
-    for k,v in bus_sub_lookup.items():
-        if not v in substation_buses:
-            substation_buses.append(v)
-
-    #for v in substation_buses:
-    #    print(v)
     bus_data_lookup = {}
     for bus in raw_case['buses']:
         bus_id = int(bus[0])
@@ -169,7 +265,7 @@ def main(args):
 
     bus_sub_lookup = {}
     substations = []
-    for i, sub_buses in enumerate(substation_buses):
+    for i, sub_buses in substation_buses.items():
         sub_id = i+1
         substation = {
             'id': sub_id,
@@ -748,11 +844,12 @@ def main(args):
                 print('WARNING: corridor {} has multiple base_kv levels {}'.format(cor['id'], base_kv_levels))
 
                 for branch_group in cor['branch_groups']:
-                    for banch in branch_group:
+                    for branch in branch_group['branches']:
                         branch_data = branch_lookup[branch_id]
                         from_bus_id = int(branch_data[0])
                         to_bus_id = int(branch_data[1])
-                        print('  branch {} ({}, {}) - base_kv {}'.format(banch['id'], from_bus_id, to_bus_id, banch['base_kv']))
+                        #print(branch)
+                        print('  branch {} ({}, {}) - base_kv {}'.format(branch['id'], from_bus_id, to_bus_id, branch['base_kv']))
 
         print('')
 
@@ -1026,8 +1123,10 @@ def build_cli_parser():
     parser.add_argument('-o', '--output', help='the place to send the output (.json)', default='connectivity.json')
     parser.add_argument('-g', '--geolocations', help='the available geolocation data (.csv)')
     parser.add_argument('-scs', help='adds extra data to the json document for SCS', action='store_true', default=False)
+    parser.add_argument('-kvt', '--kv-threshold' , help='the minimum voltage to be represented in the network connectivity', type=float, default=0.0)
 
     return parser
+
 
 if __name__ == '__main__':
     parser = build_cli_parser()

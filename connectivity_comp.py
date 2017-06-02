@@ -200,7 +200,7 @@ def main(args):
         bus_id = int(bus[0])
         bus_data = {
             'id':bus_id,
-            #'name':'{} - {}'.format(bus_id, bus[1]),
+            'type':'physical',
             'name':'{}'.format(bus[1]),
             'loads':[],
             'generators':[],
@@ -269,6 +269,7 @@ def main(args):
         sub_id = i+1
         substation = {
             'id': sub_id,
+            'type':'physical',
             'name': 'substation {}'.format(sub_id),
             'transformer_groups': [],
             'branch_groups': []
@@ -429,14 +430,21 @@ def main(args):
         pr_bus = int(trans[0][0])
         sn_bus = int(trans[0][1])
         tr_bus = int(trans[0][2])
+        ckt = str(trans[0][3]).strip()
 
         if tr_bus == 0:
             key = (pr_bus, sn_bus)
         else:
             key = (pr_bus, sn_bus, tr_bus)
 
+        comp_type = 'physical'
+        if ckt == '\'99\'':
+            comp_type = 'virtual'
+            print('marking transformer {} - {} {} {} {} as virtual'.format(trans_id, pr_bus, sn_bus, tr_bus, ckt))
+
         trans_data = {
             'id':trans_id,
+            'type':comp_type,
             'name':'{} {} {} {}'.format(trans[0][0], trans[0][1], trans[0][2], trans[0][3])
         }
 
@@ -462,11 +470,19 @@ def main(args):
         branch_id = i+1
         from_bus = int(branch[0])
         to_bus = int(branch[1])
+        ckt = str(branch[2]).strip()
+
         #print(from_bus, to_bus)
         #assert(bus_sub_lookup[from_bus] != bus_sub_lookup[to_bus])
 
+        comp_type = 'physical'
+        if ckt == '\'99\'':
+            comp_type = 'virtual'
+            print('marking branch {} - {} {} {} as virtual'.format(branch_id, from_bus, to_bus, ckt))
+
         branch_data = {
             'id':branch_id,
+            'type':comp_type,
             'name': '{} {} {}'.format(branch[0], branch[1], branch[2])
         }
 
@@ -493,6 +509,7 @@ def main(args):
 
             facts_data = {
                 'id':facts_id,
+                'type':'physical',
                 'name': '{} {} {}'.format(branch[0], branch[1], branch[2])
             }
 
@@ -516,6 +533,7 @@ def main(args):
 
         tt_dc_data = {
             'id':tt_dc_id,
+            'type':'physical',
             'name': '{} {} {}'.format(from_bus, to_bus, tt_dc[0][0])
         }
 
@@ -538,6 +556,7 @@ def main(args):
 
         vsc_dc_data = {
             'id':vsc_dc_id,
+            'type':'physical',
             'name': '{} {} {}'.format(from_bus, to_bus, vsc_dc[0][0])
         }
 
@@ -622,6 +641,7 @@ def main(args):
         corr_id = i+1
         corridor = {
             'id': corr_id,
+            'type':'physical',
             'name': 'corridor {}'.format(corr_id),
             'from_substation': corridor_key[0],
             'to_substation': corridor_key[1],
@@ -643,7 +663,27 @@ def main(args):
         if corridor_key in corridor_vsc_dc_lookup:
             corridor['vsc_dc_groups'] = corridor_vsc_dc_lookup[corridor_key]
 
+        physical_branch = any(branch['type']=='physical' for branch_group in corridor['branch_groups'] for branch in branch_group['branches'])
+        physical_facts = any(facts['type']=='physical' for facts_group in corridor['facts_groups'] for branch in facts_group['facts'])
+        physical_tt_dc = any(branch['type']=='physical' for tt_dc_group in corridor['tt_dc_groups'] for branch in tt_dc_group['tt_dcs'])
+        physical_vsc_dc = any(branch['type']=='physical' for vsc_dc_group in corridor['vsc_dc_groups'] for branch in vsc_dc_group['vsc_dcs'])
+
+        if not (physical_branch or physical_facts or physical_tt_dc or physical_vsc_dc):
+            corridor['type'] = 'virtual'
+            print('marking corridor {} as virtual'.format(corr_id))
+
         corridors.append(corridor)
+
+
+        for substation in substations:
+            physical_bus = any(bus['type']=='physical' for bus in substation['buses'])
+            physical_branch = any(branch['type']=='physical' for branch_group in substation['branch_groups'] for branch in branch_group['branches'])
+            physical_transformer = any(transformer['type']=='physical' for transformer_group in substation['transformer_groups'] for transformer in transformer_group['transformers'])
+
+            if not (physical_bus or physical_branch or physical_transformer):
+                substation['type'] = 'virtual'
+                print('marking substation {} as virtual'.format(substation['id']))
+
 
     if args.scs:
         print('Adding SCS Data')

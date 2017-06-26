@@ -520,7 +520,7 @@ def main(args):
                     'facts':[]
                 }
                 facts_bp_id += 1
-            facts_bp_lookup[key]['branches'].append(facts_data)
+            facts_bp_lookup[key]['facts'].append(facts_data)
 
 
     tt_dc_bp_id = 1
@@ -664,9 +664,9 @@ def main(args):
             corridor['vsc_dc_groups'] = corridor_vsc_dc_lookup[corridor_key]
 
         physical_branch = any(branch['type']=='physical' for branch_group in corridor['branch_groups'] for branch in branch_group['branches'])
-        physical_facts = any(facts['type']=='physical' for facts_group in corridor['facts_groups'] for branch in facts_group['facts'])
-        physical_tt_dc = any(branch['type']=='physical' for tt_dc_group in corridor['tt_dc_groups'] for branch in tt_dc_group['tt_dcs'])
-        physical_vsc_dc = any(branch['type']=='physical' for vsc_dc_group in corridor['vsc_dc_groups'] for branch in vsc_dc_group['vsc_dcs'])
+        physical_facts = any(facts['type']=='physical' for facts_group in corridor['facts_groups'] for facts in facts_group['facts'])
+        physical_tt_dc = any(tt_dc['type']=='physical' for tt_dc_group in corridor['tt_dc_groups'] for tt_dc in tt_dc_group['tt_dcs'])
+        physical_vsc_dc = any(vsc_dc['type']=='physical' for vsc_dc_group in corridor['vsc_dc_groups'] for vsc_dc in vsc_dc_group['vsc_dcs'])
 
         if not (physical_branch or physical_facts or physical_tt_dc or physical_vsc_dc):
             corridor['type'] = 'virtual'

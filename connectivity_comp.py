@@ -1004,14 +1004,14 @@ def parse_raw(raw_file_location):
         if 'END OF TWO-TERMINAL DC DATA' in line:
             reading_tt_dc = False
 
-        if 'END OF VSC DC LINE DATA' in line:
+        if 'END OF VSC DC LINE DATA' in line or 'END OF VOLTAGE SOURCE CONVERTER DATA' in line:
             reading_vsc_dc = False
 
         if 'END OF MULTI-TERMINAL DC DATA' in line:
             reading_mt_dc = False
 
-        if 'END OF SWITCHED SHUNT DATA' in line:
-            reading_switched_shunts = False
+        if 'END OF FACTS DEVICE DATA' in line or 'END OF FACTS CONTROL DEVICE DATA' in line:
+            reading_facts = False
 
         if 'END OF OWNER DATA' in line:
             reading_owners = False
@@ -1056,7 +1056,7 @@ def parse_raw(raw_file_location):
             #line = raw_lines[line_index]
             continue
 
-        if 'BEGIN VSC DC LINE DATA' in line:
+        if 'BEGIN VSC DC LINE DATA' in line or 'BEGIN VOLTAGE SOURCE CONVERTER DATA' in line:
             reading_vsc_dc = True
             line_index += 1
             #line = raw_lines[line_index]
@@ -1074,7 +1074,7 @@ def parse_raw(raw_file_location):
             #line = raw_lines[line_index]
             continue
 
-        if 'BEGIN FACTS DEVICE DATA' in line:
+        if 'BEGIN FACTS DEVICE DATA' in line or 'BEGIN FACTS CONTROL DEVICE DATA' in line:
             reading_facts = True
             line_index += 1
             #line = raw_lines[line_index]
@@ -1143,8 +1143,10 @@ def parse_raw(raw_file_location):
             line_index += 2
 
         if reading_mt_dc:
-            assert(False) # this is not supported yet
-            pass # mt_dc_lines.append(line.strip().split(','))
+            print('WARNING: Multi-Terminal DC lines in this case will be ignored' )
+            #line_index += 1
+            # assert(False) # this is not supported yet
+            # pass # mt_dc_lines.append(line.strip().split(','))
 
         if reading_facts:
             facts_lines.append(line.strip().split(','))

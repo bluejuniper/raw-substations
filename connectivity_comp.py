@@ -335,6 +335,7 @@ def main(args):
                 #mataches = {}
                 #scaling_factor = float(max(*[len(name) for name in zone_locations], len(bus_name)))
                 for location_bus_name in zone_locations:
+                    #print(bus_name, ' - ', location_bus_name)
                     #mataches[location_bus_names] = prefix_size(bus_name, location_bus_names)
                     #score = edit_distance(bus_name, location_bus_names)/scaling_factor
                     score = edit_distance(bus_name, location_bus_name)
@@ -820,16 +821,8 @@ def main(args):
                 branch_data = branch_lookup[branch_id]
                 from_bus_id = int(branch_data[0])
                 to_bus_id = int(branch_data[1])
-                
-                from_base_kv = float(bus_lookup[from_bus_id][2])
-                to_base_kv = float(bus_lookup[to_bus_id][2])
 
-                #print(from_base_kv, to_base_kv)
-                if from_base_kv != to_base_kv:
-                    print('WARNING: different base kv values on branch {} {}:{} {}:{}'.format(branch_id, from_bus_id, from_base_kv, to_bus_id, to_base_kv))
-                #assert(from_base_kv == to_base_kv)
-                banch['base_kv'] = max(from_base_kv, to_base_kv)
-
+                banch['base_kv'] = get_base_kv(from_bus_id, to_bus_id, bus_lookup, branch_id)
                 banch['status'] = int(branch_data[13])
 
                 rate_a = float(branch_data[6])
@@ -845,31 +838,40 @@ def main(args):
 
         for cor in corridors:
             for facts_group in cor['facts_groups']:
-                for facts in facts_group:
+                for facts in facts_group['facts']:
                     facts['display_properties'] = ['name', 'id', 'status']
 
                     facts_id = facts['id']
                     facts_data = facts_lookup[facts_id]
 
+                    from_bus_id = int(facts_data[1])
+                    to_bus_id = int(facts_data[2])
+
+                    facts['base_kv'] = get_base_kv(from_bus_id, to_bus_id, bus_lookup, facts_id)
                     facts['status'] = int(facts_data[3])
 
             for tt_dc_group in cor['tt_dc_groups']:
-                for tt_dc in tt_dc_group:
+                for tt_dc in tt_dc_group['tt_dcs']:
                     tt_dc['display_properties'] = ['name', 'id', 'status']
 
                     tt_dc_id = tt_dc['id']
                     tt_dc_data = tt_dc_lookup[tt_dc_id]
 
-                    tt_dc['status'] = int(tt_dc_data[1])
+                    tt_dc['base_kv'] = float(tt_dc_data[0][4])
+                    tt_dc['status'] = int(int(tt_dc_data[0][1]) != 0) # 100% sure that this the same as status
 
             for vsc_dc_group in cor['vsc_dc_groups']:
-                for vsc_dc in vsc_dc_group:
+                for vsc_dc in vsc_dc_group['vsc_dcs']:
                     vsc_dc['display_properties'] = ['name', 'id', 'status']
 
                     vsc_dc_id = vsc_dc['id']
                     vsc_dc_data = vsc_dc_lookup[vsc_dc_id]
 
-                    vsc_dc['status'] = int(vsc_dc_data[1])
+                    from_bus_id = int(vsc_dc_data[1][0])
+                    to_bus_id = int(vsc_dc_data[2][0])
+
+                    vsc_dc['base_kv'] = get_base_kv(from_bus_id, to_bus_id, bus_lookup, vsc_dc_id)
+                    vsc_dc['status'] = int(vsc_dc_data[0][1])
 
 
         # setup derived component info
@@ -877,7 +879,11 @@ def main(args):
             sub['base_kv_max'] = max(bus['base_kv'] for bus in sub['buses'])
 
         for cor in corridors:
-            base_kv_levels = set(branch['base_kv'] for branch_group in cor['branch_groups'] for branch in branch_group['branches'])
+            base_kv_levels  = set(component['base_kv'] for comp_group in cor['branch_groups'] for component in comp_group['branches'])
+            base_kv_levels |= set(component['base_kv'] for comp_group in cor['facts_groups'] for component in comp_group['facts'])
+            base_kv_levels |= set(component['base_kv'] for comp_group in cor['tt_dc_groups'] for component in comp_group['tt_dcs'])
+            base_kv_levels |= set(component['base_kv'] for comp_group in cor['vsc_dc_groups'] for component in comp_group['vsc_dcs'])
+
             cor['base_kv_max'] = max(base_kv_levels)
             
             if len(base_kv_levels) > 1:
@@ -907,6 +913,17 @@ def main(args):
 
     with open(args.output, 'w') as outfile:
         json.dump(connectivity, outfile, sort_keys=True, indent=2, separators=(',', ': '))
+
+
+def get_base_kv(from_bus_id, to_bus_id, bus_lookup, comp_id):
+    from_base_kv = float(bus_lookup[from_bus_id][2])
+    to_base_kv = float(bus_lookup[to_bus_id][2])
+
+    #print(from_base_kv, to_base_kv)
+    if from_base_kv != to_base_kv:
+        print('WARNING: different base kv values on component id {} {}:{} {}:{}'.format(comp_id, from_bus_id, from_base_kv, to_bus_id, to_base_kv))
+    #assert(from_base_kv == to_base_kv)
+    return max(from_base_kv, to_base_kv)
 
 
 def connectivity_range(lb, ub, value, watch, threshold):

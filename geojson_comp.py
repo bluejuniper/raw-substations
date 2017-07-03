@@ -4,7 +4,7 @@ import json
 from argparse import ArgumentParser
 
 
-def create_geojson(conn_file, out_substations, out_corridors):
+def create_geojson(conn_file, output_geojson):
     with open(conn_file) as f:
         conn_data = json.load(f)
 
@@ -31,17 +31,14 @@ def create_geojson(conn_file, out_substations, out_corridors):
                    'properties': corridor}
         corridors['features'].append(feature)
 
-    with open(out_substations, 'w') as f:
-        f.write(json.dumps(substations))
-
-    with open(out_corridors, 'w') as f:
-        f.write(json.dumps(corridors))
+    connectivity_geojson = {'substations': substations, 'corridors': corridors}
+    with open(output_geojson, 'w') as f:
+        f.write(json.dumps(connectivity_geojson))
 
 
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('connectivity', help='Connectivity json file')
-    parser.add_argument('output_substations', help='Output substation geojson file')
-    parser.add_argument('output_corridors', help='Output corridor geojson file')
+    parser.add_argument('output_geojson', help='Output combined geojson file')
     args = parser.parse_args()
-    create_geojson(args.connectivity, args.output_substations, args.output_corridors)
+    create_geojson(args.connectivity, args.output_geojson)

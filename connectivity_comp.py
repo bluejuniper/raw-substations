@@ -424,6 +424,42 @@ def main(args):
             print(loc)
 
 
+    if args.bus_geolocations != None:
+        geolocation_lookup = {}
+        with open(args.bus_geolocations, 'r') as jsonfile:
+            geojson = json.load(jsonfile)
+        #print(geojson)
+        for feature in geojson['features']:
+            bus_id = feature['properties']['id']
+            geolocation_lookup[bus_id] = {
+                'longitude':feature['geometry']['coordinates'][0],
+                'latitude':feature['geometry']['coordinates'][1]
+            }
+
+        for substation in substations:
+            sub_location = None
+
+            for bus in substation['buses']:
+                if bus['id'] in geolocation_lookup:
+                    bus_location = geolocation_lookup[bus['id']]
+                    if sub_location != None:
+                        if sub_location['longitude'] != bus_location['longitude'] \
+                            or sub_location['latitude'] != bus_location['latitude']:
+                            print('WARNING: sub location {} and bus location differ {}'.format(sub_location, bus_location))
+                    else:
+                        sub_location = bus_location
+            # omit becouse there are a lot of these 
+            #else:
+            #    print('WARNING: no location for bus id {}'.format(bus['id']))
+
+            if sub_location != None:
+                substation['longitude'] = sub_location['longitude']
+                substation['latitude'] = sub_location['latitude']
+                #print(substation)
+            else:
+                print('WARNING: no location for substation {} {}'.format(substation['id'], substation['name']))
+
+
     trans_group_id = 1
     transformer_tuple_lookup = {}
     for i, trans in enumerate(raw_case['transformers']):
@@ -1183,6 +1219,7 @@ def build_cli_parser():
     parser.add_argument('-g', '--geolocations', help='the available geolocation data (.csv)')
     parser.add_argument('-scs', help='adds extra data to the json document for SCS', action='store_true', default=False)
     parser.add_argument('-kvt', '--kv-threshold' , help='the minimum voltage to be represented in the network connectivity', type=float, default=0.0)
+    parser.add_argument('-bg', '--bus-geolocations' , help='bus geolocation data (.json)')
 
     return parser
 

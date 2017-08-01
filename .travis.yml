@@ -1,0 +1,12 @@
+language: python
+python:
+  - "3.4"
+  - "3.5"
+  - "3.6"
+install:
+  - pip install tox-travis
+  - pip install codecov
+script:
+  - tox
+after_success:
+  - codecov --url=https://cov.lanlytics.com --token=57a08a54-8e43-498f-a69a-71b4b02807c0

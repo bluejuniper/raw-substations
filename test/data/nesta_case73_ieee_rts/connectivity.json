@@ -6,40 +6,18 @@
         {
           "branches": [
             {
-              "id": 43,
-              "name": "203    209 '1 '",
+              "id": 9,
+              "name": "106    110 '1 '",
               "type": "physical"
             }
           ],
-          "id": 39
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 24,
-      "id": 1,
-      "name": "corridor 1",
-      "to_substation": 30,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 80,
-              "name": "306    310 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 72
+          "id": 9
         }
       ],
       "facts_groups": [],
       "from_substation": 6,
-      "id": 2,
-      "name": "corridor 2",
+      "id": 1,
+      "name": "corridor 1",
       "to_substation": 9,
       "tt_dc_groups": [],
       "type": "physical",
@@ -50,18 +28,18 @@
         {
           "branches": [
             {
-              "id": 25,
-              "name": "116    117 '1 '",
+              "id": 96,
+              "name": "317    318 '1 '",
               "type": "physical"
             }
           ],
-          "id": 24
+          "id": 87
         }
       ],
       "facts_groups": [],
       "from_substation": 54,
-      "id": 3,
-      "name": "corridor 3",
+      "id": 2,
+      "name": "corridor 2",
       "to_substation": 55,
       "tt_dc_groups": [],
       "type": "physical",
@@ -72,45 +50,23 @@
         {
           "branches": [
             {
-              "id": 53,
-              "name": "212    223 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 49
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 30,
-      "id": 4,
-      "name": "corridor 4",
-      "to_substation": 41,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 102,
-              "name": "320    323 '1 '",
+              "id": 33,
+              "name": "120    123 '1 '",
               "type": "physical"
             },
             {
-              "id": 103,
-              "name": "320    323 '2 '",
+              "id": 34,
+              "name": "120    123 '2 '",
               "type": "physical"
             }
           ],
-          "id": 91
+          "id": 30
         }
       ],
       "facts_groups": [],
       "from_substation": 17,
-      "id": 5,
-      "name": "corridor 5",
+      "id": 3,
+      "name": "corridor 3",
       "to_substation": 20,
       "tt_dc_groups": [],
       "type": "physical",
@@ -121,18 +77,40 @@
         {
           "branches": [
             {
-              "id": 104,
-              "name": "321    322 '1 '",
+              "id": 61,
+              "name": "216    219 '1 '",
               "type": "physical"
             }
           ],
-          "id": 92
+          "id": 56
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 33,
+      "id": 4,
+      "name": "corridor 4",
+      "to_substation": 36,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 35,
+              "name": "121    122 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 31
         }
       ],
       "facts_groups": [],
       "from_substation": 18,
-      "id": 6,
-      "name": "corridor 6",
+      "id": 5,
+      "name": "corridor 5",
       "to_substation": 19,
       "tt_dc_groups": [],
       "type": "physical",
@@ -143,18 +121,18 @@
         {
           "branches": [
             {
-              "id": 60,
-              "name": "216    217 '1 '",
+              "id": 62,
+              "name": "217    218 '1 '",
               "type": "physical"
             }
           ],
-          "id": 55
+          "id": 57
         }
       ],
       "facts_groups": [],
       "from_substation": 34,
-      "id": 7,
-      "name": "corridor 7",
+      "id": 6,
+      "name": "corridor 6",
       "to_substation": 35,
       "tt_dc_groups": [],
       "type": "physical",
@@ -165,24 +143,68 @@
         {
           "branches": [
             {
-              "id": 22,
-              "name": "115    121 '1 '",
-              "type": "physical"
-            },
-            {
-              "id": 23,
-              "name": "115    121 '2 '",
+              "id": 88,
+              "name": "313    323 '1 '",
               "type": "physical"
             }
           ],
-          "id": 22
+          "id": 80
         }
       ],
       "facts_groups": [],
-      "from_substation": 53,
+      "from_substation": 50,
+      "id": 7,
+      "name": "corridor 7",
+      "to_substation": 60,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 91,
+              "name": "315    321 '1 '",
+              "type": "physical"
+            },
+            {
+              "id": 92,
+              "name": "315    321 '2 '",
+              "type": "physical"
+            }
+          ],
+          "id": 83
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 52,
       "id": 8,
       "name": "corridor 8",
-      "to_substation": 59,
+      "to_substation": 58,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 90,
+              "name": "315    316 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 82
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 52,
+      "id": 9,
+      "name": "corridor 9",
+      "to_substation": 53,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -206,32 +228,10 @@
         }
       ],
       "facts_groups": [],
-      "from_substation": 33,
-      "id": 9,
-      "name": "corridor 9",
-      "to_substation": 39,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 62,
-              "name": "217    218 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 57
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 35,
+      "from_substation": 32,
       "id": 10,
       "name": "corridor 10",
-      "to_substation": 36,
+      "to_substation": 38,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -241,19 +241,19 @@
         {
           "branches": [
             {
-              "id": 41,
-              "name": "202    204 '1 '",
+              "id": 47,
+              "name": "207    208 '1 '",
               "type": "physical"
             }
           ],
-          "id": 37
+          "id": 43
         }
       ],
       "facts_groups": [],
-      "from_substation": 23,
+      "from_substation": 27,
       "id": 11,
       "name": "corridor 11",
-      "to_substation": 25,
+      "to_substation": 28,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -263,46 +263,51 @@
         {
           "branches": [
             {
-              "id": 64,
-              "name": "218    221 '1 '",
-              "type": "physical"
-            },
-            {
-              "id": 65,
-              "name": "218    221 '2 '",
+              "id": 5,
+              "name": "102    106 '1 '",
               "type": "physical"
             }
           ],
-          "id": 59
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 36,
-      "id": 12,
-      "name": "corridor 12",
-      "to_substation": 39,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 76,
-              "name": "302    306 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 68
+          "id": 5
         }
       ],
       "facts_groups": [],
       "from_substation": 2,
+      "id": 12,
+      "name": "corridor 12",
+      "to_substation": 6,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 50,
+              "name": "211    213 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 46
+        },
+        {
+          "branches": [
+            {
+              "id": 52,
+              "name": "212    213 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 48
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 29,
       "id": 13,
       "name": "corridor 13",
-      "to_substation": 6,
+      "to_substation": 30,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -321,10 +326,695 @@
         }
       ],
       "facts_groups": [],
-      "from_substation": 21,
+      "from_substation": 18,
       "id": 14,
       "name": "corridor 14",
+      "to_substation": 61,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 27,
+              "name": "117    118 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 26
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 14,
+      "id": 15,
+      "name": "corridor 15",
+      "to_substation": 15,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 60,
+              "name": "216    217 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 55
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 33,
+      "id": 16,
+      "name": "corridor 16",
+      "to_substation": 34,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 74,
+              "name": "301    305 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 66
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 41,
+      "id": 17,
+      "name": "corridor 17",
+      "to_substation": 45,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 24,
+              "name": "115    124 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 23
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 3,
+      "id": 18,
+      "name": "corridor 18",
+      "to_substation": 12,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 93,
+              "name": "315    324 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 84
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 43,
+      "id": 19,
+      "name": "corridor 19",
+      "to_substation": 52,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 10,
+              "name": "107    108 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 10
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 7,
+      "id": 20,
+      "name": "corridor 20",
+      "to_substation": 8,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 85,
+              "name": "311    314 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 77
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 49,
+      "id": 21,
+      "name": "corridor 21",
+      "to_substation": 51,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 53,
+              "name": "212    223 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 49
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 29,
+      "id": 22,
+      "name": "corridor 22",
+      "to_substation": 40,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 42,
+              "name": "202    206 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 38
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 22,
+      "id": 23,
+      "name": "corridor 23",
+      "to_substation": 26,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 12,
+              "name": "108    109 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 12
+        },
+        {
+          "branches": [
+            {
+              "id": 13,
+              "name": "108    110 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 13
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 8,
+      "id": 24,
+      "name": "corridor 24",
+      "to_substation": 9,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 102,
+              "name": "320    323 '1 '",
+              "type": "physical"
+            },
+            {
+              "id": 103,
+              "name": "320    323 '2 '",
+              "type": "physical"
+            }
+          ],
+          "id": 91
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 57,
+      "id": 25,
+      "name": "corridor 25",
+      "to_substation": 60,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 104,
+              "name": "321    322 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 92
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 58,
+      "id": 26,
+      "name": "corridor 26",
       "to_substation": 59,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 21,
+              "name": "115    116 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 21
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 12,
+      "id": 27,
+      "name": "corridor 27",
+      "to_substation": 13,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 97,
+              "name": "317    322 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 88
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 54,
+      "id": 28,
+      "name": "corridor 28",
+      "to_substation": 59,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 46,
+              "name": "206    210 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 42
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 26,
+      "id": 29,
+      "name": "corridor 29",
+      "to_substation": 29,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 26,
+              "name": "116    119 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 25
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 13,
+      "id": 30,
+      "name": "corridor 30",
+      "to_substation": 16,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 3,
+              "name": "101    105 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 3
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 1,
+      "id": 31,
+      "name": "corridor 31",
+      "to_substation": 5,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 73,
+              "name": "301    303 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 65
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 41,
+      "id": 32,
+      "name": "corridor 32",
+      "to_substation": 43,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 89,
+              "name": "314    316 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 81
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 51,
+      "id": 33,
+      "name": "corridor 33",
+      "to_substation": 53,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 80,
+              "name": "306    310 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 72
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 46,
+      "id": 34,
+      "name": "corridor 34",
+      "to_substation": 49,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 17,
+              "name": "112    123 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 17
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 9,
+      "id": 35,
+      "name": "corridor 35",
+      "to_substation": 20,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 28,
+              "name": "117    122 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 27
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 14,
+      "id": 36,
+      "name": "corridor 36",
+      "to_substation": 19,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 22,
+              "name": "115    121 '1 '",
+              "type": "physical"
+            },
+            {
+              "id": 23,
+              "name": "115    121 '2 '",
+              "type": "physical"
+            }
+          ],
+          "id": 22
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 12,
+      "id": 37,
+      "name": "corridor 37",
+      "to_substation": 18,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 19,
+              "name": "113    215 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 19
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 10,
+      "id": 38,
+      "name": "corridor 38",
+      "to_substation": 32,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 68,
+              "name": "220    223 '1 '",
+              "type": "physical"
+            },
+            {
+              "id": 69,
+              "name": "220    223 '2 '",
+              "type": "physical"
+            }
+          ],
+          "id": 61
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 37,
+      "id": 39,
+      "name": "corridor 39",
+      "to_substation": 40,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 70,
+              "name": "221    222 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 62
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 38,
+      "id": 40,
+      "name": "corridor 40",
+      "to_substation": 39,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 18,
+              "name": "113    123 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 18
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 10,
+      "id": 41,
+      "name": "corridor 41",
+      "to_substation": 20,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 55,
+              "name": "214    216 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 51
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 31,
+      "id": 42,
+      "name": "corridor 42",
+      "to_substation": 33,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 2,
+              "name": "101    103 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 2
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 1,
+      "id": 43,
+      "name": "corridor 43",
+      "to_substation": 3,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 71,
+              "name": "318    223 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 63
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 40,
+      "id": 44,
+      "name": "corridor 44",
+      "to_substation": 55,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -353,10 +1043,10 @@
         }
       ],
       "facts_groups": [],
-      "from_substation": 29,
-      "id": 15,
-      "name": "corridor 15",
-      "to_substation": 30,
+      "from_substation": 28,
+      "id": 45,
+      "name": "corridor 45",
+      "to_substation": 29,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -380,10 +1070,10 @@
         }
       ],
       "facts_groups": [],
-      "from_substation": 37,
-      "id": 16,
-      "name": "corridor 16",
-      "to_substation": 38,
+      "from_substation": 36,
+      "id": 46,
+      "name": "corridor 46",
+      "to_substation": 37,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -393,63 +1083,24 @@
         {
           "branches": [
             {
-              "id": 6,
-              "name": "103    109 '1 '",
+              "id": 31,
+              "name": "119    120 '1 '",
               "type": "physical"
-            }
-          ],
-          "id": 6
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 44,
-      "id": 17,
-      "name": "corridor 17",
-      "to_substation": 50,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
+            },
             {
-              "id": 96,
-              "name": "317    318 '1 '",
+              "id": 32,
+              "name": "119    120 '2 '",
               "type": "physical"
             }
           ],
-          "id": 87
+          "id": 29
         }
       ],
       "facts_groups": [],
-      "from_substation": 14,
-      "id": 18,
-      "name": "corridor 18",
-      "to_substation": 15,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 27,
-              "name": "117    118 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 26
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 55,
-      "id": 19,
-      "name": "corridor 19",
-      "to_substation": 56,
+      "from_substation": 16,
+      "id": 47,
+      "name": "corridor 47",
+      "to_substation": 17,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -468,10 +1119,10 @@
         }
       ],
       "facts_groups": [],
-      "from_substation": 33,
-      "id": 20,
-      "name": "corridor 20",
-      "to_substation": 34,
+      "from_substation": 32,
+      "id": 48,
+      "name": "corridor 48",
+      "to_substation": 33,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -481,41 +1132,73 @@
         {
           "branches": [
             {
-              "id": 93,
-              "name": "315    324 '1 '",
+              "id": 84,
+              "name": "311    313 '1 '",
               "type": "physical"
             }
           ],
-          "id": 84
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 3,
-      "id": 21,
-      "name": "corridor 21",
-      "to_substation": 12,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
+          "id": 76
+        },
         {
           "branches": [
             {
-              "id": 9,
-              "name": "106    110 '1 '",
+              "id": 86,
+              "name": "312    313 '1 '",
               "type": "physical"
             }
           ],
-          "id": 9
+          "id": 78
         }
       ],
       "facts_groups": [],
-      "from_substation": 47,
-      "id": 22,
-      "name": "corridor 22",
+      "from_substation": 49,
+      "id": 49,
+      "name": "corridor 49",
       "to_substation": 50,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 75,
+              "name": "302    304 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 67
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 42,
+      "id": 50,
+      "name": "corridor 50",
+      "to_substation": 44,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 15,
+              "name": "111    114 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 15
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 9,
+      "id": 51,
+      "name": "corridor 51",
+      "to_substation": 11,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -534,355 +1217,10 @@
         }
       ],
       "facts_groups": [],
-      "from_substation": 7,
-      "id": 23,
-      "name": "corridor 23",
-      "to_substation": 8,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 38,
-              "name": "201    202 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 34
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 22,
-      "id": 24,
-      "name": "corridor 24",
-      "to_substation": 23,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 51,
-              "name": "211    214 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 47
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 30,
-      "id": 25,
-      "name": "corridor 25",
-      "to_substation": 32,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 40,
-              "name": "201    205 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 36
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 22,
-      "id": 26,
-      "name": "corridor 26",
-      "to_substation": 26,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 83,
-              "name": "308    310 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 75
-        },
-        {
-          "branches": [
-            {
-              "id": 82,
-              "name": "308    309 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 74
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 8,
-      "id": 27,
-      "name": "corridor 27",
-      "to_substation": 9,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 59,
-              "name": "215    224 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 54
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 24,
-      "id": 28,
-      "name": "corridor 28",
-      "to_substation": 33,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 44,
-              "name": "204    209 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 40
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 25,
-      "id": 29,
-      "name": "corridor 29",
-      "to_substation": 30,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 105,
-              "name": "323    325 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 93
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 20,
-      "id": 30,
-      "name": "corridor 30",
-      "to_substation": 21,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 90,
-              "name": "315    316 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 82
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 12,
-      "id": 31,
-      "name": "corridor 31",
-      "to_substation": 13,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 95,
-              "name": "316    319 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 86
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 13,
-      "id": 32,
-      "name": "corridor 32",
-      "to_substation": 16,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 63,
-              "name": "217    222 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 58
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 35,
-      "id": 33,
-      "name": "corridor 33",
-      "to_substation": 40,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 74,
-              "name": "301    305 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 66
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 1,
-      "id": 34,
-      "name": "corridor 34",
-      "to_substation": 5,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 17,
-              "name": "112    123 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 17
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 50,
-      "id": 35,
-      "name": "corridor 35",
-      "to_substation": 61,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 37,
-              "name": "123    217 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 33
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 35,
-      "id": 36,
-      "name": "corridor 36",
-      "to_substation": 61,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 4,
-              "name": "102    104 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 4
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 43,
-      "id": 37,
-      "name": "corridor 37",
-      "to_substation": 45,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 68,
-              "name": "220    223 '1 '",
-              "type": "physical"
-            },
-            {
-              "id": 69,
-              "name": "220    223 '2 '",
-              "type": "physical"
-            }
-          ],
-          "id": 61
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 38,
-      "id": 38,
-      "name": "corridor 38",
-      "to_substation": 41,
+      "from_substation": 47,
+      "id": 52,
+      "name": "corridor 52",
+      "to_substation": 48,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -901,81 +1239,10 @@
         }
       ],
       "facts_groups": [],
-      "from_substation": 52,
-      "id": 39,
-      "name": "corridor 39",
-      "to_substation": 54,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 87,
-              "name": "312    323 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 79
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 9,
-      "id": 40,
-      "name": "corridor 40",
-      "to_substation": 20,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 97,
-              "name": "317    322 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 88
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 14,
-      "id": 41,
-      "name": "corridor 41",
-      "to_substation": 19,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 91,
-              "name": "315    321 '1 '",
-              "type": "physical"
-            },
-            {
-              "id": 92,
-              "name": "315    321 '2 '",
-              "type": "physical"
-            }
-          ],
-          "id": 83
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 12,
-      "id": 42,
-      "name": "corridor 42",
-      "to_substation": 18,
+      "from_substation": 11,
+      "id": 53,
+      "name": "corridor 53",
+      "to_substation": 13,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -994,10 +1261,580 @@
         }
       ],
       "facts_groups": [],
-      "from_substation": 26,
-      "id": 43,
-      "name": "corridor 43",
-      "to_substation": 30,
+      "from_substation": 25,
+      "id": 54,
+      "name": "corridor 54",
+      "to_substation": 29,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 39,
+              "name": "201    203 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 35
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 21,
+      "id": 55,
+      "name": "corridor 55",
+      "to_substation": 23,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 72,
+              "name": "301    302 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 64
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 41,
+      "id": 56,
+      "name": "corridor 56",
+      "to_substation": 42,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 6,
+              "name": "103    109 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 6
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 3,
+      "id": 57,
+      "name": "corridor 57",
+      "to_substation": 9,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 77,
+              "name": "303    309 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 69
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 43,
+      "id": 58,
+      "name": "corridor 58",
+      "to_substation": 49,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 44,
+              "name": "204    209 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 40
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 24,
+      "id": 59,
+      "name": "corridor 59",
+      "to_substation": 29,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 94,
+              "name": "316    317 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 85
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 53,
+      "id": 60,
+      "name": "corridor 60",
+      "to_substation": 54,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 54,
+              "name": "213    223 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 50
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 30,
+      "id": 61,
+      "name": "corridor 61",
+      "to_substation": 40,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 64,
+              "name": "218    221 '1 '",
+              "type": "physical"
+            },
+            {
+              "id": 65,
+              "name": "218    221 '2 '",
+              "type": "physical"
+            }
+          ],
+          "id": 59
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 35,
+      "id": 62,
+      "name": "corridor 62",
+      "to_substation": 38,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 4,
+              "name": "102    104 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 4
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 2,
+      "id": 63,
+      "name": "corridor 63",
+      "to_substation": 4,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 8,
+              "name": "105    110 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 8
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 5,
+      "id": 64,
+      "name": "corridor 64",
+      "to_substation": 9,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 37,
+              "name": "123    217 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 33
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 20,
+      "id": 65,
+      "name": "corridor 65",
+      "to_substation": 34,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 79,
+              "name": "305    310 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 71
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 45,
+      "id": 66,
+      "name": "corridor 66",
+      "to_substation": 49,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 59,
+              "name": "215    224 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 54
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 23,
+      "id": 67,
+      "name": "corridor 67",
+      "to_substation": 32,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 98,
+              "name": "318    321 '1 '",
+              "type": "physical"
+            },
+            {
+              "id": 99,
+              "name": "318    321 '2 '",
+              "type": "physical"
+            }
+          ],
+          "id": 89
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 55,
+      "id": 68,
+      "name": "corridor 68",
+      "to_substation": 58,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 1,
+              "name": "101    102 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 1
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 1,
+      "id": 69,
+      "name": "corridor 69",
+      "to_substation": 2,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 63,
+              "name": "217    222 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 58
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 34,
+      "id": 70,
+      "name": "corridor 70",
+      "to_substation": 39,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 7,
+              "name": "104    109 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 7
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 4,
+      "id": 71,
+      "name": "corridor 71",
+      "to_substation": 9,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 51,
+              "name": "211    214 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 47
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 29,
+      "id": 72,
+      "name": "corridor 72",
+      "to_substation": 31,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 100,
+              "name": "319    320 '1 '",
+              "type": "physical"
+            },
+            {
+              "id": 101,
+              "name": "319    320 '2 '",
+              "type": "physical"
+            }
+          ],
+          "id": 90
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 56,
+      "id": 73,
+      "name": "corridor 73",
+      "to_substation": 57,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 78,
+              "name": "304    309 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 70
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 44,
+      "id": 74,
+      "name": "corridor 74",
+      "to_substation": 49,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 29,
+              "name": "118    121 '1 '",
+              "type": "physical"
+            },
+            {
+              "id": 30,
+              "name": "118    121 '2 '",
+              "type": "physical"
+            }
+          ],
+          "id": 28
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 15,
+      "id": 75,
+      "name": "corridor 75",
+      "to_substation": 18,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 11,
+              "name": "107    203 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 11
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 7,
+      "id": 76,
+      "name": "corridor 76",
+      "to_substation": 23,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 41,
+              "name": "202    204 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 37
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 22,
+      "id": 77,
+      "name": "corridor 77",
+      "to_substation": 24,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 105,
+              "name": "323    325 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 93
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 60,
+      "id": 78,
+      "name": "corridor 78",
+      "to_substation": 61,
+      "tt_dc_groups": [],
+      "type": "physical",
+      "vsc_dc_groups": []
+    },
+    {
+      "branch_groups": [
+        {
+          "branches": [
+            {
+              "id": 43,
+              "name": "203    209 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 39
+        }
+      ],
+      "facts_groups": [],
+      "from_substation": 23,
+      "id": 79,
+      "name": "corridor 79",
+      "to_substation": 29,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -1026,853 +1863,6 @@
         }
       ],
       "facts_groups": [],
-      "from_substation": 50,
-      "id": 44,
-      "name": "corridor 44",
-      "to_substation": 51,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 61,
-              "name": "216    219 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 56
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 34,
-      "id": 45,
-      "name": "corridor 45",
-      "to_substation": 37,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 29,
-              "name": "118    121 '1 '",
-              "type": "physical"
-            },
-            {
-              "id": 30,
-              "name": "118    121 '2 '",
-              "type": "physical"
-            }
-          ],
-          "id": 28
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 56,
-      "id": 46,
-      "name": "corridor 46",
-      "to_substation": 59,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 8,
-              "name": "105    110 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 8
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 46,
-      "id": 47,
-      "name": "corridor 47",
-      "to_substation": 50,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 31,
-              "name": "119    120 '1 '",
-              "type": "physical"
-            },
-            {
-              "id": 32,
-              "name": "119    120 '2 '",
-              "type": "physical"
-            }
-          ],
-          "id": 29
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 57,
-      "id": 48,
-      "name": "corridor 48",
-      "to_substation": 58,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 7,
-              "name": "104    109 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 7
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 45,
-      "id": 49,
-      "name": "corridor 49",
-      "to_substation": 50,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 88,
-              "name": "313    323 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 80
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 10,
-      "id": 50,
-      "name": "corridor 50",
-      "to_substation": 20,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 35,
-              "name": "121    122 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 31
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 59,
-      "id": 51,
-      "name": "corridor 51",
-      "to_substation": 60,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 15,
-              "name": "111    114 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 15
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 50,
-      "id": 52,
-      "name": "corridor 52",
-      "to_substation": 52,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 73,
-              "name": "301    303 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 65
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 1,
-      "id": 53,
-      "name": "corridor 53",
-      "to_substation": 3,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 1,
-              "name": "101    102 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 1
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 42,
-      "id": 54,
-      "name": "corridor 54",
-      "to_substation": 43,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 47,
-              "name": "207    208 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 43
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 28,
-      "id": 55,
-      "name": "corridor 55",
-      "to_substation": 29,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 52,
-              "name": "212    213 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 48
-        },
-        {
-          "branches": [
-            {
-              "id": 50,
-              "name": "211    213 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 46
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 30,
-      "id": 56,
-      "name": "corridor 56",
-      "to_substation": 31,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 13,
-              "name": "108    110 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 13
-        },
-        {
-          "branches": [
-            {
-              "id": 12,
-              "name": "108    109 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 12
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 49,
-      "id": 57,
-      "name": "corridor 57",
-      "to_substation": 50,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 100,
-              "name": "319    320 '1 '",
-              "type": "physical"
-            },
-            {
-              "id": 101,
-              "name": "319    320 '2 '",
-              "type": "physical"
-            }
-          ],
-          "id": 90
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 16,
-      "id": 58,
-      "name": "corridor 58",
-      "to_substation": 17,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 2,
-              "name": "101    103 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 2
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 42,
-      "id": 59,
-      "name": "corridor 59",
-      "to_substation": 44,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 85,
-              "name": "311    314 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 77
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 9,
-      "id": 60,
-      "name": "corridor 60",
-      "to_substation": 11,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 70,
-              "name": "221    222 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 62
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 39,
-      "id": 61,
-      "name": "corridor 61",
-      "to_substation": 40,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 89,
-              "name": "314    316 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 81
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 11,
-      "id": 62,
-      "name": "corridor 62",
-      "to_substation": 13,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 24,
-              "name": "115    124 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 23
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 44,
-      "id": 63,
-      "name": "corridor 63",
-      "to_substation": 53,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 77,
-              "name": "303    309 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 69
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 3,
-      "id": 64,
-      "name": "corridor 64",
-      "to_substation": 9,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 71,
-              "name": "318    223 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 63
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 15,
-      "id": 65,
-      "name": "corridor 65",
-      "to_substation": 41,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 21,
-              "name": "115    116 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 21
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 53,
-      "id": 66,
-      "name": "corridor 66",
-      "to_substation": 54,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 33,
-              "name": "120    123 '1 '",
-              "type": "physical"
-            },
-            {
-              "id": 34,
-              "name": "120    123 '2 '",
-              "type": "physical"
-            }
-          ],
-          "id": 30
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 58,
-      "id": 67,
-      "name": "corridor 67",
-      "to_substation": 61,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 46,
-              "name": "206    210 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 42
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 27,
-      "id": 68,
-      "name": "corridor 68",
-      "to_substation": 30,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 42,
-              "name": "202    206 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 38
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 23,
-      "id": 69,
-      "name": "corridor 69",
-      "to_substation": 27,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 75,
-              "name": "302    304 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 67
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 2,
-      "id": 70,
-      "name": "corridor 70",
-      "to_substation": 4,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 79,
-              "name": "305    310 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 71
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 5,
-      "id": 71,
-      "name": "corridor 71",
-      "to_substation": 9,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 19,
-              "name": "113    215 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 19
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 33,
-      "id": 72,
-      "name": "corridor 72",
-      "to_substation": 51,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 72,
-              "name": "301    302 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 64
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 1,
-      "id": 73,
-      "name": "corridor 73",
-      "to_substation": 2,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 78,
-              "name": "304    309 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 70
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 4,
-      "id": 74,
-      "name": "corridor 74",
-      "to_substation": 9,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 18,
-              "name": "113    123 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 18
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 51,
-      "id": 75,
-      "name": "corridor 75",
-      "to_substation": 61,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 98,
-              "name": "318    321 '1 '",
-              "type": "physical"
-            },
-            {
-              "id": 99,
-              "name": "318    321 '2 '",
-              "type": "physical"
-            }
-          ],
-          "id": 89
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 15,
-      "id": 76,
-      "name": "corridor 76",
-      "to_substation": 18,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 55,
-              "name": "214    216 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 51
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 32,
-      "id": 77,
-      "name": "corridor 77",
-      "to_substation": 34,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 39,
-              "name": "201    203 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 35
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 22,
-      "id": 78,
-      "name": "corridor 78",
-      "to_substation": 24,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 11,
-              "name": "107    203 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 11
-        }
-      ],
-      "facts_groups": [],
-      "from_substation": 24,
-      "id": 79,
-      "name": "corridor 79",
-      "to_substation": 48,
-      "tt_dc_groups": [],
-      "type": "physical",
-      "vsc_dc_groups": []
-    },
-    {
-      "branch_groups": [
-        {
-          "branches": [
-            {
-              "id": 86,
-              "name": "312    313 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 78
-        },
-        {
-          "branches": [
-            {
-              "id": 84,
-              "name": "311    313 '1 '",
-              "type": "physical"
-            }
-          ],
-          "id": 76
-        }
-      ],
-      "facts_groups": [],
       "from_substation": 9,
       "id": 80,
       "name": "corridor 80",
@@ -1886,12 +1876,22 @@
         {
           "branches": [
             {
-              "id": 10,
-              "name": "107    108 '1 '",
+              "id": 82,
+              "name": "308    309 '1 '",
               "type": "physical"
             }
           ],
-          "id": 10
+          "id": 74
+        },
+        {
+          "branches": [
+            {
+              "id": 83,
+              "name": "308    310 '1 '",
+              "type": "physical"
+            }
+          ],
+          "id": 75
         }
       ],
       "facts_groups": [],
@@ -1908,19 +1908,19 @@
         {
           "branches": [
             {
-              "id": 26,
-              "name": "116    119 '1 '",
+              "id": 40,
+              "name": "201    205 '1 '",
               "type": "physical"
             }
           ],
-          "id": 25
+          "id": 36
         }
       ],
       "facts_groups": [],
-      "from_substation": 54,
+      "from_substation": 21,
       "id": 82,
       "name": "corridor 82",
-      "to_substation": 57,
+      "to_substation": 25,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -1930,19 +1930,19 @@
         {
           "branches": [
             {
-              "id": 54,
-              "name": "213    223 '1 '",
+              "id": 87,
+              "name": "312    323 '1 '",
               "type": "physical"
             }
           ],
-          "id": 50
+          "id": 79
         }
       ],
       "facts_groups": [],
-      "from_substation": 31,
+      "from_substation": 49,
       "id": 83,
       "name": "corridor 83",
-      "to_substation": 41,
+      "to_substation": 60,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -1952,12 +1952,12 @@
         {
           "branches": [
             {
-              "id": 94,
-              "name": "316    317 '1 '",
+              "id": 25,
+              "name": "116    117 '1 '",
               "type": "physical"
             }
           ],
-          "id": 85
+          "id": 24
         }
       ],
       "facts_groups": [],
@@ -1974,19 +1974,19 @@
         {
           "branches": [
             {
-              "id": 28,
-              "name": "117    122 '1 '",
+              "id": 38,
+              "name": "201    202 '1 '",
               "type": "physical"
             }
           ],
-          "id": 27
+          "id": 34
         }
       ],
       "facts_groups": [],
-      "from_substation": 55,
+      "from_substation": 21,
       "id": 85,
       "name": "corridor 85",
-      "to_substation": 60,
+      "to_substation": 22,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -1996,12 +1996,12 @@
         {
           "branches": [
             {
-              "id": 3,
-              "name": "101    105 '1 '",
+              "id": 76,
+              "name": "302    306 '1 '",
               "type": "physical"
             }
           ],
-          "id": 3
+          "id": 68
         }
       ],
       "facts_groups": [],
@@ -2018,19 +2018,19 @@
         {
           "branches": [
             {
-              "id": 5,
-              "name": "102    106 '1 '",
+              "id": 95,
+              "name": "316    319 '1 '",
               "type": "physical"
             }
           ],
-          "id": 5
+          "id": 86
         }
       ],
       "facts_groups": [],
-      "from_substation": 43,
+      "from_substation": 53,
       "id": 87,
       "name": "corridor 87",
-      "to_substation": 47,
+      "to_substation": 56,
       "tt_dc_groups": [],
       "type": "physical",
       "vsc_dc_groups": []
@@ -2045,37 +2045,37 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 67,
-              "name": "301 '1 '"
+              "id": 1,
+              "name": "101 '1 '"
             },
             {
-              "id": 68,
-              "name": "301 '2 '"
+              "id": 2,
+              "name": "101 '2 '"
             },
             {
-              "id": 69,
-              "name": "301 '3 '"
+              "id": 3,
+              "name": "101 '3 '"
             },
             {
-              "id": 70,
-              "name": "301 '4 '"
+              "id": 4,
+              "name": "101 '4 '"
             }
           ],
-          "id": 301,
+          "id": 101,
           "loads": [
             {
-              "id": 35,
-              "name": "301 '1 '"
+              "id": 1,
+              "name": "101 '1 '"
             }
           ],
-          "name": "'301         '",
+          "name": "'101         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 1,
-      "latitude": 41.332623460179114,
-      "longitude": -113.50626950452488,
+      "latitude": 41.359531079226336,
+      "longitude": -113.95872824362291,
       "name": "substation 1",
       "transformer_groups": [],
       "type": "physical"
@@ -2088,37 +2088,37 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 71,
-              "name": "302 '1 '"
+              "id": 5,
+              "name": "102 '1 '"
             },
             {
-              "id": 72,
-              "name": "302 '2 '"
+              "id": 6,
+              "name": "102 '2 '"
             },
             {
-              "id": 73,
-              "name": "302 '3 '"
+              "id": 7,
+              "name": "102 '3 '"
             },
             {
-              "id": 74,
-              "name": "302 '4 '"
+              "id": 8,
+              "name": "102 '4 '"
             }
           ],
-          "id": 302,
+          "id": 102,
           "loads": [
             {
-              "id": 36,
-              "name": "302 '1 '"
+              "id": 2,
+              "name": "102 '1 '"
             }
           ],
-          "name": "'302         '",
+          "name": "'102         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 2,
-      "latitude": 41.345361616700636,
-      "longitude": -113.47965752677844,
+      "latitude": 41.35624574421372,
+      "longitude": -113.91080868241987,
       "name": "substation 2",
       "transformer_groups": [],
       "type": "physical"
@@ -2130,9 +2130,9 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 324,
+          "id": 124,
           "loads": [],
-          "name": "'324         '",
+          "name": "'124         '",
           "switched_shunts": [],
           "type": "physical"
         },
@@ -2140,29 +2140,29 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 303,
+          "id": 103,
           "loads": [
             {
-              "id": 37,
-              "name": "303 '1 '"
+              "id": 3,
+              "name": "103 '1 '"
             }
           ],
-          "name": "'303         '",
+          "name": "'103         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 3,
-      "latitude": 41.28973071905344,
-      "longitude": -113.55900337717502,
+      "latitude": 41.317201747692884,
+      "longitude": -114.01167167872914,
       "name": "substation 3",
       "transformer_groups": [
         {
-          "id": 11,
+          "id": 1,
           "transformers": [
             {
-              "id": 11,
-              "name": "303    324     0 '1 '",
+              "id": 1,
+              "name": "103    124     0 '1 '",
               "type": "physical"
             }
           ]
@@ -2177,21 +2177,21 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 304,
+          "id": 104,
           "loads": [
             {
-              "id": 38,
-              "name": "304 '1 '"
+              "id": 4,
+              "name": "104 '1 '"
             }
           ],
-          "name": "'304         '",
+          "name": "'104         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 4,
-      "latitude": 41.30005837727448,
-      "longitude": -113.51169209984197,
+      "latitude": 41.33780758181607,
+      "longitude": -113.96576395774588,
       "name": "substation 4",
       "transformer_groups": [],
       "type": "physical"
@@ -2203,21 +2203,21 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 305,
+          "id": 105,
           "loads": [
             {
-              "id": 39,
-              "name": "305 '1 '"
+              "id": 5,
+              "name": "105 '1 '"
             }
           ],
-          "name": "'305         '",
+          "name": "'105         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 5,
-      "latitude": 41.287014517645595,
-      "longitude": -113.47832175760193,
+      "latitude": 41.3316402227885,
+      "longitude": -113.93316310724431,
       "name": "substation 5",
       "transformer_groups": [],
       "type": "physical"
@@ -2229,26 +2229,26 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 306,
+          "id": 106,
           "loads": [
             {
-              "id": 40,
-              "name": "306 '1 '"
+              "id": 6,
+              "name": "106 '1 '"
             }
           ],
-          "name": "'306         '",
+          "name": "'106         '",
           "switched_shunts": [
             {
-              "id": 3,
-              "name": "306"
+              "id": 1,
+              "name": "106"
             }
           ],
           "type": "physical"
         }
       ],
       "id": 6,
-      "latitude": 41.2490455363025,
-      "longitude": -113.41157789789202,
+      "latitude": 41.32036552756671,
+      "longitude": -113.86484052708948,
       "name": "substation 6",
       "transformer_groups": [],
       "type": "physical"
@@ -2261,33 +2261,33 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 75,
-              "name": "307 '1 '"
+              "id": 9,
+              "name": "107 '1 '"
             },
             {
-              "id": 76,
-              "name": "307 '2 '"
+              "id": 10,
+              "name": "107 '2 '"
             },
             {
-              "id": 77,
-              "name": "307 '3 '"
+              "id": 11,
+              "name": "107 '3 '"
             }
           ],
-          "id": 307,
+          "id": 107,
           "loads": [
             {
-              "id": 41,
-              "name": "307 '1 '"
+              "id": 7,
+              "name": "107 '1 '"
             }
           ],
-          "name": "'307         '",
+          "name": "'107         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 7,
-      "latitude": 41.3463285848322,
-      "longitude": -113.45321939032594,
+      "latitude": 41.34585723449435,
+      "longitude": -113.85086935459788,
       "name": "substation 7",
       "transformer_groups": [],
       "type": "physical"
@@ -2299,21 +2299,21 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 308,
+          "id": 108,
           "loads": [
             {
-              "id": 42,
-              "name": "308 '1 '"
+              "id": 8,
+              "name": "108 '1 '"
             }
           ],
-          "name": "'308         '",
+          "name": "'108         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 8,
-      "latitude": 41.27626449241707,
-      "longitude": -113.45001764042044,
+      "latitude": 41.32919294262779,
+      "longitude": -113.89826222800723,
       "name": "substation 8",
       "transformer_groups": [],
       "type": "physical"
@@ -2325,9 +2325,9 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 312,
+          "id": 112,
           "loads": [],
-          "name": "'312         '",
+          "name": "'112         '",
           "switched_shunts": [],
           "type": "physical"
         },
@@ -2335,14 +2335,14 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 309,
+          "id": 109,
           "loads": [
             {
-              "id": 43,
-              "name": "309 '1 '"
+              "id": 9,
+              "name": "109 '1 '"
             }
           ],
-          "name": "'309         '",
+          "name": "'109         '",
           "switched_shunts": [],
           "type": "physical"
         },
@@ -2350,14 +2350,14 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 310,
+          "id": 110,
           "loads": [
             {
-              "id": 44,
-              "name": "310 '1 '"
+              "id": 10,
+              "name": "110 '1 '"
             }
           ],
-          "name": "'310         '",
+          "name": "'110         '",
           "switched_shunts": [],
           "type": "physical"
         },
@@ -2365,54 +2365,54 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 311,
+          "id": 111,
           "loads": [],
-          "name": "'311         '",
+          "name": "'111         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 9,
-      "latitude": 41.265152618505624,
-      "longitude": -113.49849697549458,
+      "latitude": 41.312867957025055,
+      "longitude": -113.94459529151442,
       "name": "substation 9",
       "transformer_groups": [
         {
-          "id": 14,
+          "id": 2,
           "transformers": [
             {
-              "id": 14,
-              "name": "310    311     0 '1 '",
+              "id": 2,
+              "name": "109    111     0 '1 '",
               "type": "physical"
             }
           ]
         },
         {
-          "id": 12,
+          "id": 3,
           "transformers": [
             {
-              "id": 12,
-              "name": "309    311     0 '1 '",
+              "id": 3,
+              "name": "109    112     0 '1 '",
               "type": "physical"
             }
           ]
         },
         {
-          "id": 13,
+          "id": 4,
           "transformers": [
             {
-              "id": 13,
-              "name": "309    312     0 '1 '",
+              "id": 4,
+              "name": "110    111     0 '1 '",
               "type": "physical"
             }
           ]
         },
         {
-          "id": 15,
+          "id": 5,
           "transformers": [
             {
-              "id": 15,
-              "name": "310    312     0 '1 '",
+              "id": 5,
+              "name": "110    112     0 '1 '",
               "type": "physical"
             }
           ]
@@ -2428,33 +2428,33 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 78,
-              "name": "313 '1 '"
+              "id": 12,
+              "name": "113 '1 '"
             },
             {
-              "id": 79,
-              "name": "313 '2 '"
+              "id": 13,
+              "name": "113 '2 '"
             },
             {
-              "id": 80,
-              "name": "313 '3 '"
+              "id": 14,
+              "name": "113 '3 '"
             }
           ],
-          "id": 313,
+          "id": 113,
           "loads": [
             {
-              "id": 45,
-              "name": "313 '1 '"
+              "id": 11,
+              "name": "113 '1 '"
             }
           ],
-          "name": "'313         '",
+          "name": "'113         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 10,
-      "latitude": 41.160770563006146,
-      "longitude": -113.45046408743245,
+      "latitude": 41.259048436791424,
+      "longitude": -113.85114790131894,
       "name": "substation 10",
       "transformer_groups": [],
       "type": "physical"
@@ -2467,25 +2467,25 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 81,
-              "name": "314 '1 '"
+              "id": 15,
+              "name": "114 '1 '"
             }
           ],
-          "id": 314,
+          "id": 114,
           "loads": [
             {
-              "id": 46,
-              "name": "314 '1 '"
+              "id": 12,
+              "name": "114 '1 '"
             }
           ],
-          "name": "'314         '",
+          "name": "'114         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 11,
-      "latitude": 41.194405027097176,
-      "longitude": -113.51722134421843,
+      "latitude": 41.26150621049171,
+      "longitude": -113.91369585939003,
       "name": "substation 11",
       "transformer_groups": [],
       "type": "physical"
@@ -2498,45 +2498,45 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 82,
-              "name": "315 '1 '"
+              "id": 16,
+              "name": "115 '1 '"
             },
             {
-              "id": 83,
-              "name": "315 '2 '"
+              "id": 17,
+              "name": "115 '2 '"
             },
             {
-              "id": 84,
-              "name": "315 '3 '"
+              "id": 18,
+              "name": "115 '3 '"
             },
             {
-              "id": 85,
-              "name": "315 '4 '"
+              "id": 19,
+              "name": "115 '4 '"
             },
             {
-              "id": 86,
-              "name": "315 '5 '"
+              "id": 20,
+              "name": "115 '5 '"
             },
             {
-              "id": 87,
-              "name": "315 '6 '"
+              "id": 21,
+              "name": "115 '6 '"
             }
           ],
-          "id": 315,
+          "id": 115,
           "loads": [
             {
-              "id": 47,
-              "name": "315 '1 '"
+              "id": 13,
+              "name": "115 '1 '"
             }
           ],
-          "name": "'315         '",
+          "name": "'115         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 12,
-      "latitude": 41.2193953988142,
-      "longitude": -113.55447148376997,
+      "latitude": 41.268826078486654,
+      "longitude": -113.95228629187012,
       "name": "substation 12",
       "transformer_groups": [],
       "type": "physical"
@@ -2549,25 +2549,25 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 88,
-              "name": "316 '1 '"
+              "id": 22,
+              "name": "116 '1 '"
             }
           ],
-          "id": 316,
+          "id": 116,
           "loads": [
             {
-              "id": 48,
-              "name": "316 '1 '"
+              "id": 14,
+              "name": "116 '1 '"
             }
           ],
-          "name": "'316         '",
+          "name": "'116         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 13,
-      "latitude": 41.17115209327062,
-      "longitude": -113.56267269819074,
+      "latitude": 41.24261203187755,
+      "longitude": -113.9295295635377,
       "name": "substation 13",
       "transformer_groups": [],
       "type": "physical"
@@ -2579,16 +2579,16 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 317,
+          "id": 117,
           "loads": [],
-          "name": "'317         '",
+          "name": "'117         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 14,
-      "latitude": 41.10856468623746,
-      "longitude": -113.55070833358559,
+      "latitude": 41.195668039351006,
+      "longitude": -113.92153550392464,
       "name": "substation 14",
       "transformer_groups": [],
       "type": "physical"
@@ -2601,25 +2601,25 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 89,
-              "name": "318 '1 '"
+              "id": 23,
+              "name": "118 '1 '"
             }
           ],
-          "id": 318,
+          "id": 118,
           "loads": [
             {
-              "id": 49,
-              "name": "318 '1 '"
+              "id": 15,
+              "name": "118 '1 '"
             }
           ],
-          "name": "'318         '",
+          "name": "'118         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 15,
-      "latitude": 41.0929103879516,
-      "longitude": -113.54293890638579,
+      "latitude": 41.15032885334279,
+      "longitude": -113.91184619361049,
       "name": "substation 15",
       "transformer_groups": [],
       "type": "physical"
@@ -2631,21 +2631,21 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 319,
+          "id": 119,
           "loads": [
             {
-              "id": 50,
-              "name": "319 '1 '"
+              "id": 16,
+              "name": "119 '1 '"
             }
           ],
-          "name": "'319         '",
+          "name": "'119         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 16,
-      "latitude": 41.14464521959496,
-      "longitude": -113.52306171452707,
+      "latitude": 41.22114051731724,
+      "longitude": -113.90098494732233,
       "name": "substation 16",
       "transformer_groups": [],
       "type": "physical"
@@ -2657,21 +2657,21 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 320,
+          "id": 120,
           "loads": [
             {
-              "id": 51,
-              "name": "320 '1 '"
+              "id": 17,
+              "name": "120 '1 '"
             }
           ],
-          "name": "'320         '",
+          "name": "'120         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 17,
-      "latitude": 41.117058185640644,
-      "longitude": -113.48405446817097,
+      "latitude": 41.21684919310515,
+      "longitude": -113.86086384261299,
       "name": "substation 17",
       "transformer_groups": [],
       "type": "physical"
@@ -2684,20 +2684,20 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 90,
-              "name": "321 '1 '"
+              "id": 24,
+              "name": "121 '1 '"
             }
           ],
-          "id": 321,
+          "id": 121,
           "loads": [],
-          "name": "'321         '",
+          "name": "'121         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 18,
-      "latitude": 41.08322017189014,
-      "longitude": -113.50803410889395,
+      "latitude": 41.14955028867376,
+      "longitude": -113.85179294064699,
       "name": "substation 18",
       "transformer_groups": [],
       "type": "physical"
@@ -2710,40 +2710,40 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 91,
-              "name": "322 '1 '"
+              "id": 25,
+              "name": "122 '1 '"
             },
             {
-              "id": 92,
-              "name": "322 '2 '"
+              "id": 26,
+              "name": "122 '2 '"
             },
             {
-              "id": 93,
-              "name": "322 '3 '"
+              "id": 27,
+              "name": "122 '3 '"
             },
             {
-              "id": 94,
-              "name": "322 '4 '"
+              "id": 28,
+              "name": "122 '4 '"
             },
             {
-              "id": 95,
-              "name": "322 '5 '"
+              "id": 29,
+              "name": "122 '5 '"
             },
             {
-              "id": 96,
-              "name": "322 '6 '"
+              "id": 30,
+              "name": "122 '6 '"
             }
           ],
-          "id": 322,
+          "id": 122,
           "loads": [],
-          "name": "'322         '",
+          "name": "'122         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 19,
-      "latitude": 41.08170173602639,
-      "longitude": -113.47192149443559,
+      "latitude": 41.18545155163674,
+      "longitude": -113.81380477332831,
       "name": "substation 19",
       "transformer_groups": [],
       "type": "physical"
@@ -2756,50 +2756,29 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 97,
-              "name": "323 '1 '"
+              "id": 31,
+              "name": "123 '1 '"
             },
             {
-              "id": 98,
-              "name": "323 '2 '"
+              "id": 32,
+              "name": "123 '2 '"
             },
             {
-              "id": 99,
-              "name": "323 '3 '"
+              "id": 33,
+              "name": "123 '3 '"
             }
           ],
-          "id": 323,
+          "id": 123,
           "loads": [],
-          "name": "'323         '",
+          "name": "'123         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 20,
-      "latitude": 41.08070861654334,
-      "longitude": -113.43553601688147,
+      "latitude": 41.2156055124409,
+      "longitude": -113.81476861478284,
       "name": "substation 20",
-      "transformer_groups": [],
-      "type": "physical"
-    },
-    {
-      "branch_groups": [],
-      "buses": [
-        {
-          "facts": [],
-          "fixed_shunts": [],
-          "generators": [],
-          "id": 325,
-          "loads": [],
-          "name": "'325         '",
-          "switched_shunts": [],
-          "type": "physical"
-        }
-      ],
-      "id": 21,
-      "latitude": 41.04021963239615,
-      "longitude": -113.48725642716228,
-      "name": "substation 21",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -2839,10 +2818,10 @@
           "type": "physical"
         }
       ],
-      "id": 22,
+      "id": 21,
       "latitude": 41.347414819484335,
       "longitude": -113.78809700873231,
-      "name": "substation 22",
+      "name": "substation 21",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -2882,10 +2861,10 @@
           "type": "physical"
         }
       ],
-      "id": 23,
+      "id": 22,
       "latitude": 41.34375909285166,
       "longitude": -113.73330118131337,
-      "name": "substation 23",
+      "name": "substation 22",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -2918,10 +2897,10 @@
           "type": "physical"
         }
       ],
-      "id": 24,
+      "id": 23,
       "latitude": 41.306270239769034,
       "longitude": -113.80697805210042,
-      "name": "substation 24",
+      "name": "substation 23",
       "transformer_groups": [
         {
           "id": 6,
@@ -2955,10 +2934,10 @@
           "type": "physical"
         }
       ],
-      "id": 25,
+      "id": 24,
       "latitude": 41.32309946996923,
       "longitude": -113.77270821950812,
-      "name": "substation 25",
+      "name": "substation 24",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -2981,10 +2960,10 @@
           "type": "physical"
         }
       ],
-      "id": 26,
+      "id": 25,
       "latitude": 41.32031545957492,
       "longitude": -113.73203227543827,
-      "name": "substation 26",
+      "name": "substation 25",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3012,10 +2991,10 @@
           "type": "physical"
         }
       ],
-      "id": 27,
+      "id": 26,
       "latitude": 41.30994401740663,
       "longitude": -113.61914615445684,
-      "name": "substation 27",
+      "name": "substation 26",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3051,10 +3030,10 @@
           "type": "physical"
         }
       ],
-      "id": 28,
+      "id": 27,
       "latitude": 41.33105950451734,
       "longitude": -113.62837827142478,
-      "name": "substation 28",
+      "name": "substation 27",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3077,10 +3056,10 @@
           "type": "physical"
         }
       ],
-      "id": 29,
+      "id": 28,
       "latitude": 41.318985804794295,
       "longitude": -113.681723140652,
-      "name": "substation 29",
+      "name": "substation 28",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3138,10 +3117,10 @@
           "type": "physical"
         }
       ],
-      "id": 30,
+      "id": 29,
       "latitude": 41.30312414139709,
       "longitude": -113.73295841931635,
-      "name": "substation 30",
+      "name": "substation 29",
       "transformer_groups": [
         {
           "id": 7,
@@ -3218,10 +3197,10 @@
           "type": "physical"
         }
       ],
-      "id": 31,
+      "id": 30,
       "latitude": 41.263625803789644,
       "longitude": -113.6272009499681,
-      "name": "substation 31",
+      "name": "substation 30",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3249,10 +3228,10 @@
           "type": "physical"
         }
       ],
-      "id": 32,
+      "id": 31,
       "latitude": 41.25584226098211,
       "longitude": -113.71309747243401,
-      "name": "substation 32",
+      "name": "substation 31",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3300,10 +3279,10 @@
           "type": "physical"
         }
       ],
-      "id": 33,
+      "id": 32,
       "latitude": 41.26448336453181,
       "longitude": -113.78406957031211,
-      "name": "substation 33",
+      "name": "substation 32",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3331,10 +3310,10 @@
           "type": "physical"
         }
       ],
-      "id": 34,
+      "id": 33,
       "latitude": 41.21331578485774,
       "longitude": -113.75822152330478,
-      "name": "substation 34",
+      "name": "substation 33",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3352,10 +3331,10 @@
           "type": "physical"
         }
       ],
-      "id": 35,
+      "id": 34,
       "latitude": 41.17748051070681,
       "longitude": -113.73049132239757,
-      "name": "substation 35",
+      "name": "substation 34",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3383,10 +3362,10 @@
           "type": "physical"
         }
       ],
-      "id": 36,
+      "id": 35,
       "latitude": 41.14904026242972,
       "longitude": -113.68823710484918,
-      "name": "substation 36",
+      "name": "substation 35",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3409,10 +3388,10 @@
           "type": "physical"
         }
       ],
-      "id": 37,
+      "id": 36,
       "latitude": 41.21299994033996,
       "longitude": -113.70117626692328,
-      "name": "substation 37",
+      "name": "substation 36",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3435,10 +3414,10 @@
           "type": "physical"
         }
       ],
-      "id": 38,
+      "id": 37,
       "latitude": 41.21518342025955,
       "longitude": -113.65319257744713,
-      "name": "substation 38",
+      "name": "substation 37",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3461,10 +3440,10 @@
           "type": "physical"
         }
       ],
-      "id": 39,
+      "id": 38,
       "latitude": 41.13534568458822,
       "longitude": -113.6550927428032,
-      "name": "substation 39",
+      "name": "substation 38",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3507,10 +3486,10 @@
           "type": "physical"
         }
       ],
-      "id": 40,
+      "id": 39,
       "latitude": 41.18425267657978,
       "longitude": -113.62206706751476,
-      "name": "substation 40",
+      "name": "substation 39",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3541,9 +3520,52 @@
           "type": "physical"
         }
       ],
-      "id": 41,
+      "id": 40,
       "latitude": 41.208594311743106,
       "longitude": -113.61388590564982,
+      "name": "substation 40",
+      "transformer_groups": [],
+      "type": "physical"
+    },
+    {
+      "branch_groups": [],
+      "buses": [
+        {
+          "facts": [],
+          "fixed_shunts": [],
+          "generators": [
+            {
+              "id": 67,
+              "name": "301 '1 '"
+            },
+            {
+              "id": 68,
+              "name": "301 '2 '"
+            },
+            {
+              "id": 69,
+              "name": "301 '3 '"
+            },
+            {
+              "id": 70,
+              "name": "301 '4 '"
+            }
+          ],
+          "id": 301,
+          "loads": [
+            {
+              "id": 35,
+              "name": "301 '1 '"
+            }
+          ],
+          "name": "'301         '",
+          "switched_shunts": [],
+          "type": "physical"
+        }
+      ],
+      "id": 41,
+      "latitude": 41.332623460179114,
+      "longitude": -113.50626950452488,
       "name": "substation 41",
       "transformer_groups": [],
       "type": "physical"
@@ -3556,37 +3578,37 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 1,
-              "name": "101 '1 '"
+              "id": 71,
+              "name": "302 '1 '"
             },
             {
-              "id": 2,
-              "name": "101 '2 '"
+              "id": 72,
+              "name": "302 '2 '"
             },
             {
-              "id": 3,
-              "name": "101 '3 '"
+              "id": 73,
+              "name": "302 '3 '"
             },
             {
-              "id": 4,
-              "name": "101 '4 '"
+              "id": 74,
+              "name": "302 '4 '"
             }
           ],
-          "id": 101,
+          "id": 302,
           "loads": [
             {
-              "id": 1,
-              "name": "101 '1 '"
+              "id": 36,
+              "name": "302 '1 '"
             }
           ],
-          "name": "'101         '",
+          "name": "'302         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 42,
-      "latitude": 41.359531079226336,
-      "longitude": -113.95872824362291,
+      "latitude": 41.345361616700636,
+      "longitude": -113.47965752677844,
       "name": "substation 42",
       "transformer_groups": [],
       "type": "physical"
@@ -3597,53 +3619,10 @@
         {
           "facts": [],
           "fixed_shunts": [],
-          "generators": [
-            {
-              "id": 5,
-              "name": "102 '1 '"
-            },
-            {
-              "id": 6,
-              "name": "102 '2 '"
-            },
-            {
-              "id": 7,
-              "name": "102 '3 '"
-            },
-            {
-              "id": 8,
-              "name": "102 '4 '"
-            }
-          ],
-          "id": 102,
-          "loads": [
-            {
-              "id": 2,
-              "name": "102 '1 '"
-            }
-          ],
-          "name": "'102         '",
-          "switched_shunts": [],
-          "type": "physical"
-        }
-      ],
-      "id": 43,
-      "latitude": 41.35624574421372,
-      "longitude": -113.91080868241987,
-      "name": "substation 43",
-      "transformer_groups": [],
-      "type": "physical"
-    },
-    {
-      "branch_groups": [],
-      "buses": [
-        {
-          "facts": [],
-          "fixed_shunts": [],
           "generators": [],
-          "id": 124,
+          "id": 324,
           "loads": [],
-          "name": "'124         '",
+          "name": "'324         '",
           "switched_shunts": [],
           "type": "physical"
         },
@@ -3651,29 +3630,29 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 103,
+          "id": 303,
           "loads": [
             {
-              "id": 3,
-              "name": "103 '1 '"
+              "id": 37,
+              "name": "303 '1 '"
             }
           ],
-          "name": "'103         '",
+          "name": "'303         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
-      "id": 44,
-      "latitude": 41.317201747692884,
-      "longitude": -114.01167167872914,
-      "name": "substation 44",
+      "id": 43,
+      "latitude": 41.28973071905344,
+      "longitude": -113.55900337717502,
+      "name": "substation 43",
       "transformer_groups": [
         {
-          "id": 1,
+          "id": 11,
           "transformers": [
             {
-              "id": 1,
-              "name": "103    124     0 '1 '",
+              "id": 11,
+              "name": "303    324     0 '1 '",
               "type": "physical"
             }
           ]
@@ -3688,21 +3667,47 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 104,
+          "id": 304,
           "loads": [
             {
-              "id": 4,
-              "name": "104 '1 '"
+              "id": 38,
+              "name": "304 '1 '"
             }
           ],
-          "name": "'104         '",
+          "name": "'304         '",
+          "switched_shunts": [],
+          "type": "physical"
+        }
+      ],
+      "id": 44,
+      "latitude": 41.30005837727448,
+      "longitude": -113.51169209984197,
+      "name": "substation 44",
+      "transformer_groups": [],
+      "type": "physical"
+    },
+    {
+      "branch_groups": [],
+      "buses": [
+        {
+          "facts": [],
+          "fixed_shunts": [],
+          "generators": [],
+          "id": 305,
+          "loads": [
+            {
+              "id": 39,
+              "name": "305 '1 '"
+            }
+          ],
+          "name": "'305         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 45,
-      "latitude": 41.33780758181607,
-      "longitude": -113.96576395774588,
+      "latitude": 41.287014517645595,
+      "longitude": -113.47832175760193,
       "name": "substation 45",
       "transformer_groups": [],
       "type": "physical"
@@ -3714,53 +3719,27 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 105,
+          "id": 306,
           "loads": [
             {
-              "id": 5,
-              "name": "105 '1 '"
+              "id": 40,
+              "name": "306 '1 '"
             }
           ],
-          "name": "'105         '",
-          "switched_shunts": [],
+          "name": "'306         '",
+          "switched_shunts": [
+            {
+              "id": 3,
+              "name": "306"
+            }
+          ],
           "type": "physical"
         }
       ],
       "id": 46,
-      "latitude": 41.3316402227885,
-      "longitude": -113.93316310724431,
+      "latitude": 41.2490455363025,
+      "longitude": -113.41157789789202,
       "name": "substation 46",
-      "transformer_groups": [],
-      "type": "physical"
-    },
-    {
-      "branch_groups": [],
-      "buses": [
-        {
-          "facts": [],
-          "fixed_shunts": [],
-          "generators": [],
-          "id": 106,
-          "loads": [
-            {
-              "id": 6,
-              "name": "106 '1 '"
-            }
-          ],
-          "name": "'106         '",
-          "switched_shunts": [
-            {
-              "id": 1,
-              "name": "106"
-            }
-          ],
-          "type": "physical"
-        }
-      ],
-      "id": 47,
-      "latitude": 41.32036552756671,
-      "longitude": -113.86484052708948,
-      "name": "substation 47",
       "transformer_groups": [],
       "type": "physical"
     },
@@ -3772,33 +3751,59 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 9,
-              "name": "107 '1 '"
+              "id": 75,
+              "name": "307 '1 '"
             },
             {
-              "id": 10,
-              "name": "107 '2 '"
+              "id": 76,
+              "name": "307 '2 '"
             },
             {
-              "id": 11,
-              "name": "107 '3 '"
+              "id": 77,
+              "name": "307 '3 '"
             }
           ],
-          "id": 107,
+          "id": 307,
           "loads": [
             {
-              "id": 7,
-              "name": "107 '1 '"
+              "id": 41,
+              "name": "307 '1 '"
             }
           ],
-          "name": "'107         '",
+          "name": "'307         '",
+          "switched_shunts": [],
+          "type": "physical"
+        }
+      ],
+      "id": 47,
+      "latitude": 41.3463285848322,
+      "longitude": -113.45321939032594,
+      "name": "substation 47",
+      "transformer_groups": [],
+      "type": "physical"
+    },
+    {
+      "branch_groups": [],
+      "buses": [
+        {
+          "facts": [],
+          "fixed_shunts": [],
+          "generators": [],
+          "id": 308,
+          "loads": [
+            {
+              "id": 42,
+              "name": "308 '1 '"
+            }
+          ],
+          "name": "'308         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 48,
-      "latitude": 41.34585723449435,
-      "longitude": -113.85086935459788,
+      "latitude": 41.27626449241707,
+      "longitude": -113.45001764042044,
       "name": "substation 48",
       "transformer_groups": [],
       "type": "physical"
@@ -3810,120 +3815,94 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 108,
+          "id": 312,
+          "loads": [],
+          "name": "'312         '",
+          "switched_shunts": [],
+          "type": "physical"
+        },
+        {
+          "facts": [],
+          "fixed_shunts": [],
+          "generators": [],
+          "id": 309,
           "loads": [
             {
-              "id": 8,
-              "name": "108 '1 '"
+              "id": 43,
+              "name": "309 '1 '"
             }
           ],
-          "name": "'108         '",
+          "name": "'309         '",
+          "switched_shunts": [],
+          "type": "physical"
+        },
+        {
+          "facts": [],
+          "fixed_shunts": [],
+          "generators": [],
+          "id": 310,
+          "loads": [
+            {
+              "id": 44,
+              "name": "310 '1 '"
+            }
+          ],
+          "name": "'310         '",
+          "switched_shunts": [],
+          "type": "physical"
+        },
+        {
+          "facts": [],
+          "fixed_shunts": [],
+          "generators": [],
+          "id": 311,
+          "loads": [],
+          "name": "'311         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 49,
-      "latitude": 41.32919294262779,
-      "longitude": -113.89826222800723,
+      "latitude": 41.265152618505624,
+      "longitude": -113.49849697549458,
       "name": "substation 49",
-      "transformer_groups": [],
-      "type": "physical"
-    },
-    {
-      "branch_groups": [],
-      "buses": [
-        {
-          "facts": [],
-          "fixed_shunts": [],
-          "generators": [],
-          "id": 112,
-          "loads": [],
-          "name": "'112         '",
-          "switched_shunts": [],
-          "type": "physical"
-        },
-        {
-          "facts": [],
-          "fixed_shunts": [],
-          "generators": [],
-          "id": 109,
-          "loads": [
-            {
-              "id": 9,
-              "name": "109 '1 '"
-            }
-          ],
-          "name": "'109         '",
-          "switched_shunts": [],
-          "type": "physical"
-        },
-        {
-          "facts": [],
-          "fixed_shunts": [],
-          "generators": [],
-          "id": 110,
-          "loads": [
-            {
-              "id": 10,
-              "name": "110 '1 '"
-            }
-          ],
-          "name": "'110         '",
-          "switched_shunts": [],
-          "type": "physical"
-        },
-        {
-          "facts": [],
-          "fixed_shunts": [],
-          "generators": [],
-          "id": 111,
-          "loads": [],
-          "name": "'111         '",
-          "switched_shunts": [],
-          "type": "physical"
-        }
-      ],
-      "id": 50,
-      "latitude": 41.312867957025055,
-      "longitude": -113.94459529151442,
-      "name": "substation 50",
       "transformer_groups": [
         {
-          "id": 5,
+          "id": 12,
           "transformers": [
             {
-              "id": 5,
-              "name": "110    112     0 '1 '",
+              "id": 12,
+              "name": "309    311     0 '1 '",
               "type": "physical"
             }
           ]
         },
         {
-          "id": 2,
+          "id": 13,
           "transformers": [
             {
-              "id": 2,
-              "name": "109    111     0 '1 '",
+              "id": 13,
+              "name": "309    312     0 '1 '",
               "type": "physical"
             }
           ]
         },
         {
-          "id": 4,
+          "id": 14,
           "transformers": [
             {
-              "id": 4,
-              "name": "110    111     0 '1 '",
+              "id": 14,
+              "name": "310    311     0 '1 '",
               "type": "physical"
             }
           ]
         },
         {
-          "id": 3,
+          "id": 15,
           "transformers": [
             {
-              "id": 3,
-              "name": "109    112     0 '1 '",
+              "id": 15,
+              "name": "310    312     0 '1 '",
               "type": "physical"
             }
           ]
@@ -3939,33 +3918,64 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 12,
-              "name": "113 '1 '"
+              "id": 78,
+              "name": "313 '1 '"
             },
             {
-              "id": 13,
-              "name": "113 '2 '"
+              "id": 79,
+              "name": "313 '2 '"
             },
             {
-              "id": 14,
-              "name": "113 '3 '"
+              "id": 80,
+              "name": "313 '3 '"
             }
           ],
-          "id": 113,
+          "id": 313,
           "loads": [
             {
-              "id": 11,
-              "name": "113 '1 '"
+              "id": 45,
+              "name": "313 '1 '"
             }
           ],
-          "name": "'113         '",
+          "name": "'313         '",
+          "switched_shunts": [],
+          "type": "physical"
+        }
+      ],
+      "id": 50,
+      "latitude": 41.160770563006146,
+      "longitude": -113.45046408743245,
+      "name": "substation 50",
+      "transformer_groups": [],
+      "type": "physical"
+    },
+    {
+      "branch_groups": [],
+      "buses": [
+        {
+          "facts": [],
+          "fixed_shunts": [],
+          "generators": [
+            {
+              "id": 81,
+              "name": "314 '1 '"
+            }
+          ],
+          "id": 314,
+          "loads": [
+            {
+              "id": 46,
+              "name": "314 '1 '"
+            }
+          ],
+          "name": "'314         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 51,
-      "latitude": 41.259048436791424,
-      "longitude": -113.85114790131894,
+      "latitude": 41.194405027097176,
+      "longitude": -113.51722134421843,
       "name": "substation 51",
       "transformer_groups": [],
       "type": "physical"
@@ -3978,25 +3988,45 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 15,
-              "name": "114 '1 '"
+              "id": 82,
+              "name": "315 '1 '"
+            },
+            {
+              "id": 83,
+              "name": "315 '2 '"
+            },
+            {
+              "id": 84,
+              "name": "315 '3 '"
+            },
+            {
+              "id": 85,
+              "name": "315 '4 '"
+            },
+            {
+              "id": 86,
+              "name": "315 '5 '"
+            },
+            {
+              "id": 87,
+              "name": "315 '6 '"
             }
           ],
-          "id": 114,
+          "id": 315,
           "loads": [
             {
-              "id": 12,
-              "name": "114 '1 '"
+              "id": 47,
+              "name": "315 '1 '"
             }
           ],
-          "name": "'114         '",
+          "name": "'315         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 52,
-      "latitude": 41.26150621049171,
-      "longitude": -113.91369585939003,
+      "latitude": 41.2193953988142,
+      "longitude": -113.55447148376997,
       "name": "substation 52",
       "transformer_groups": [],
       "type": "physical"
@@ -4009,45 +4039,25 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 16,
-              "name": "115 '1 '"
-            },
-            {
-              "id": 17,
-              "name": "115 '2 '"
-            },
-            {
-              "id": 18,
-              "name": "115 '3 '"
-            },
-            {
-              "id": 19,
-              "name": "115 '4 '"
-            },
-            {
-              "id": 20,
-              "name": "115 '5 '"
-            },
-            {
-              "id": 21,
-              "name": "115 '6 '"
+              "id": 88,
+              "name": "316 '1 '"
             }
           ],
-          "id": 115,
+          "id": 316,
           "loads": [
             {
-              "id": 13,
-              "name": "115 '1 '"
+              "id": 48,
+              "name": "316 '1 '"
             }
           ],
-          "name": "'115         '",
+          "name": "'316         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 53,
-      "latitude": 41.268826078486654,
-      "longitude": -113.95228629187012,
+      "latitude": 41.17115209327062,
+      "longitude": -113.56267269819074,
       "name": "substation 53",
       "transformer_groups": [],
       "type": "physical"
@@ -4058,27 +4068,17 @@
         {
           "facts": [],
           "fixed_shunts": [],
-          "generators": [
-            {
-              "id": 22,
-              "name": "116 '1 '"
-            }
-          ],
-          "id": 116,
-          "loads": [
-            {
-              "id": 14,
-              "name": "116 '1 '"
-            }
-          ],
-          "name": "'116         '",
+          "generators": [],
+          "id": 317,
+          "loads": [],
+          "name": "'317         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 54,
-      "latitude": 41.24261203187755,
-      "longitude": -113.9295295635377,
+      "latitude": 41.10856468623746,
+      "longitude": -113.55070833358559,
       "name": "substation 54",
       "transformer_groups": [],
       "type": "physical"
@@ -4089,17 +4089,27 @@
         {
           "facts": [],
           "fixed_shunts": [],
-          "generators": [],
-          "id": 117,
-          "loads": [],
-          "name": "'117         '",
+          "generators": [
+            {
+              "id": 89,
+              "name": "318 '1 '"
+            }
+          ],
+          "id": 318,
+          "loads": [
+            {
+              "id": 49,
+              "name": "318 '1 '"
+            }
+          ],
+          "name": "'318         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 55,
-      "latitude": 41.195668039351006,
-      "longitude": -113.92153550392464,
+      "latitude": 41.0929103879516,
+      "longitude": -113.54293890638579,
       "name": "substation 55",
       "transformer_groups": [],
       "type": "physical"
@@ -4110,27 +4120,22 @@
         {
           "facts": [],
           "fixed_shunts": [],
-          "generators": [
-            {
-              "id": 23,
-              "name": "118 '1 '"
-            }
-          ],
-          "id": 118,
+          "generators": [],
+          "id": 319,
           "loads": [
             {
-              "id": 15,
-              "name": "118 '1 '"
+              "id": 50,
+              "name": "319 '1 '"
             }
           ],
-          "name": "'118         '",
+          "name": "'319         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 56,
-      "latitude": 41.15032885334279,
-      "longitude": -113.91184619361049,
+      "latitude": 41.14464521959496,
+      "longitude": -113.52306171452707,
       "name": "substation 56",
       "transformer_groups": [],
       "type": "physical"
@@ -4142,21 +4147,21 @@
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
-          "id": 119,
+          "id": 320,
           "loads": [
             {
-              "id": 16,
-              "name": "119 '1 '"
+              "id": 51,
+              "name": "320 '1 '"
             }
           ],
-          "name": "'119         '",
+          "name": "'320         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 57,
-      "latitude": 41.22114051731724,
-      "longitude": -113.90098494732233,
+      "latitude": 41.117058185640644,
+      "longitude": -113.48405446817097,
       "name": "substation 57",
       "transformer_groups": [],
       "type": "physical"
@@ -4167,22 +4172,22 @@
         {
           "facts": [],
           "fixed_shunts": [],
-          "generators": [],
-          "id": 120,
-          "loads": [
+          "generators": [
             {
-              "id": 17,
-              "name": "120 '1 '"
+              "id": 90,
+              "name": "321 '1 '"
             }
           ],
-          "name": "'120         '",
+          "id": 321,
+          "loads": [],
+          "name": "'321         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 58,
-      "latitude": 41.21684919310515,
-      "longitude": -113.86086384261299,
+      "latitude": 41.08322017189014,
+      "longitude": -113.50803410889395,
       "name": "substation 58",
       "transformer_groups": [],
       "type": "physical"
@@ -4195,20 +4200,40 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 24,
-              "name": "121 '1 '"
+              "id": 91,
+              "name": "322 '1 '"
+            },
+            {
+              "id": 92,
+              "name": "322 '2 '"
+            },
+            {
+              "id": 93,
+              "name": "322 '3 '"
+            },
+            {
+              "id": 94,
+              "name": "322 '4 '"
+            },
+            {
+              "id": 95,
+              "name": "322 '5 '"
+            },
+            {
+              "id": 96,
+              "name": "322 '6 '"
             }
           ],
-          "id": 121,
+          "id": 322,
           "loads": [],
-          "name": "'121         '",
+          "name": "'322         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 59,
-      "latitude": 41.14955028867376,
-      "longitude": -113.85179294064699,
+      "latitude": 41.08170173602639,
+      "longitude": -113.47192149443559,
       "name": "substation 59",
       "transformer_groups": [],
       "type": "physical"
@@ -4221,40 +4246,28 @@
           "fixed_shunts": [],
           "generators": [
             {
-              "id": 25,
-              "name": "122 '1 '"
+              "id": 97,
+              "name": "323 '1 '"
             },
             {
-              "id": 26,
-              "name": "122 '2 '"
+              "id": 98,
+              "name": "323 '2 '"
             },
             {
-              "id": 27,
-              "name": "122 '3 '"
-            },
-            {
-              "id": 28,
-              "name": "122 '4 '"
-            },
-            {
-              "id": 29,
-              "name": "122 '5 '"
-            },
-            {
-              "id": 30,
-              "name": "122 '6 '"
+              "id": 99,
+              "name": "323 '3 '"
             }
           ],
-          "id": 122,
+          "id": 323,
           "loads": [],
-          "name": "'122         '",
+          "name": "'323         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 60,
-      "latitude": 41.18545155163674,
-      "longitude": -113.81380477332831,
+      "latitude": 41.08070861654334,
+      "longitude": -113.43553601688147,
       "name": "substation 60",
       "transformer_groups": [],
       "type": "physical"
@@ -4265,30 +4278,17 @@
         {
           "facts": [],
           "fixed_shunts": [],
-          "generators": [
-            {
-              "id": 31,
-              "name": "123 '1 '"
-            },
-            {
-              "id": 32,
-              "name": "123 '2 '"
-            },
-            {
-              "id": 33,
-              "name": "123 '3 '"
-            }
-          ],
-          "id": 123,
+          "generators": [],
+          "id": 325,
           "loads": [],
-          "name": "'123         '",
+          "name": "'325         '",
           "switched_shunts": [],
           "type": "physical"
         }
       ],
       "id": 61,
-      "latitude": 41.2156055124409,
-      "longitude": -113.81476861478284,
+      "latitude": 41.04021963239615,
+      "longitude": -113.48725642716228,
       "name": "substation 61",
       "transformer_groups": [],
       "type": "physical"

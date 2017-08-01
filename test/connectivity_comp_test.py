@@ -11,6 +11,7 @@ parser = connectivity_comp.build_cli_parser()
 def test_rts(capfd):
     connectivity_comp.main(parser.parse_args([
         data_dir+'/nesta_case73_ieee_rts/network.raw',
+        '-scs',
         '-g', data_dir+'/nesta_case73_ieee_rts/coordinates.csv',
         '-o', data_dir+'/nesta_case73_ieee_rts/tmp.json'
     ]))
@@ -39,6 +40,7 @@ def test_rts(capfd):
 def test_fraken(capfd):
     connectivity_comp.main(parser.parse_args([
         data_dir+'/frankenstein/network.raw',
+        '-scs',
         '-g', data_dir+'/frankenstein/coordinates.csv',
         '-o', data_dir+'/frankenstein/tmp.json'
     ]))

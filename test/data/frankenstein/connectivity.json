@@ -2,16 +2,79 @@
   "case": "data/frankenstein/network.raw",
   "corridors": [
     {
+      "base_kv_max": 87.0,
       "branch_groups": [
         {
           "branches": [
             {
+              "active_head": {
+                "display_type": "range",
+                "lb": -1086.0,
+                "threshold": 0.0,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "active_tail": {
+                "display_type": "range",
+                "lb": -1086.0,
+                "threshold": 0.0,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "base_kv": 87.0,
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "rate_a_tail",
+                "active_tail",
+                "reactive_tail",
+                "rate_a_head",
+                "active_head",
+                "reactive_head"
+              ],
               "id": 1,
               "name": "1004 1006 '1 '",
+              "rate_a_head": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.2,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "ub"
+              },
+              "rate_a_tail": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.2,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "ub"
+              },
+              "reactive_head": {
+                "display_type": "range",
+                "lb": -1086.0,
+                "threshold": 0.0,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "reactive_tail": {
+                "display_type": "range",
+                "lb": -1086.0,
+                "threshold": 0.0,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "status": 1,
               "type": "physical"
             }
           ],
-          "id": 1
+          "id": 1,
+          "switchable": true
         }
       ],
       "facts_groups": [],
@@ -24,13 +87,21 @@
       "vsc_dc_groups": []
     },
     {
+      "base_kv_max": 87.0,
       "branch_groups": [],
       "facts_groups": [
         {
           "facts": [
             {
+              "base_kv": 87.0,
+              "display_properties": [
+                "name",
+                "id",
+                "status"
+              ],
               "id": 2,
               "name": "1005 1009 '1 '",
+              "status": 1,
               "type": "physical"
             }
           ],
@@ -46,6 +117,7 @@
       "vsc_dc_groups": []
     },
     {
+      "base_kv_max": 7.5,
       "branch_groups": [],
       "facts_groups": [],
       "from_substation": 1,
@@ -57,8 +129,15 @@
           "id": 1,
           "tt_dcs": [
             {
+              "base_kv": 7.5,
+              "display_properties": [
+                "name",
+                "id",
+                "status"
+              ],
               "id": 1,
               "name": "1009 1004 'TTDC Ln 1'",
+              "status": 0,
               "type": "physical"
             }
           ]
@@ -68,16 +147,79 @@
       "vsc_dc_groups": []
     },
     {
+      "base_kv_max": 87.0,
       "branch_groups": [
         {
           "branches": [
             {
+              "active_head": {
+                "display_type": "range",
+                "lb": -1044.0,
+                "threshold": 0.0,
+                "ub": 1044.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "active_tail": {
+                "display_type": "range",
+                "lb": -1044.0,
+                "threshold": 0.0,
+                "ub": 1044.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "base_kv": 87.0,
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "rate_a_tail",
+                "active_tail",
+                "reactive_tail",
+                "rate_a_head",
+                "active_head",
+                "reactive_head"
+              ],
               "id": 3,
               "name": "1005 1009 '1 '",
+              "rate_a_head": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.2,
+                "ub": 1044.0,
+                "value": 0,
+                "watch": "ub"
+              },
+              "rate_a_tail": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.2,
+                "ub": 1044.0,
+                "value": 0,
+                "watch": "ub"
+              },
+              "reactive_head": {
+                "display_type": "range",
+                "lb": -1044.0,
+                "threshold": 0.0,
+                "ub": 1044.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "reactive_tail": {
+                "display_type": "range",
+                "lb": -1044.0,
+                "threshold": 0.0,
+                "ub": 1044.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "status": 1,
               "type": "physical"
             }
           ],
-          "id": 3
+          "id": 3,
+          "switchable": true
         }
       ],
       "facts_groups": [],
@@ -90,6 +232,7 @@
       "vsc_dc_groups": []
     },
     {
+      "base_kv_max": 230.0,
       "branch_groups": [],
       "facts_groups": [],
       "from_substation": 3,
@@ -103,8 +246,15 @@
           "id": 2,
           "vsc_dcs": [
             {
+              "base_kv": 230.0,
+              "display_properties": [
+                "name",
+                "id",
+                "status"
+              ],
               "id": 1,
               "name": "1007 1008 'VSCDC Ln 1 '",
+              "status": 1,
               "type": "physical"
             }
           ]
@@ -112,16 +262,79 @@
       ]
     },
     {
+      "base_kv_max": 87.0,
       "branch_groups": [
         {
           "branches": [
             {
+              "active_head": {
+                "display_type": "range",
+                "lb": -1086.0,
+                "threshold": 0.0,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "active_tail": {
+                "display_type": "range",
+                "lb": -1086.0,
+                "threshold": 0.0,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "base_kv": 87.0,
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "rate_a_tail",
+                "active_tail",
+                "reactive_tail",
+                "rate_a_head",
+                "active_head",
+                "reactive_head"
+              ],
               "id": 2,
               "name": "1008 1005 '1 '",
+              "rate_a_head": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.2,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "ub"
+              },
+              "rate_a_tail": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.2,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "ub"
+              },
+              "reactive_head": {
+                "display_type": "range",
+                "lb": -1086.0,
+                "threshold": 0.0,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "reactive_tail": {
+                "display_type": "range",
+                "lb": -1086.0,
+                "threshold": 0.0,
+                "ub": 1086.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "status": 1,
               "type": "physical"
             }
           ],
-          "id": 2
+          "id": 2,
+          "switchable": true
         }
       ],
       "facts_groups": [],
@@ -136,28 +349,91 @@
   ],
   "substations": [
     {
+      "base_kv_max": 87.0,
       "branch_groups": [],
       "buses": [
         {
+          "angle": 0.0,
+          "base_kv": 13.8,
+          "display_properties": [
+            "name",
+            "id",
+            "status",
+            "voltage",
+            "angle",
+            "owner"
+          ],
           "facts": [],
           "fixed_shunts": [],
           "generators": [
             {
+              "active": {
+                "display_type": "range",
+                "lb": 0.0,
+                "threshold": 0.2,
+                "ub": 500.0,
+                "value": 0.0,
+                "watch": "ub"
+              },
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "active",
+                "reactive"
+              ],
               "id": 1,
-              "name": "1001 '1 '"
+              "name": "1001 '1 '",
+              "reactive": {
+                "display_type": "range",
+                "lb": -3.3,
+                "threshold": 0.2,
+                "ub": 12.8,
+                "value": 0.0,
+                "watch": "both"
+              },
+              "status": 0,
+              "switchable": true
             }
           ],
           "id": 1001,
           "loads": [],
           "name": "'FAV SPOT 01'",
+          "owner": "'BAR     '",
+          "status": 1,
+          "switchable": true,
           "switched_shunts": [],
-          "type": "physical"
+          "type": "physical",
+          "voltage": {
+            "display_type": "range",
+            "lb": 12.420000000000002,
+            "threshold": 0.2,
+            "ub": 15.180000000000001,
+            "value": 13.8,
+            "watch": "both"
+          }
         },
         {
+          "angle": 0.0,
+          "base_kv": 87.0,
+          "display_properties": [
+            "name",
+            "id",
+            "status",
+            "voltage",
+            "angle",
+            "owner"
+          ],
           "facts": [
             {
+              "display_properties": [
+                "name",
+                "id",
+                "status"
+              ],
               "id": 1,
-              "name": "1004 1"
+              "name": "1004 1",
+              "status": 1
             }
           ],
           "fixed_shunts": [],
@@ -165,21 +441,76 @@
           "id": 1004,
           "loads": [],
           "name": "'FAV SPOT 04'",
+          "owner": "'BAR     '",
+          "status": 1,
+          "switchable": true,
           "switched_shunts": [],
-          "type": "physical"
+          "type": "physical",
+          "voltage": {
+            "display_type": "range",
+            "lb": 78.3,
+            "threshold": 0.2,
+            "ub": 95.7,
+            "value": 91.35000000000001,
+            "watch": "both"
+          }
         }
+      ],
+      "display_properties": [
+        "name",
+        "id",
+        "buses",
+        "transformer_groups",
+        "branch_groups"
       ],
       "id": 1,
       "latitude": 41.0,
       "longitude": -113.2,
       "name": "substation 1",
+      "switchable": true,
       "transformer_groups": [
         {
           "id": 1,
+          "switchable": true,
           "transformers": [
             {
+              "active_tail_1": {
+                "display_type": "range",
+                "lb": -28.0,
+                "threshold": 0.0,
+                "ub": 28.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "cod_1": 0,
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "rate_a_tail_1",
+                "active_tail_1",
+                "reactive_tail_1",
+                "cod_1"
+              ],
               "id": 1,
               "name": "1001 1004     0 '1 '",
+              "rate_a_tail_1": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.2,
+                "ub": 28.0,
+                "value": 0,
+                "watch": "ub"
+              },
+              "reactive_tail_1": {
+                "display_type": "range",
+                "lb": -28.0,
+                "threshold": 0.0,
+                "ub": 28.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "status": 1,
               "type": "physical"
             }
           ]
@@ -188,55 +519,198 @@
       "type": "physical"
     },
     {
+      "base_kv_max": 345.0,
       "branch_groups": [],
       "buses": [
         {
+          "angle": 0.0,
+          "base_kv": 345.0,
+          "display_properties": [
+            "name",
+            "id",
+            "status",
+            "voltage",
+            "angle",
+            "owner"
+          ],
           "facts": [],
           "fixed_shunts": [],
           "generators": [
             {
+              "active": {
+                "display_type": "range",
+                "lb": 16.0,
+                "threshold": 0.2,
+                "ub": 27.5,
+                "value": 27.5,
+                "watch": "ub"
+              },
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "active",
+                "reactive"
+              ],
               "id": 2,
-              "name": "1002 '1 '"
+              "name": "1002 '1 '",
+              "reactive": {
+                "display_type": "range",
+                "lb": 2.0,
+                "threshold": 0.2,
+                "ub": 2.0,
+                "value": 2.0,
+                "watch": "both"
+              },
+              "status": 1,
+              "switchable": true
             }
           ],
           "id": 1002,
           "loads": [],
           "name": "'FAV SPOT 02'",
+          "owner": "'BAR     '",
+          "status": 1,
+          "switchable": true,
           "switched_shunts": [],
-          "type": "physical"
+          "type": "physical",
+          "voltage": {
+            "display_type": "range",
+            "lb": 310.5,
+            "threshold": 0.2,
+            "ub": 379.50000000000006,
+            "value": 345.0,
+            "watch": "both"
+          }
         },
         {
+          "angle": 3.0,
+          "base_kv": 87.0,
+          "display_properties": [
+            "name",
+            "id",
+            "status",
+            "voltage",
+            "angle",
+            "owner"
+          ],
           "facts": [],
           "fixed_shunts": [],
           "generators": [
             {
+              "active": {
+                "display_type": "range",
+                "lb": -200.0,
+                "threshold": 0.2,
+                "ub": 200.0,
+                "value": 20.0,
+                "watch": "ub"
+              },
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "active",
+                "reactive"
+              ],
               "id": 5,
-              "name": "1005 '1 '"
+              "name": "1005 '1 '",
+              "reactive": {
+                "display_type": "range",
+                "lb": -250.0,
+                "threshold": 0.2,
+                "ub": 250.0,
+                "value": -23.413,
+                "watch": "both"
+              },
+              "status": 1,
+              "switchable": true
             }
           ],
           "id": 1005,
           "loads": [],
           "name": "'FAV PLACE 05'",
+          "owner": "'BAR     '",
+          "status": 1,
+          "switchable": true,
           "switched_shunts": [
             {
+              "display_properties": [
+                "name",
+                "id",
+                "status"
+              ],
               "id": 2,
-              "name": "1005"
+              "name": "1005",
+              "status": 1
             }
           ],
-          "type": "physical"
+          "type": "physical",
+          "voltage": {
+            "display_type": "range",
+            "lb": 78.3,
+            "threshold": 0.2,
+            "ub": 95.7,
+            "value": 87.0,
+            "watch": "both"
+          }
         }
+      ],
+      "display_properties": [
+        "name",
+        "id",
+        "buses",
+        "transformer_groups",
+        "branch_groups"
       ],
       "id": 2,
       "latitude": 41.2,
       "longitude": -113.1,
       "name": "substation 2",
+      "switchable": true,
       "transformer_groups": [
         {
           "id": 2,
+          "switchable": true,
           "transformers": [
             {
+              "active_tail_1": {
+                "display_type": "range",
+                "lb": -84.0,
+                "threshold": 0.0,
+                "ub": 84.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "cod_1": 0,
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "rate_a_tail_1",
+                "active_tail_1",
+                "reactive_tail_1",
+                "cod_1"
+              ],
               "id": 2,
               "name": "1005 1002     0 '1 '",
+              "rate_a_tail_1": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.2,
+                "ub": 84.0,
+                "value": 0,
+                "watch": "ub"
+              },
+              "reactive_tail_1": {
+                "display_type": "range",
+                "lb": -84.0,
+                "threshold": 0.0,
+                "ub": 84.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "status": 1,
               "type": "physical"
             }
           ]
@@ -245,65 +719,228 @@
       "type": "physical"
     },
     {
+      "base_kv_max": 230.0,
       "branch_groups": [],
       "buses": [
         {
+          "angle": 0.0,
+          "base_kv": 24.9,
+          "display_properties": [
+            "name",
+            "id",
+            "status",
+            "voltage",
+            "angle",
+            "owner"
+          ],
           "facts": [],
           "fixed_shunts": [],
           "generators": [
             {
+              "active": {
+                "display_type": "range",
+                "lb": 0.0,
+                "threshold": 0.2,
+                "ub": 18.7,
+                "value": 3.7,
+                "watch": "ub"
+              },
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "active",
+                "reactive"
+              ],
               "id": 4,
-              "name": "1003 'W1'"
+              "name": "1003 'W1'",
+              "reactive": {
+                "display_type": "range",
+                "lb": -3.9,
+                "threshold": 0.2,
+                "ub": -3.9,
+                "value": -3.9,
+                "watch": "both"
+              },
+              "status": 1,
+              "switchable": true
             }
           ],
           "id": 1003,
           "loads": [],
           "name": "'FAV SPOT 03'",
+          "owner": "'BAR     '",
+          "status": 1,
+          "switchable": true,
           "switched_shunts": [
             {
+              "display_properties": [
+                "name",
+                "id",
+                "status"
+              ],
               "id": 1,
-              "name": "1003"
+              "name": "1003",
+              "status": 1
             }
           ],
-          "type": "physical"
+          "type": "physical",
+          "voltage": {
+            "display_type": "range",
+            "lb": 22.41,
+            "threshold": 0.2,
+            "ub": 27.39,
+            "value": 24.9,
+            "watch": "both"
+          }
         },
         {
+          "angle": -1.0,
+          "base_kv": 87.0,
+          "display_properties": [
+            "name",
+            "id",
+            "status",
+            "voltage",
+            "angle",
+            "owner"
+          ],
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
           "id": 1006,
           "loads": [
             {
+              "active": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 6.6,
+                "value": 6.6,
+                "watch": "lb"
+              },
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "active",
+                "reactive"
+              ],
               "id": 1,
-              "name": "1006 'L0'"
+              "name": "1006 'L0'",
+              "reactive": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 2.4,
+                "value": 2.4,
+                "watch": "lb"
+              },
+              "status": 1
             }
           ],
           "name": "'FAV SPOT 06'",
+          "owner": "'BAR     '",
+          "status": 1,
+          "switchable": true,
           "switched_shunts": [],
-          "type": "physical"
+          "type": "physical",
+          "voltage": {
+            "display_type": "range",
+            "lb": 78.3,
+            "threshold": 0.2,
+            "ub": 95.7,
+            "value": 87.0,
+            "watch": "both"
+          }
         },
         {
+          "angle": 2.0,
+          "base_kv": 230.0,
+          "display_properties": [
+            "name",
+            "id",
+            "status",
+            "voltage",
+            "angle",
+            "owner"
+          ],
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
           "id": 1007,
           "loads": [],
           "name": "'FAV PLACE 07'",
+          "owner": "'BAR     '",
+          "status": 1,
+          "switchable": true,
           "switched_shunts": [],
-          "type": "physical"
+          "type": "physical",
+          "voltage": {
+            "display_type": "range",
+            "lb": 207.0,
+            "threshold": 0.2,
+            "ub": 253.00000000000003,
+            "value": 230.0,
+            "watch": "both"
+          }
         }
+      ],
+      "display_properties": [
+        "name",
+        "id",
+        "buses",
+        "transformer_groups",
+        "branch_groups"
       ],
       "id": 3,
       "latitude": 41.1,
       "longitude": -113.1,
       "name": "substation 3",
+      "switchable": true,
       "transformer_groups": [
         {
           "id": 3,
+          "switchable": true,
           "transformers": [
             {
+              "active_tail_1": {
+                "display_type": "range",
+                "lb": -336.0,
+                "threshold": 0.0,
+                "ub": 336.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "cod_1": 0,
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "rate_a_tail_1",
+                "active_tail_1",
+                "reactive_tail_1",
+                "cod_1"
+              ],
               "id": 3,
               "name": "1007 1006 1003 '1 '",
+              "rate_a_tail_1": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.2,
+                "ub": 336.0,
+                "value": 0,
+                "watch": "ub"
+              },
+              "reactive_tail_1": {
+                "display_type": "range",
+                "lb": -336.0,
+                "threshold": 0.0,
+                "ub": 336.0,
+                "value": 0,
+                "watch": "none"
+              },
+              "status": 1,
               "type": "physical"
             }
           ]
@@ -312,64 +949,221 @@
       "type": "physical"
     },
     {
+      "base_kv_max": 87.0,
       "branch_groups": [],
       "buses": [
         {
+          "angle": 0.0,
+          "base_kv": 87.0,
+          "display_properties": [
+            "name",
+            "id",
+            "status",
+            "voltage",
+            "angle",
+            "owner"
+          ],
           "facts": [],
           "fixed_shunts": [],
           "generators": [],
           "id": 1008,
           "loads": [
             {
+              "active": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 18.9,
+                "value": 18.9,
+                "watch": "lb"
+              },
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "active",
+                "reactive"
+              ],
               "id": 2,
-              "name": "1008 'LW'"
+              "name": "1008 'LW'",
+              "reactive": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 6.9,
+                "value": 6.9,
+                "watch": "lb"
+              },
+              "status": 1
             }
           ],
           "name": "'FAV PLC 08'",
+          "owner": "'BAR     '",
+          "status": 1,
+          "switchable": true,
           "switched_shunts": [],
-          "type": "physical"
+          "type": "physical",
+          "voltage": {
+            "display_type": "range",
+            "lb": 78.3,
+            "threshold": 0.2,
+            "ub": 95.7,
+            "value": 82.64999999999999,
+            "watch": "both"
+          }
         }
+      ],
+      "display_properties": [
+        "name",
+        "id",
+        "buses",
+        "transformer_groups",
+        "branch_groups"
       ],
       "id": 4,
       "latitude": 41.2,
       "longitude": -113.0,
       "name": "substation 4",
+      "switchable": true,
       "transformer_groups": [],
       "type": "physical"
     },
     {
+      "base_kv_max": 87.0,
       "branch_groups": [],
       "buses": [
         {
+          "angle": 0.0,
+          "base_kv": 87.0,
+          "display_properties": [
+            "name",
+            "id",
+            "status",
+            "voltage",
+            "angle",
+            "owner"
+          ],
           "facts": [],
           "fixed_shunts": [
             {
+              "conductance": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 0.0,
+                "value": 0.0,
+                "watch": "lb"
+              },
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "conductance",
+                "susceptance"
+              ],
               "id": 1,
-              "name": "1009 '1 '"
+              "name": "1009 '1 '",
+              "status": 1,
+              "susceptance": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 105.3,
+                "value": 105.3,
+                "watch": "lb"
+              }
             }
           ],
           "generators": [
             {
+              "active": {
+                "display_type": "range",
+                "lb": -250.0,
+                "threshold": 0.2,
+                "ub": 250.0,
+                "value": -22.0,
+                "watch": "ub"
+              },
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "active",
+                "reactive"
+              ],
               "id": 3,
-              "name": "1009 '1 '"
+              "name": "1009 '1 '",
+              "reactive": {
+                "display_type": "range",
+                "lb": -250.0,
+                "threshold": 0.2,
+                "ub": 250.0,
+                "value": -88.041,
+                "watch": "both"
+              },
+              "status": 1,
+              "switchable": true
             }
           ],
           "id": 1009,
           "loads": [
             {
+              "active": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 10.5,
+                "value": 10.5,
+                "watch": "lb"
+              },
+              "display_properties": [
+                "name",
+                "id",
+                "status",
+                "active",
+                "reactive"
+              ],
               "id": 3,
-              "name": "1009 'Z0'"
+              "name": "1009 'Z0'",
+              "reactive": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 2.3,
+                "value": 2.3,
+                "watch": "lb"
+              },
+              "status": 1
             }
           ],
           "name": "'FAV PLACE 09'",
+          "owner": "'BAR     '",
+          "status": 1,
+          "switchable": true,
           "switched_shunts": [],
-          "type": "physical"
+          "type": "physical",
+          "voltage": {
+            "display_type": "range",
+            "lb": 78.3,
+            "threshold": 0.2,
+            "ub": 95.7,
+            "value": 87.0,
+            "watch": "both"
+          }
         }
+      ],
+      "display_properties": [
+        "name",
+        "id",
+        "buses",
+        "transformer_groups",
+        "branch_groups"
       ],
       "id": 5,
       "latitude": 41.1,
       "longitude": -113.0,
       "name": "substation 5",
+      "switchable": true,
       "transformer_groups": [],
       "type": "physical"
     }

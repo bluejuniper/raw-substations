@@ -9389,14 +9389,32 @@
           "switchable": true,
           "switched_shunts": [
             {
+              "conductance": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 0.0,
+                "value": 0.0,
+                "watch": "lb"
+              },
               "display_properties": [
                 "name",
                 "id",
-                "status"
+                "status",
+                "conductance",
+                "susceptance"
               ],
               "id": 1,
               "name": "106",
-              "status": 1
+              "status": 1,
+              "susceptance": {
+                "display_type": "range",
+                "lb": -100.0,
+                "threshold": 0.9,
+                "ub": 0,
+                "value": -100.0,
+                "watch": "ub"
+              }
             }
           ],
           "type": "physical",
@@ -12237,14 +12255,32 @@
           "switchable": true,
           "switched_shunts": [
             {
+              "conductance": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 0.0,
+                "value": 0.0,
+                "watch": "lb"
+              },
               "display_properties": [
                 "name",
                 "id",
-                "status"
+                "status",
+                "conductance",
+                "susceptance"
               ],
               "id": 2,
               "name": "206",
-              "status": 1
+              "status": 1,
+              "susceptance": {
+                "display_type": "range",
+                "lb": -100.0,
+                "threshold": 0.9,
+                "ub": 0,
+                "value": -100.0,
+                "watch": "ub"
+              }
             }
           ],
           "type": "physical",
@@ -15085,14 +15121,32 @@
           "switchable": true,
           "switched_shunts": [
             {
+              "conductance": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 0.0,
+                "value": 0.0,
+                "watch": "lb"
+              },
               "display_properties": [
                 "name",
                 "id",
-                "status"
+                "status",
+                "conductance",
+                "susceptance"
               ],
               "id": 3,
               "name": "306",
-              "status": 1
+              "status": 1,
+              "susceptance": {
+                "display_type": "range",
+                "lb": -100.0,
+                "threshold": 0.9,
+                "ub": 0,
+                "value": -100.0,
+                "watch": "ub"
+              }
             }
           ],
           "type": "physical",

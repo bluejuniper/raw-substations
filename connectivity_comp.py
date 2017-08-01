@@ -806,12 +806,19 @@ def main(args):
                     fixed_shunt['susceptance'] = connectivity_range(0, bl, bl, 'lb', 0.9) if bl >= 0 else connectivity_range(bl, 0, bl, 'ub', 0.9)
 
                 for switched_shunt in bus['switched_shunts']:
-                    switched_shunt['display_properties'] = ['name', 'id', 'status']
+                    switched_shunt['display_properties'] = ['name', 'id', 'status', 'conductance', 'susceptance']
 
                     switched_shunt_id = switched_shunt['id']
                     switched_shunt_data = switched_shunt_lookup[switched_shunt_id]
 
                     switched_shunt['status'] = int(switched_shunt_data[3])
+
+                    gl = float(0)
+                    bl = float(switched_shunt_data[9])
+
+                    switched_shunt['conductance'] = connectivity_range(0, gl, gl, 'lb', 0.9) if gl >= 0 else connectivity_range(gl, 0, gl, 'ub', 0.9)
+                    switched_shunt['susceptance'] = connectivity_range(0, bl, bl, 'lb', 0.9) if bl >= 0 else connectivity_range(bl, 0, bl, 'ub', 0.9)
+
 
                 for facts in bus['facts']:
                     facts['display_properties'] = ['name', 'id', 'status']

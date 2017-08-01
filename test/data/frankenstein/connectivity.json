@@ -635,14 +635,32 @@
           "switchable": true,
           "switched_shunts": [
             {
+              "conductance": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 0.0,
+                "value": 0.0,
+                "watch": "lb"
+              },
               "display_properties": [
                 "name",
                 "id",
-                "status"
+                "status",
+                "conductance",
+                "susceptance"
               ],
               "id": 2,
               "name": "1005",
-              "status": 1
+              "status": 1,
+              "susceptance": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 6.0,
+                "value": 6.0,
+                "watch": "lb"
+              }
             }
           ],
           "type": "physical",
@@ -774,14 +792,32 @@
           "switchable": true,
           "switched_shunts": [
             {
+              "conductance": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 0.0,
+                "value": 0.0,
+                "watch": "lb"
+              },
               "display_properties": [
                 "name",
                 "id",
-                "status"
+                "status",
+                "conductance",
+                "susceptance"
               ],
               "id": 1,
               "name": "1003",
-              "status": 1
+              "status": 1,
+              "susceptance": {
+                "display_type": "range",
+                "lb": 0,
+                "threshold": 0.9,
+                "ub": 3.8,
+                "value": 3.8,
+                "watch": "lb"
+              }
             }
           ],
           "type": "physical",

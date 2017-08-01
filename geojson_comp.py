@@ -33,7 +33,7 @@ def create_geojson(conn_file, output_geojson):
 
     connectivity_geojson = {'substations': substations, 'corridors': corridors}
     with open(output_geojson, 'w') as f:
-        f.write(json.dumps(connectivity_geojson))
+        f.write(json.dumps(connectivity_geojson, sort_keys=True))
 
 
 if __name__ == '__main__':

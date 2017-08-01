@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python3 -m pytest --cov connectivity_comp --cov geojson_comp $@

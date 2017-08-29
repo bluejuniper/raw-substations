@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import argparse, json, csv, itertools
+import argparse, json, csv, itertools, math
 
 from collections import namedtuple
 Location = namedtuple('Location', ['id', 'bus_name', 'zone', 'location_id', 'max_kv', 'longitude', 'latitude', 'raw_bus_name'])
@@ -841,7 +841,8 @@ def main(args):
                     transformer['cod_1'] = int(transformer_data[2][6])
 
                     rate_a_1 = float(transformer_data[2][3])
-                    transformer['rate_a_tail_1'] = connectivity_range(0, rate_a_1, 0, 'ub', 0.2)
+                    rate_a_1_watch = 'ub' if not math.isclose(rate_a_1, 0.0, abs_tol=1e-9) else 'none' # in raw/pti rate_a == 0.0 => unbounded
+                    transformer['rate_a_tail_1'] = connectivity_range(0, rate_a_1, 0, rate_a_1_watch, 0.2)
 
                     transformer['active_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0, 'none', 0.0)
                     transformer['reactive_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0, 'none', 0.0)
@@ -869,11 +870,12 @@ def main(args):
                 banch['status'] = int(branch_data[13])
 
                 rate_a = float(branch_data[6])
-                banch['rate_a_tail'] = connectivity_range(0, rate_a, 0, 'ub', 0.2)
+                rate_a_watch = 'ub' if not math.isclose(rate_a, 0.0, abs_tol=1e-9) else 'none' # in raw/pti rate_a == 0.0 => unbounded
+                banch['rate_a_tail'] = connectivity_range(0, rate_a, 0, rate_a_watch, 0.2)
                 banch['active_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
                 banch['reactive_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
 
-                banch['rate_a_head'] = connectivity_range(0, rate_a, 0, 'ub', 0.2)
+                banch['rate_a_head'] = connectivity_range(0, rate_a, 0, rate_a_watch, 0.2)
                 banch['active_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
                 banch['reactive_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
 

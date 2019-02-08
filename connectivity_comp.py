@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import argparse, json, csv, itertools, math
+import argparse, json, csv, itertools, math, shlex
 
 from collections import namedtuple
 Location = namedtuple('Location', ['id', 'bus_name', 'zone', 'location_id', 'max_kv', 'longitude', 'latitude', 'raw_bus_name'])
@@ -48,14 +48,8 @@ def edit_distance(s1, s2):
     return tbl[i,j]
 
 
-def contract_transformers(buses, transformers):
+def contract_transformers(metabus_lookup, buses, transformers):
     contraction_count = 0
-    metabus_lookup = {}
-
-    for bus in buses:
-        bus_id = int(bus[0])
-        #print(bus_id)
-        metabus_lookup[bus_id] = set([bus_id])
 
     for trans in transformers:
         pr_bus = int(trans[0][0])
@@ -162,6 +156,62 @@ def contract_voltage_level(metabus_lookup, bus_lookup, branches, kv_threshold):
     return metabus_lookup_two
 
 
+def load_gic_file(file_name):
+    with open(file_name, 'r') as gic_file: 
+        gic_lines = gic_file.readlines()
+
+    line_idx = 1
+    line = gic_lines[line_idx]
+
+    sub_data = {}
+    while not line.strip().startswith('0'):
+        line_parts = shlex.split(line)
+        data = {
+            'id': int(line_parts[0]),
+            'name': line_parts[1].strip(),
+            'tbd_1': line_parts[2],
+            'lat': float(line_parts[3]),
+            'lon': float(line_parts[4]),
+            'tbd_2': line_parts[5],
+        }
+        sub_data[data['id']] = data
+
+        line_idx += 1
+        line = gic_lines[line_idx]
+
+    line_idx += 1
+    line = gic_lines[line_idx]
+
+    bus_to_sub = {}
+
+    sub_buses = {}
+    while not line.strip().startswith('0'):
+        line_parts = line.split()
+        bus_id = int(line_parts[0])
+        sub_id = int(line_parts[1])
+
+        bus_to_sub[bus_id] = sub_id
+
+        if not sub_id in sub_buses:
+            sub_buses[sub_id] = set([bus_id])
+        else:
+            bus_id_set = sub_buses[sub_id] | set([bus_id])
+            for bus_id in bus_id_set:
+                sub_buses[bus_to_sub[bus_id]] = bus_id_set
+
+        line_idx += 1
+        line = gic_lines[line_idx]
+
+    metabus_lookup = {}
+    for sub, bus_set in sub_buses.items():
+        for bus_id in bus_set:
+            metabus_lookup[bus_id] = bus_set
+
+    return metabus_lookup, bus_to_sub, sub_data
+
+
+
+
 def main(args):
     raw_case = parse_raw(args.raw_file)
 
@@ -184,8 +234,18 @@ def main(args):
     tt_dc_lookup = { i+1:tt_dc for i, tt_dc in enumerate(raw_case['tt_dc']) }
     vsc_dc_lookup = { i+1:vsc_dc for i, vsc_dc in enumerate(raw_case['vsc_dc']) }
 
+    metabus_lookup = {}
+    for bus in raw_case['buses']:
+        bus_id = int(bus[0])
+        #print(bus_id)
+        metabus_lookup[bus_id] = set([bus_id])
 
-    metabus_lookup = contract_transformers(raw_case['buses'], raw_case['transformers'])
+    metabus_data = None
+    bus_to_sub = None
+    if args.gic_file != None:
+        metabus_lookup, bus_to_sub, metabus_data = load_gic_file(args.gic_file)
+
+    metabus_lookup = contract_transformers(metabus_lookup, raw_case['buses'], raw_case['transformers'])
     metabus_lookup = contract_voltage_level(metabus_lookup, bus_lookup, raw_case['branches'], args.kv_threshold)
 
     substation_buses = {}
@@ -274,6 +334,11 @@ def main(args):
             'transformer_groups': [],
             'branch_groups': []
         }
+
+        if metabus_data != None and bus_to_sub != None:
+            sub_id = bus_to_sub[next(iter(sub_buses))]
+            substation['latitude'] = metabus_data[sub_id]['lat']
+            substation['longitude'] = metabus_data[sub_id]['lon']
 
         buses = []
         for bus_id in sub_buses:
@@ -1229,6 +1294,7 @@ def build_cli_parser():
     parser.add_argument('-scs', help='adds extra data to the json document for SCS', action='store_true', default=False)
     parser.add_argument('-kvt', '--kv-threshold' , help='the minimum voltage to be represented in the network connectivity', type=float, default=0.0)
     parser.add_argument('-bg', '--bus-geolocations' , help='bus geolocation data (.json)')
+    parser.add_argument('-gic', '--gic-file', help='load the substation and geolocation data (.gic)')
 
     return parser
 

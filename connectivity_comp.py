@@ -210,6 +210,34 @@ def load_gic_file(file_name):
     return metabus_lookup, bus_to_sub, sub_data
 
 
+def load_lanl_geo_file(file_name):
+    with open(file_name, 'r') as jsonfile:
+        lanl_geo = json.load(jsonfile)
+
+    bus_to_sub = {}
+    sub_buses = {}
+    sub_data = {}
+
+    for sub_id, data in lanl_geo.items():
+        sub_buses[sub_id] = set(data['buses'])
+        for bus_id in data['buses']:
+            bus_to_sub[bus_id] = sub_id
+
+        data = {
+            'id': sub_id,
+            'name': sub_id,
+            'lat': data['coordinates'][0],
+            'lon': data['coordinates'][1]
+        }
+        sub_data[sub_id] = data
+
+    metabus_lookup = {}
+    for sub, bus_set in sub_buses.items():
+        for bus_id in bus_set:
+            metabus_lookup[bus_id] = bus_set
+
+    return metabus_lookup, bus_to_sub, sub_data
+
 
 
 def main(args):
@@ -244,6 +272,9 @@ def main(args):
     bus_to_sub = None
     if args.gic_file != None:
         metabus_lookup, bus_to_sub, metabus_data = load_gic_file(args.gic_file)
+
+    if args.geo_file != None:
+        metabus_lookup, bus_to_sub, metabus_data = load_lanl_geo_file(args.geo_file)
 
     metabus_lookup = contract_transformers(metabus_lookup, raw_case['buses'], raw_case['transformers'])
     metabus_lookup = contract_voltage_level(metabus_lookup, bus_lookup, raw_case['branches'], args.kv_threshold)
@@ -1295,6 +1326,7 @@ def build_cli_parser():
     parser.add_argument('-kvt', '--kv-threshold' , help='the minimum voltage to be represented in the network connectivity', type=float, default=0.0)
     parser.add_argument('-bg', '--bus-geolocations' , help='bus geolocation data (.json)')
     parser.add_argument('-gic', '--gic-file', help='load the substation and geolocation data (.gic)')
+    parser.add_argument('-geo', '--geo-file', help='lanl substation and geolocation data (.json)')
 
     return parser
 

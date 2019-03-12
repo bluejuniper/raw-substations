@@ -157,7 +157,7 @@ def contract_voltage_level(metabus_lookup, bus_lookup, branches, kv_threshold):
 
 
 def load_gic_file(file_name):
-    with open(file_name, 'r') as gic_file: 
+    with open(file_name, 'r') as gic_file:
         gic_lines = gic_file.readlines()
 
     line_idx = 1
@@ -226,8 +226,8 @@ def load_lanl_geo_file(file_name):
         data = {
             'id': sub_id,
             'name': sub_id,
-            'lat': data['coordinates'][0],
-            'lon': data['coordinates'][1]
+            'lon': data['coordinates'][0],
+            'lat': data['coordinates'][1]
         }
         sub_data[sub_id] = data
 
@@ -407,7 +407,7 @@ def main(args):
 
         min_lat = float('Inf')
         min_lon = float('Inf')
-        
+
         for loc in all_locations:
             max_lat = max(max_lat, loc.latitude)
             max_lon = max(max_lon, loc.longitude)
@@ -443,7 +443,7 @@ def main(args):
                             match_name = name_part
 
                     location_canditates.append(LocationCanditate(bus['id'], bus_name, match_name, score, zone_locations[location_bus_name]))
-            
+
             location_canditates = sorted(location_canditates, key=lambda x: x.score)
             print('')
             print(substation['name'])
@@ -544,7 +544,7 @@ def main(args):
                             print('WARNING: sub location {} and bus location differ {}'.format(sub_location, bus_location))
                     else:
                         sub_location = bus_location
-            # omit becouse there are a lot of these 
+            # omit becouse there are a lot of these
             #else:
             #    print('WARNING: no location for bus id {}'.format(bus['id']))
 
@@ -955,7 +955,7 @@ def main(args):
             branch_group['switchable'] = True
             for banch in branch_group['branches']:
                 banch['display_properties'] = ['name', 'id', 'status', 'rate_a_tail', 'active_tail', 'reactive_tail', 'rate_a_head', 'active_head', 'reactive_head']
-                
+
                 #print(banch)
                 branch_id = banch['id']
                 branch_data = branch_lookup[branch_id]
@@ -1026,7 +1026,7 @@ def main(args):
             base_kv_levels |= set(component['base_kv'] for comp_group in cor['vsc_dc_groups'] for component in comp_group['vsc_dcs'])
 
             cor['base_kv_max'] = max(base_kv_levels)
-            
+
             if len(base_kv_levels) > 1:
                 print('WARNING: corridor {} has multiple base_kv levels {}'.format(cor['id'], base_kv_levels))
 
@@ -1081,7 +1081,7 @@ def connectivity_range(lb, ub, value, watch, threshold):
 
 
 def parse_raw(raw_file_location):
-    with open(raw_file_location, 'r') as raw_file: 
+    with open(raw_file_location, 'r') as raw_file:
         raw_lines = raw_file.readlines()
 
     raw_case = {}

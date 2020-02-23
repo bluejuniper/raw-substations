@@ -528,11 +528,15 @@ def main(args):
             geojson = json.load(jsonfile)
         #print(geojson)
         for feature in geojson['features']:
-            bus_id = feature['properties']['id']
+            bus_id = feature['properties'][args.bus_geolocations_index]
             geolocation_lookup[bus_id] = {
                 'longitude':feature['geometry']['coordinates'][0],
                 'latitude':feature['geometry']['coordinates'][1]
             }
+
+
+        # import ipdb; ipdb.set_trace()
+
 
         for substation in substations:
             sub_location = None
@@ -546,9 +550,9 @@ def main(args):
                             print('WARNING: sub location {} and bus location differ {}'.format(sub_location, bus_location))
                     else:
                         sub_location = bus_location
-            # omit becouse there are a lot of these
-            #else:
-            #    print('WARNING: no location for bus id {}'.format(bus['id']))
+                # omit becouse there are a lot of these
+                else:
+                    print('WARNING: no location for bus id {} in substation {}'.format(bus['id'], substation['id']))
 
             if sub_location != None:
                 substation['longitude'] = sub_location['longitude']
@@ -1087,6 +1091,7 @@ def build_cli_parser():
     parser.add_argument('-scs', help='adds extra data to the json document for SCS', action='store_true', default=False)
     parser.add_argument('-kvt', '--kv-threshold' , help='the minimum voltage to be represented in the network connectivity', type=float, default=0.0)
     parser.add_argument('-bg', '--bus-geolocations' , help='bus geolocation data (.json)')
+    parser.add_argument('-bi','--bus-geolocations-index', default='id', help='index field name for bus geolocations')
     parser.add_argument('-gic', '--gic-file', help='load the substation and geolocation data (.gic)')
     parser.add_argument('-geo', '--geo-file', help='lanl substation and geolocation data (.json)')
 

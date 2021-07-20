@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import argparse, json, csv, itertools, math, shlex
+import argparse, json, csv, itertools, math, shlex, grg_pssedata
 from grg_pssedata.io import parse_psse_case_file
 
 from collections import namedtuple
@@ -271,11 +271,6 @@ def main(args):
 
     metabus_data = None
     bus_to_sub = None
-    if args.gic_file != None:
-        metabus_lookup, bus_to_sub, metabus_data = load_gic_file(args.gic_file)
-
-    if args.geo_file != None:
-        metabus_lookup, bus_to_sub, metabus_data = load_lanl_geo_file(args.geo_file)
 
     metabus_lookup = contract_transformers(metabus_lookup, raw_case.buses, raw_case.transformers)
     metabus_lookup = contract_voltage_level(metabus_lookup, bus_lookup, raw_case.branches, args.kv_threshold)
@@ -389,150 +384,33 @@ def main(args):
 
     substation_lookup = { sub['id'] : sub for sub in substations }
 
-    if args.geolocations != None:
-        geolocation_lookup = {}
-        all_locations = set()
-        with open(args.geolocations, 'r') as csvfile:
-        #for substation in substations:
-            geolocation_csv = csv.reader(csvfile, delimiter=',', quotechar='"')
-            next(geolocation_csv, None)  # skip the header
-            for row in geolocation_csv:
-                location = typed_location(*row)
-                if location.zone not in geolocation_lookup:
-                    geolocation_lookup[location.zone] = {}
-                geolocation_lookup[location.zone][location.raw_bus_name] = location
-                all_locations.add(location)
-        unmatched_locations = set(all_locations)
-
-        max_lat = float('-Inf')
-        max_lon = float('-Inf')
-
-        min_lat = float('Inf')
-        min_lon = float('Inf')
-
-        for loc in all_locations:
-            max_lat = max(max_lat, loc.latitude)
-            max_lon = max(max_lon, loc.longitude)
-
-            min_lat = min(min_lat, loc.latitude)
-            min_lon = min(min_lon, loc.longitude)
-
-        print('latitude extent: {} - {}'.format(min_lat, max_lat))
-        print('longitude extent: {} - {}'.format(min_lon, max_lon))
-
-        substation_location = {}
-        for substation in substations:
-            location_canditates = []
-            for bus in substation['buses']:
-                bus_data = bus_lookup[bus['id']]
-                bus_name = bus_data.name.strip('\'').strip()
-                bus_zone = int(bus_data.zone)
-
-                zone_locations = geolocation_lookup[bus_zone]
-
-                #mataches = {}
-                #scaling_factor = float(max(*[len(name) for name in zone_locations], len(bus_name)))
-                for location_bus_name in zone_locations:
-                    #print(bus_name, ' - ', location_bus_name)
-                    #mataches[location_bus_names] = prefix_size(bus_name, location_bus_names)
-                    #score = edit_distance(bus_name, location_bus_names)/scaling_factor
-                    score = edit_distance(bus_name, location_bus_name)
-                    match_name = location_bus_name
-                    for name_part in location_bus_name.split():
-                        part_score = edit_distance(bus_name, name_part)
-                        if part_score < score:
-                            score = part_score
-                            match_name = name_part
-
-                    location_canditates.append(LocationCanditate(bus['id'], bus_name, match_name, score, zone_locations[location_bus_name]))
-
-            location_canditates = sorted(location_canditates, key=lambda x: x.score)
-            print('')
-            print(substation['name'])
-            print([bus['name'] for bus in substation['buses']])
-            for lc in location_canditates:
-                print('  {} - {} {} - {} : {}'.format(lc.score, lc.bus_id, lc.bus_name, lc.location.raw_bus_name, lc.match_name))
-
-            if location_canditates[0].score <= 4: # strong match
-                min_score = location_canditates[0].score
-
-                best_matches = set()
-                for location_canditate in location_canditates:
-                    if min_score < location_canditate.score:
-                        break
-                    loc = location_canditate.location
-                    best_matches.add(loc)
-                    if loc in unmatched_locations:
-                        unmatched_locations.remove(loc)
-
-
-                if len(best_matches) > 1:
-                    print('WARNING: multiple matches, picking one at random' )
-                    print([loc.bus_name for loc in best_matches])
-                    max_lat_delta = float('-Inf')
-                    max_lon_delta = float('-Inf')
-
-                    for loc_i, loc_j in itertools.combinations(best_matches, 2):
-                        max_lat_delta = max(max_lat_delta, abs(loc_i.latitude - loc_j.latitude))
-                        max_lon_delta = max(max_lon_delta, abs(loc_i.longitude - loc_j.longitude))
-
-                    print('max latitude delta: {}'.format(max_lat_delta))
-                    print('max longitude delta: {}'.format(max_lon_delta))
-
-                # Sort these matches, so that the selection is deterministic
-                sorted_best_matches = sorted(best_matches, key=lambda x: x.id)
-                sub_loc = sorted_best_matches[0]
-                substation_location[substation['id']] = sub_loc
-
-                substation['latitude'] = sub_loc.latitude
-                substation['longitude'] = sub_loc.longitude
-
-            # print(substation['name'])
-            # print([bus['name'] for bus in substation['buses']])
-            # print(location_canditates)
-            # print('')
-
-        location_substations = {}
-        for sub_id, loc in substation_location.items():
-            # loc_id = loc.id
-            # if loc_id not in location_substations:
-            #     location_substations[loc_id] = set()
-            # location_substations[loc_id].add(sub_id)
-            if loc not in location_substations:
-                location_substations[loc] = set()
-            location_substations[loc].add(sub_id)
-
-        for loc, sub_ids in location_substations.items():
-            if len(sub_ids) > 1:
-                #print(loc)
-                print('')
-                print('WARNING: {0:d} different substations match to common location {1:d} ({2:.2f}, {3:.2f})'.format(len(sub_ids), loc.id, loc.longitude, loc.latitude))
-                for sub_id in sub_ids:
-                    substation = substation_lookup[sub_id]
-                    bus_names = [bus['name'] for bus in substation['buses']]
-                    print('  substation {} - bus names {}'.format(sub_id, bus_names))
-
-
-        print('')
-        print('matched substations: {} of {}'.format(len(substation_location), len(substations)))
-        print('un-matched locations: {} of {}'.format(len(unmatched_locations), len(all_locations)))
-
-        print('')
-        for loc in unmatched_locations:
-            print(loc)
-
-
     if args.bus_geolocations != None:
         geolocation_lookup = {}
-        with open(args.bus_geolocations, 'r') as jsonfile:
-            geojson = json.load(jsonfile)
-        #print(geojson)
-        for feature in geojson['features']:
-            bus_id = feature['properties'][args.bus_geolocations_index]
-            geolocation_lookup[bus_id] = {
-                'longitude':feature['geometry']['coordinates'][0],
-                'latitude':feature['geometry']['coordinates'][1]
-            }
+
+        if args.bus_geolocations.lower().endswith('.geojson'):
+            with open(args.bus_geolocations, 'r') as jsonfile:
+                geojson = json.load(jsonfile)
+            #print(geojson)
+            for feature in geojson['features']:
+                bus_id = feature['properties'][args.bus_geolocations_index]
+                geolocation_lookup[bus_id] = {
+                    'longitude':feature['geometry']['coordinates'][0],
+                    'latitude':feature['geometry']['coordinates'][1]
+                }
+        elif args.bus_geolocations.lower().endswith('csv'):
+            with open(args.bus_geolocations, 'r') as csvfile:
+                csvfile.readline() # discard header row
+
+                for row in csvfile:
+                    elems = row.split(',')
+                    bus_id = int(elems[0])
+                    x = float(elems[1])
+                    y = float(elems[2])
+                    geolocation_lookup[bus_id] = {'longitude': x, 'latitude': y}
+        else:
+            raise ValueError("Invalid file extension")
+
+
 
 
         # import ipdb; ipdb.set_trace()
@@ -821,229 +699,6 @@ def main(args):
                 print('marking substation {} as virtual'.format(substation['id']))
 
 
-    if args.scs:
-        print('Adding SCS Data')
-
-        # setup component info
-        for sub in substations:
-            sub['display_properties'] = ['name', 'id', 'buses', 'transformer_groups', 'branch_groups']
-            sub['switchable'] = True
-
-            for bus in sub['buses']:
-                bus['display_properties'] = ['name', 'id', 'status', 'voltage', 'angle', 'owner']
-                bus['switchable'] = True
-                bus_id = bus['id']
-                bus_data = bus_lookup[bus_id]
-
-                bus['status'] = 1 if int(bus_data.ide) != 4 else 0
-
-                bus_owner = int(bus_data.owner)
-                bus_owner_name = owner_lookup[bus_owner].owname
-
-                base_kv = float(bus_data.basekv)
-                bus['base_kv'] = base_kv
-                bus['owner'] = bus_owner_name
-
-                vm_val = float(bus_data.vm)
-                va_val = float(bus_data.va)
-                vm_ub = float(bus_data.nvhi)
-                vm_lb = float(bus_data.nvlo)
-                bus['voltage'] = connectivity_range(vm_lb*base_kv, vm_ub*base_kv, vm_val*base_kv, 'both', 0.2)
-                bus['angle'] = va_val
-
-                for generator in bus['generators']:
-                    generator['display_properties'] = ['name', 'id', 'status', 'active', 'reactive']
-                    generator['switchable'] = True
-
-                    gen_id = generator['id']
-                    generator_data = generator_lookup[gen_id]
-
-                    generator['status'] = int(generator_data.stat)
-
-                    pg = float(generator_data.pg)
-                    qg = float(generator_data.qg)
-
-                    qg_ub = float(generator_data.qt)
-                    qg_lb = float(generator_data.qb)
-
-                    pg_ub = float(generator_data.pt)
-                    pg_lb = float(generator_data.pb)
-
-                    generator['active'] = connectivity_range(pg_lb, pg_ub, pg, 'ub', 0.2)
-                    generator['reactive'] = connectivity_range(qg_lb, qg_ub, qg, 'both', 0.2)
-
-                for load in bus['loads']:
-                    load['display_properties'] = ['name', 'id', 'status', 'active', 'reactive']
-                    #load['switchable'] = True
-
-                    load_id = load['id']
-                    load_data = load_lookup[load_id]
-
-                    load['status'] = int(load_data.status)
-
-                    pl = float(load_data.pl)
-                    ql = float(load_data.ql)
-                    load['active'] = connectivity_range(0, pl, pl, 'lb', 0.9) if pl >= 0 else connectivity_range(pl, 0, pl, 'ub', 0.9)
-                    load['reactive'] = connectivity_range(0, ql, ql, 'lb', 0.9) if ql >= 0 else connectivity_range(ql, 0, ql, 'ub', 0.9)
-
-                    if float(load_data.ip) != 0.0 or float(load_data.iq) != 0.0 or float(load_data.yp) != 0.0 or float(load_data.yq) != 0.0:
-                        print('WARNING: non-constant power load!')
-
-                for fixed_shunt in bus['fixed_shunts']:
-                    fixed_shunt['display_properties'] = ['name', 'id', 'status', 'conductance', 'susceptance']
-                    #load['switchable'] = True
-
-                    fixed_shunt_id = fixed_shunt['id']
-                    fixed_shunt_data = fixed_shunt_lookup[fixed_shunt_id]
-
-                    fixed_shunt['status'] = int(fixed_shunt_data.status)
-
-                    gl = float(fixed_shunt_data.gl)
-                    bl = float(fixed_shunt_data.bl)
-
-                    fixed_shunt['conductance'] = connectivity_range(0, gl, gl, 'lb', 0.9) if gl >= 0 else connectivity_range(gl, 0, gl, 'ub', 0.9)
-                    fixed_shunt['susceptance'] = connectivity_range(0, bl, bl, 'lb', 0.9) if bl >= 0 else connectivity_range(bl, 0, bl, 'ub', 0.9)
-
-                for switched_shunt in bus['switched_shunts']:
-                    switched_shunt['display_properties'] = ['name', 'id', 'status', 'conductance', 'susceptance']
-
-                    switched_shunt_id = switched_shunt['id']
-                    switched_shunt_data = switched_shunt_lookup[switched_shunt_id]
-
-                    switched_shunt['status'] = int(switched_shunt_data.stat)
-
-                    gl = float(0)
-                    bl = float(switched_shunt_data.binit)
-
-                    switched_shunt['conductance'] = connectivity_range(0, gl, gl, 'lb', 0.9) if gl >= 0 else connectivity_range(gl, 0, gl, 'ub', 0.9)
-                    switched_shunt['susceptance'] = connectivity_range(0, bl, bl, 'lb', 0.9) if bl >= 0 else connectivity_range(bl, 0, bl, 'ub', 0.9)
-
-
-                for facts in bus['facts']:
-                    facts['display_properties'] = ['name', 'id', 'status']
-
-                    facts_id = facts['id']
-                    facts_data = facts_lookup[facts_id]
-
-                    facts['status'] = int(facts_data.mode)
-
-            for transformer_group in sub['transformer_groups']:
-                transformer_group['switchable'] = True
-                for transformer in transformer_group['transformers']:
-                    transformer['display_properties'] = ['name', 'id', 'status', 'rate_a_tail_1', 'active_tail_1', 'reactive_tail_1', 'cod_1']
-                    transformer_id = transformer['id']
-                    transformer_data = transformer_lookup[transformer_id]
-
-                    assert('status' not in transformer)
-                    transformer['status'] = int(transformer_data.p1.stat)
-
-                    transformer['cod_1'] = int(transformer_data.w1.cod)
-
-                    rate_a_1 = float(transformer_data.w1.rata)
-                    rate_a_1_watch = 'ub' if not math.isclose(rate_a_1, 0.0, abs_tol=1e-9) else 'none' # in raw/pti rate_a == 0.0 => unbounded
-                    transformer['rate_a_tail_1'] = connectivity_range(0, rate_a_1, 0, rate_a_1_watch, 0.2)
-
-                    transformer['active_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0, 'none', 0.0)
-                    transformer['reactive_tail_1'] = connectivity_range(-rate_a_1, rate_a_1, 0, 'none', 0.0)
-
-
-        all_branch_groups = []
-        for sub in substations:
-            all_branch_groups.extend(sub['branch_groups'])
-        for cor in corridors:
-            all_branch_groups.extend(cor['branch_groups'])
-
-
-        for branch_group in all_branch_groups:
-            branch_group['switchable'] = True
-            for banch in branch_group['branches']:
-                banch['display_properties'] = ['name', 'id', 'status', 'rate_a_tail', 'active_tail', 'reactive_tail', 'rate_a_head', 'active_head', 'reactive_head']
-
-                #print(banch)
-                branch_id = banch['id']
-                branch_data = branch_lookup[branch_id]
-                from_bus_id = int(branch_data.i)
-                to_bus_id = int(branch_data.j)
-
-                banch['base_kv'] = get_base_kv(from_bus_id, to_bus_id, bus_lookup, branch_id)
-                banch['status'] = int(branch_data.st)
-
-                rate_a = float(branch_data.ratea)
-                rate_a_watch = 'ub' if not math.isclose(rate_a, 0.0, abs_tol=1e-9) else 'none' # in raw/pti rate_a == 0.0 => unbounded
-                banch['rate_a_tail'] = connectivity_range(0, rate_a, 0, rate_a_watch, 0.2)
-                banch['active_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
-                banch['reactive_tail'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
-
-                banch['rate_a_head'] = connectivity_range(0, rate_a, 0, rate_a_watch, 0.2)
-                banch['active_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
-                banch['reactive_head'] = connectivity_range(-rate_a, rate_a, 0, 'none', 0.0)
-
-
-
-        for cor in corridors:
-            for facts_group in cor['facts_groups']:
-                for facts in facts_group['facts']:
-                    facts['display_properties'] = ['name', 'id', 'status']
-
-                    facts_id = facts['id']
-                    facts_data = facts_lookup[facts_id]
-
-                    from_bus_id = int(facts_data.i)
-                    to_bus_id = int(facts_data.j)
-
-                    facts['base_kv'] = get_base_kv(from_bus_id, to_bus_id, bus_lookup, facts_id)
-                    facts['status'] = int(facts_data.mode)
-
-            for tt_dc_group in cor['tt_dc_groups']:
-                for tt_dc in tt_dc_group['tt_dcs']:
-                    tt_dc['display_properties'] = ['name', 'id', 'status']
-
-                    tt_dc_id = tt_dc['id']
-                    tt_dc_data = tt_dc_lookup[tt_dc_id]
-
-                    tt_dc['base_kv'] = float(tt_dc_data.params.vschd)
-                    tt_dc['status'] = int(int(tt_dc_data.params.mdc) != 0) # 100% sure that this the same as status
-
-            for vsc_dc_group in cor['vsc_dc_groups']:
-                for vsc_dc in vsc_dc_group['vsc_dcs']:
-                    vsc_dc['display_properties'] = ['name', 'id', 'status']
-
-                    vsc_dc_id = vsc_dc['id']
-                    vsc_dc_data = vsc_dc_lookup[vsc_dc_id]
-
-                    from_bus_id = int(vsc_dc_data.c1.ibus)
-                    to_bus_id = int(vsc_dc_data.c2.ibus)
-
-                    vsc_dc['base_kv'] = get_base_kv(from_bus_id, to_bus_id, bus_lookup, vsc_dc_id)
-                    vsc_dc['status'] = int(vsc_dc_data.params.mdc)
-
-
-        # setup derived component info
-        for sub in substations:
-            sub['base_kv_max'] = max(bus['base_kv'] for bus in sub['buses'])
-
-        for cor in corridors:
-            base_kv_levels  = set(component['base_kv'] for comp_group in cor['branch_groups'] for component in comp_group['branches'])
-            base_kv_levels |= set(component['base_kv'] for comp_group in cor['facts_groups'] for component in comp_group['facts'])
-            base_kv_levels |= set(component['base_kv'] for comp_group in cor['tt_dc_groups'] for component in comp_group['tt_dcs'])
-            base_kv_levels |= set(component['base_kv'] for comp_group in cor['vsc_dc_groups'] for component in comp_group['vsc_dcs'])
-
-            cor['base_kv_max'] = max(base_kv_levels)
-
-            if len(base_kv_levels) > 1:
-                print('WARNING: corridor {} has multiple base_kv levels {}'.format(cor['id'], base_kv_levels))
-
-                for branch_group in cor['branch_groups']:
-                    for branch in branch_group['branches']:
-                        branch_data = branch_lookup[branch_id]
-                        from_bus_id = int(branch_data.i)
-                        to_bus_id = int(branch_data.j)
-                        #print(branch)
-                        print('  branch {} ({}, {}) - base_kv {}'.format(branch['id'], from_bus_id, to_bus_id, branch['base_kv']))
-
-        print('')
-
-
     connectivity = {
         'case': args.raw_file,
         'substations': substations,
@@ -1087,13 +742,9 @@ def build_cli_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('raw_file', help='the psse file to operate on (.raw)')
     parser.add_argument('-o', '--output', help='the place to send the output (.json)', default='connectivity.json')
-    parser.add_argument('-g', '--geolocations', help='the available geolocation data (.csv)')
-    parser.add_argument('-scs', help='adds extra data to the json document for SCS', action='store_true', default=False)
-    parser.add_argument('-kvt', '--kv-threshold' , help='the minimum voltage to be represented in the network connectivity', type=float, default=0.0)
-    parser.add_argument('-bg', '--bus-geolocations' , help='bus geolocation data (.json)')
-    parser.add_argument('-bi','--bus-geolocations-index', default='id', help='index field name for bus geolocations')
-    parser.add_argument('-gic', '--gic-file', help='load the substation and geolocation data (.gic)')
-    parser.add_argument('-geo', '--geo-file', help='lanl substation and geolocation data (.json)')
+    parser.add_argument('-k', '--kv-threshold' , help='the minimum voltage to be represented in the network connectivity', type=float, default=0.0)
+    parser.add_argument('-g', '--bus-geolocations' , help='bus geolocation data (.geojson/csv)')
+    parser.add_argument('-n', '--bus-geolocations-index', default='id', help='index field name for bus geolocations .geojson')
 
     return parser
 
